@@ -1,0 +1,6 @@
+framework module JJCollectionViewRoundFlowLayout {
+  umbrella header "JJCollectionViewRoundFlowLayout-umbrella.h"
+
+  export *
+  module * { export * }
+}

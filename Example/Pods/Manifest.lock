@@ -1,0 +1,16 @@
+PODS:
+  - JJCollectionViewRoundFlowLayout (1.0.0)
+
+DEPENDENCIES:
+  - JJCollectionViewRoundFlowLayout (from `../`)
+
+EXTERNAL SOURCES:
+  JJCollectionViewRoundFlowLayout:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  JJCollectionViewRoundFlowLayout: e95140be604d0154dbc01167b609dccc550ee02d
+
+PODFILE CHECKSUM: 225801a8ef4fa5a6e50988a18118ddeb7d038f74
+
+COCOAPODS: 1.8.4

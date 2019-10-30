@@ -1,0 +1,13 @@
+use_frameworks!
+
+platform :ios, '8.0'
+
+target 'JJCollectionViewRoundFlowLayout_Example' do
+  pod 'JJCollectionViewRoundFlowLayout', :path => '../'
+
+  target 'JJCollectionViewRoundFlowLayout_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
