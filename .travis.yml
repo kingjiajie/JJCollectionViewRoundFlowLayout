@@ -10,6 +10,7 @@ before_install:
 - gem install cocoapods # Since Travis is not always on latest version
 - pod install --project-directory=Example
 script:
-- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/JJCollectionViewRoundFlowLayout.xcworkspace -scheme JJCollectionViewRoundFlowLayout-Example | xcpretty
+#- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/JJCollectionViewRoundFlowLayout.xcworkspace -scheme JJCollectionViewRoundFlowLayout-Example | xcpretty
 #- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/JJCollectionViewRoundFlowLayout.xcworkspace -scheme JJCollectionViewRoundFlowLayout-Example -sdk iphonesimulator11.4 ONLY_ACTIVE_ARCH=NO | xcpretty
+- set -o pipefail && xcodebuild -workspace Example/JJCollectionViewRoundFlowLayout.xcworkspace -scheme JJCollectionViewRoundFlowLayout-Example -destination 'platform=iOS Simulator,name=iPhone 8,OS=13.1'
 - pod lib lint
