@@ -83,6 +83,9 @@ pod 'JJCollectionViewRoundFlowLayout'
 
 ### Setting
 #### collectionView section底色
+  
+  
+![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/1.png)
 
 ``` obj-c
 - (JJCollectionViewRoundConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout configModelForSectionAtIndex:(NSInteger)section{
@@ -96,6 +99,10 @@ pod 'JJCollectionViewRoundFlowLayout'
 ```
 
 #### 包含headerview、包含footerview
+  
+  
+  
+![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/2.png)
 
 ``` obj-c
 
@@ -114,10 +121,18 @@ layout.isCalculateFooter = YES;
 ```
 
 #### 支持collectionView，Vertical，Horizontal
+  
+  
+![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/3.png)
 
-显示方向不需要进行另外设置，根据CollectionView设置好的方面，底色自动进行检测判断。
 
+``` obj-c
+//显示方向不需要进行另外设置，根据CollectionView设置好的方面，底色自动进行检测判断。
+
+```
 #### 支持shadow投影
+  
+![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/4.png)
 
 ``` obj-c
 
@@ -138,6 +153,10 @@ layout.isCalculateFooter = YES;
 ```
 
 #### 支持根据不同section分别设置不同底色显示
+  
+![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/5.png)
+  
+  
 ``` obj-c
 
 - (JJCollectionViewRoundConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout configModelForSectionAtIndex:(NSInteger)section{
