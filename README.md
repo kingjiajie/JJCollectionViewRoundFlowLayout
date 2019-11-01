@@ -28,7 +28,8 @@ To run the example project, clone the repo, and run `pod install` from the Examp
 ## Installation
 
 JJCollectionViewRoundFlowLayout is available through [CocoaPods](https://cocoapods.org). To install
-it, simply add the following line to your Podfile:
+it, simply add the following line to your Podfile:  
+
 
 ```ruby
 pod 'JJCollectionViewRoundFlowLayout'
@@ -96,10 +97,10 @@ pod 'JJCollectionViewRoundFlowLayout'
     
     return model;
 }
-```
+```  
+
 
 #### 包含headerview、包含footerview
-  
   
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/2.png)
@@ -118,7 +119,8 @@ layout.isCalculateFooter = YES;
     
     return model;
 }
-```
+```  
+
 
 #### 支持collectionView，Vertical，Horizontal
   
@@ -129,7 +131,9 @@ layout.isCalculateFooter = YES;
 ``` obj-c
 //显示方向不需要进行另外设置，根据CollectionView设置好的方面，底色自动进行检测判断。
 
-```
+```  
+  
+  
 #### 支持shadow投影
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/4.png)
@@ -150,7 +154,8 @@ layout.isCalculateFooter = YES;
     return model;
 }
 
-```
+```  
+
 
 #### 支持根据不同section分别设置不同底色显示
   
@@ -175,7 +180,8 @@ layout.isCalculateFooter = YES;
     
     return model;
 }
-```
+```  
+
 
 ## Author
 
