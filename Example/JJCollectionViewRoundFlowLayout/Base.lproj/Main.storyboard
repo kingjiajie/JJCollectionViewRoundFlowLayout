@@ -23,7 +23,7 @@
             </objects>
             <point key="canvasLocation" x="-658" y="432"/>
         </scene>
-        <!--View Controller-->
+        <!--JJCollectionViewRoundFlowLayout-->
         <scene sceneID="wQg-tq-qST">
             <objects>
                 <viewController id="whP-gf-Uak" customClass="JJViewController" sceneMemberID="viewController">
@@ -36,7 +36,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                     </view>
-                    <navigationItem key="navigationItem" id="SFk-Ov-gNa"/>
+                    <navigationItem key="navigationItem" title="JJCollectionViewRoundFlowLayout" id="SFk-Ov-gNa"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="tc2-Qw-aMS" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>

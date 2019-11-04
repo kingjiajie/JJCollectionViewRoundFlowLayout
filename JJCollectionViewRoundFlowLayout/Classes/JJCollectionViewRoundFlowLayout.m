@@ -65,8 +65,8 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     [super prepareLayout];
     
     NSInteger sections = [self.collectionView numberOfSections];
-//    id <JJCollectionViewDelegateFlowLayout> delegate  = self.collectionView.delegate;
-    id delegate  = self.collectionView.delegate;
+    id <JJCollectionViewDelegateRoundFlowLayout> delegate  = (id <JJCollectionViewDelegateRoundFlowLayout>)self.collectionView.delegate;
+//    id delegate  = self.collectionView.delegate;
     if ([delegate respondsToSelector:@selector(collectionView:layout:borderEdgeInsertsForSectionAtIndex:)] ||
         [delegate respondsToSelector:@selector(collectionView:layout:configModelForSectionAtIndex:)]) {
     }else{
@@ -245,10 +245,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     
     NSMutableArray * attrs = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
     for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttrs) {
-        //如果这里判断是否有交集，会出现insert indexpath时候，系统刷新会进行崩溃。
-//        if (CGRectIntersectsRect(rect, attr.frame)) {
             [attrs addObject:attr];
-//        }
     }
     return [attrs copy];
 }
