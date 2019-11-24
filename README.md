@@ -8,17 +8,27 @@
 
    JJCollectionViewRoundFlowLayout可设置CollectionView的BackgroundColor，可跟据用户Cell个数计算背景图尺寸，可自定义是否包括计算CollectionViewHeaderView、CollectionViewFootererView或只计算Cells。设置简单，可自定义背景颜色偏移，设置显示方向（竖向、横向）显示,不同Section设置不同的背景颜色。
    可设置内容：
+   
    1、collectionView section底色。
+   
    2、是否包含headerview。
+   
    3、是否包含footerview。
+   
    4、支持borderWidth、borderColor。
+   
    5、支持shadow投影。
+   
    6、支持collectionView，Vertical，Horizontal。
+   
    7、支持根据不同section分别设置不同底色显示。  
+   
+   
+   
+   Swift版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift)
+   
+   OC版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout)
      
-     
-
-Swift版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift)
 
 ## Example
 
