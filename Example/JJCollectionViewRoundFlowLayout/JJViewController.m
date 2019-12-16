@@ -9,6 +9,7 @@
 #import "JJViewController.h"
 #import "NextViewController.h"
 #import "SecondViewController.h"
+#import "ThirdViewController.h"
 
 @interface JJViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -85,7 +86,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 10;
+    return 12;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -122,6 +123,12 @@
             }break;
             case 9:{
                 cell.textLabel.text = @"CollectionView（底色 圆角 分别不同颜色）";
+            }break;
+            case 10:{
+                cell.textLabel.text = @"CollectionView（单独设置某个 header 底色）";
+            }break;
+            case 11:{
+                cell.textLabel.text = @"CollectionView（单独设置某个 footer 底色））";
             }break;
                 
             default:
@@ -175,13 +182,27 @@
         case 8:{
             SecondViewController *secondVC = [[SecondViewController alloc]init];
             secondVC.isHaveShadow = YES;
-            secondVC.isHaveBGColor = YES;
-            [self.navigationController pushViewController:secondVC animated:YES];
+   
+            [self.navigationController pushViewController:secondVC animated:YES];         secondVC.isHaveBGColor = YES;
             return;
         }break;
         case 9:{
             VC.isHaveHeaderFooterView = NO;
             VC.isShowDifferentColor = YES;
+        }break;
+        case 10:{
+            ThirdViewController *thirdVC = [[ThirdViewController alloc]init];
+            thirdVC.isHaveHeaderFooterView = YES;
+            thirdVC.isRoundWithHeaerView = YES;
+            [self.navigationController pushViewController:thirdVC animated:YES];
+            return;
+        }break;
+        case 11:{
+            ThirdViewController *thirdVC = [[ThirdViewController alloc]init];
+            thirdVC.isHaveHeaderFooterView = YES;
+            thirdVC.isRoundWithFooterView = YES;
+            [self.navigationController pushViewController:thirdVC animated:YES];
+            return;
         }break;
             
             

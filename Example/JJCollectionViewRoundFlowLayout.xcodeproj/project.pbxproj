@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		040C10F523A779BB00D1C506 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040C10F423A779BB00D1C506 /* ThirdViewController.m */; };
 		04FEFAF22369BA73000ECEDE /* MyCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FEFAEB2369BA72000ECEDE /* MyCollectionReusableView.m */; };
 		04FEFAF32369BA73000ECEDE /* SecondViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FEFAEF2369BA73000ECEDE /* SecondViewController.m */; };
 		04FEFAF42369BA73000ECEDE /* MyCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FEFAF02369BA73000ECEDE /* MyCollectionViewCell.m */; };
@@ -41,6 +42,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		040C10F323A779BB00D1C506 /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
+		040C10F423A779BB00D1C506 /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
 		04FEFAEA2369BA72000ECEDE /* MyCollectionReusableView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionReusableView.h; sourceTree = "<group>"; };
 		04FEFAEB2369BA72000ECEDE /* MyCollectionReusableView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MyCollectionReusableView.m; sourceTree = "<group>"; };
 		04FEFAEC2369BA72000ECEDE /* MyCollectionViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MyCollectionViewCell.h; sourceTree = "<group>"; };
@@ -164,6 +167,8 @@
 				04FEFAF12369BA73000ECEDE /* NextViewController.m */,
 				04FEFAEE2369BA72000ECEDE /* SecondViewController.h */,
 				04FEFAEF2369BA73000ECEDE /* SecondViewController.m */,
+				040C10F323A779BB00D1C506 /* ThirdViewController.h */,
+				040C10F423A779BB00D1C506 /* ThirdViewController.m */,
 				04FEFAEC2369BA72000ECEDE /* MyCollectionViewCell.h */,
 				04FEFAF02369BA73000ECEDE /* MyCollectionViewCell.m */,
 				04FEFAEA2369BA72000ECEDE /* MyCollectionReusableView.h */,
@@ -385,6 +390,7 @@
 			files = (
 				04FEFAF32369BA73000ECEDE /* SecondViewController.m in Sources */,
 				6003F59E195388D20070C39A /* JJAppDelegate.m in Sources */,
+				040C10F523A779BB00D1C506 /* ThirdViewController.m in Sources */,
 				04FEFAF42369BA73000ECEDE /* MyCollectionViewCell.m in Sources */,
 				04FEFAF22369BA73000ECEDE /* MyCollectionReusableView.m in Sources */,
 				04FEFAF52369BA73000ECEDE /* NextViewController.m in Sources */,

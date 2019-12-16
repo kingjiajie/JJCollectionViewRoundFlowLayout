@@ -1,23 +1,24 @@
 //
-//  NextViewController.m
-//  JJCollectionViewRoundFlowLayout
+//  ThirdViewController.m
+//  JJCollectionViewRoundFlowLayout_Example
 //
-//  Created by jiajie on 2019/10/30.
-//  Copyright © 2019 aihuo. All rights reserved.
+//  Created by jiajie on 2019/12/16.
+//  Copyright © 2019 谢家杰. All rights reserved.
 //
 
-#import "NextViewController.h"
+#import "ThirdViewController.h"
 @import JJCollectionViewRoundFlowLayout;
 #import "MyCollectionViewCell.h"
 #import "MyCollectionReusableView.h"
 
-@interface NextViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,JJCollectionViewDelegateRoundFlowLayout>
+@interface ThirdViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,JJCollectionViewDelegateRoundFlowLayout>
 
 @property (strong, nonatomic) UICollectionView *myCollectionView;
 
+
 @end
 
-@implementation NextViewController
+@implementation ThirdViewController
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -30,9 +31,6 @@
 - (void)initialization{
     _myCollectionView = ({
         JJCollectionViewRoundFlowLayout *layout = [[JJCollectionViewRoundFlowLayout alloc]init];
-        layout.scrollDirection = self.isHorizontal ? UICollectionViewScrollDirectionHorizontal : UICollectionViewScrollDirectionVertical;
-        layout.isCalculateHeader = self.isRoundWithHeaerView;
-        layout.isCalculateFooter = self.isRoundWithFooterView;
         
         UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, 100, 100) collectionViewLayout:layout];
         [collectionView registerClass:[MyCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([MyCollectionViewCell class])];
@@ -98,7 +96,7 @@
 #pragma mark - <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 2;
+    return 5;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
@@ -133,31 +131,6 @@
 
 }
 
-#pragma mark - JJCollectionViewDelegateRoundFlowLayout
-
-- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout borderEdgeInsertsForSectionAtIndex:(NSInteger)section{
-    return UIEdgeInsetsMake(5.f, 12, 5, 12);
-//    return UIEdgeInsetsMake(0, 20, 20, 20);
-}
-
-- (JJCollectionViewRoundConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout configModelForSectionAtIndex:(NSInteger)section{
-    JJCollectionViewRoundConfigModel *model = [[JJCollectionViewRoundConfigModel alloc]init];
-    model.backgroundColor = [UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1.0];
-    model.cornerRadius = 10;
-    
-    
-    if (self.isShowDifferentColor) {
-        if (section == 0) {
-            model.backgroundColor = [UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1.0];
-        }else{
-            model.backgroundColor = [UIColor colorWithRed:100/255.0 green:233/255.0 blue:233/255.0 alpha:1.0];
-        }
-    }
-    
-    return model;
-}
-
-
 #pragma mark - header&footer
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
@@ -183,6 +156,55 @@
         view.myLabel.text = @"Footer";
         return view;
     }
+}
+
+#pragma mark - JJCollectionViewDelegateRoundFlowLayout
+
+- (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout borderEdgeInsertsForSectionAtIndex:(NSInteger)section{
+    return UIEdgeInsetsMake(5.f, 12, 5, 12);
+}
+
+- (JJCollectionViewRoundConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout configModelForSectionAtIndex:(NSInteger)section{
+    
+    JJCollectionViewRoundConfigModel *model = [[JJCollectionViewRoundConfigModel alloc]init];
+    
+    model.backgroundColor = [UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1.0];
+    model.cornerRadius = 10;
+    return model;
+}
+
+/// 根据section设置是否包含headerview（实现该方法后，isCalculateHeader将不会生效）
+/// @param collectionView collectionView description
+/// @param collectionViewLayout collectionViewLayout description
+/// @param section section description
+- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout isCalculateHeaderViewIndex:(NSInteger)section{
+    if (self.isRoundWithHeaerView) {
+        if (section %2 == 0) {
+            return YES;
+        }
+    }else{
+        if (section == 0) {
+            return YES;
+        }
+    }
+    return NO;
+}
+
+/// 根据section设置是否包含footerview（实现该方法后，isCalculateFooter将不会生效）
+/// @param collectionView collectionView description
+/// @param collectionViewLayout collectionViewLayout description
+/// @param section section description
+- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout isCalculateFooterViewIndex:(NSInteger)section{
+    if (self.isRoundWithFooterView) {
+        if (section %2 == 0) {
+            return YES;
+        }
+    }else{
+        if (section == 0) {
+            return YES;
+        }
+    }
+    return NO;
 }
 
 @end
