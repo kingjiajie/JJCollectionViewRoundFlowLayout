@@ -15,7 +15,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 @end
 
 
-@interface ULBCollectionViewRoundLayoutAttributes  : UICollectionViewLayoutAttributes
+@interface JJCollectionViewRoundLayoutAttributes  : UICollectionViewLayoutAttributes
 
 //间距
 @property (nonatomic, assign) UIEdgeInsets borderEdgeInsets;
@@ -23,7 +23,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 
 @end
 
-@implementation ULBCollectionViewRoundLayoutAttributes
+@implementation JJCollectionViewRoundLayoutAttributes
 
 @end
 
@@ -35,7 +35,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes{
     [super applyLayoutAttributes:layoutAttributes];
-    ULBCollectionViewRoundLayoutAttributes *attr = (ULBCollectionViewRoundLayoutAttributes *)layoutAttributes;
+    JJCollectionViewRoundLayoutAttributes *attr = (JJCollectionViewRoundLayoutAttributes *)layoutAttributes;
     
     if (attr.myConfigModel) {
         JJCollectionViewRoundConfigModel *model = attr.myConfigModel;
@@ -67,8 +67,9 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     NSInteger sections = [self.collectionView numberOfSections];
     id <JJCollectionViewDelegateRoundFlowLayout> delegate  = (id <JJCollectionViewDelegateRoundFlowLayout>)self.collectionView.delegate;
 //    id delegate  = self.collectionView.delegate;
-    if ([delegate respondsToSelector:@selector(collectionView:layout:borderEdgeInsertsForSectionAtIndex:)] ||
-        [delegate respondsToSelector:@selector(collectionView:layout:configModelForSectionAtIndex:)]) {
+    
+    //检测是否实现了背景样式模块代理
+    if ([delegate respondsToSelector:@selector(collectionView:layout:configModelForSectionAtIndex:)]) {
     }else{
         return ;
     }
@@ -77,15 +78,24 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     [self registerClass:[JJCollectionReusableView class] forDecorationViewOfKind:JJCollectionViewRoundSection];
     [self.decorationViewAttrs removeAllObjects];
     
-    for (NSInteger section =0; section < sections; section++) {
+    for (NSInteger section = 0; section < sections; section++) {
         NSInteger numberOfItems = [self.collectionView numberOfItemsInSection:section];
         if (numberOfItems > 0) {
             UICollectionViewLayoutAttributes *firstAttr = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
-            if (self.isCalculateHeader) {
+            
+            //判断是否计算headerview
+            BOOL isCalculateHeaderView = NO;
+            if ([delegate respondsToSelector:@selector(collectionView:layout:isCalculateHeaderViewIndex:)]) {
+                isCalculateHeaderView = [delegate collectionView:self.collectionView layout:self isCalculateHeaderViewIndex:section];
+            }else{
+                isCalculateHeaderView = self.isCalculateHeader;
+            }
+            
+            if (isCalculateHeaderView) {
                 //headerView
                 UICollectionViewLayoutAttributes *headerAttr = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
                 if (headerAttr &&
-                    (headerAttr.frame.size.width != 0 || headerAttr.frame.size.height != 0)) {
+                    (headerAttr.frame.size.width != 0|| headerAttr.frame.size.height != 0)) {
                     firstAttr = headerAttr;
                 }else{
                     CGRect rect = firstAttr.frame;
@@ -95,7 +105,15 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 
             UICollectionViewLayoutAttributes *lastAttr = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:(numberOfItems - 1) inSection:section]];
             
-            if (self.isCalculateFooter) {
+            //判断是否计算headerview
+            BOOL isCalculateFooterView = NO;
+            if ([delegate respondsToSelector:@selector(collectionView:layout:isCalculateFooterViewIndex:)]) {
+                isCalculateFooterView = [delegate collectionView:self.collectionView layout:self isCalculateFooterViewIndex:section];
+            }else{
+                isCalculateFooterView = self.isCalculateFooter;
+            }
+            
+            if (isCalculateFooterView) {
                 //footerView
                 UICollectionViewLayoutAttributes *footerAttr = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
                 if (footerAttr &&
@@ -123,11 +141,11 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
             }
             
             CGRect sectionFrame = CGRectUnion(firstAttr.frame, lastAttr.frame);
-            if (!self.isCalculateHeader && !self.isCalculateFooter) {
+            if (!isCalculateHeaderView && !isCalculateFooterView) {
                 //都没有headerView&footerView
                 sectionFrame = [self calculateDefaultFrameWithSectionFrame:sectionFrame sectionInset:sectionInset];
             }else{
-                if (self.isCalculateHeader && !self.isCalculateFooter) {
+                if (isCalculateHeaderView && !isCalculateFooterView) {
                     //headerView
                     UICollectionViewLayoutAttributes *headerAttr = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
                     //判断是否有headerview
@@ -150,7 +168,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
                     }else{
                         sectionFrame = [self calculateDefaultFrameWithSectionFrame:sectionFrame sectionInset:sectionInset];
                     }
-                }else if (!self.isCalculateHeader && self.isCalculateFooter) {
+                }else if (!isCalculateHeaderView && isCalculateFooterView) {
                     //footerView
                     UICollectionViewLayoutAttributes *footerAttr = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
                     if (footerAttr &&
@@ -205,7 +223,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
             }
             
             //2. 定义
-            ULBCollectionViewRoundLayoutAttributes *attr = [ULBCollectionViewRoundLayoutAttributes layoutAttributesForDecorationViewOfKind:JJCollectionViewRoundSection withIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+            JJCollectionViewRoundLayoutAttributes *attr = [JJCollectionViewRoundLayoutAttributes layoutAttributesForDecorationViewOfKind:JJCollectionViewRoundSection withIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
             attr.frame = sectionFrame;
             attr.zIndex = -1;
             attr.borderEdgeInsets = userCustomSectionInset;
