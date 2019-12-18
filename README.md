@@ -16,11 +16,14 @@
    5、支持shadow投影。  
    6、支持collectionView，Vertical，Horizontal。  
    7、支持根据不同section分别设置不同底色显示。  
+   8、支持根据section单独判断是否计算对应headerview和footerview  
    
-   Swift版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift)
-   
+   Swift版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift)  
    OC版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout)
      
+
+## 更新日志
+2019-12-16 更新可根据section单独判断是否计算对应headerview和footerview
 
 ## Example
 
@@ -139,7 +142,6 @@ layout.isCalculateFooter = YES;
 
 ```  
   
-  
 #### 支持shadow投影
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/4.png)
@@ -166,8 +168,7 @@ layout.isCalculateFooter = YES;
 #### 支持根据不同section分别设置不同底色显示
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/5.png)
-  
-  
+
 ``` obj-c
 
 - (JJCollectionViewRoundConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout configModelForSectionAtIndex:(NSInteger)section{
@@ -186,6 +187,38 @@ layout.isCalculateFooter = YES;
     
     return model;
 }
+```  
+
+#### 支持根据不同section分别单独设置是否计算对应Headerview和footerview
+  
+![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/6.png)
+
+``` obj-c
+
+/// 根据section设置是否包含headerview（实现该方法后，isCalculateHeader将不会生效）
+/// @param collectionView collectionView description
+/// @param collectionViewLayout collectionViewLayout description
+/// @param section section description
+- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout isCalculateHeaderViewIndex:(NSInteger)section{
+    //这里简单设置了默认间隔一个就计算headerview，后续根据实际业务进行设置
+    if (section %2 == 0) {
+        return YES;
+    }
+    return NO;
+}
+
+/// 根据section设置是否包含footerview（实现该方法后，isCalculateFooter将不会生效）
+/// @param collectionView collectionView description
+/// @param collectionViewLayout collectionViewLayout description
+/// @param section section description
+- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout isCalculateFooterViewIndex:(NSInteger)section{
+    //这里简单设置了默认间隔一个就计算footerview，后续根据实际业务进行设置
+    if (section %2 == 0) {
+        return YES;
+    }
+    return NO;
+}
+
 ```  
 
 
