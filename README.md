@@ -23,7 +23,18 @@
      
 
 ## 更新日志
-2019-12-16 更新可根据section单独判断是否计算对应headerview和footerview
+---
+>* `1.1.0`：增加支持根据section单独判断是否计算对应headerview和footerview
+>* `1.0.1`：优化代码逻辑，增加根据支持根据不同section分别设置不同底色逻辑和demo    
+>* `1.0.0`：初始项目  
+   1、collectionView section底色。  
+   2、是否包含headerview。  
+   3、是否包含footerview。  
+   4、支持borderWidth、borderColor。  
+   5、支持shadow投影。  
+   6、支持collectionView，Vertical，Horizontal。  
+   7、支持根据不同section分别设置不同底色显示。 
+
 
 ## Example
 
