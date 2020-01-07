@@ -24,9 +24,9 @@
 
 ## 更新日志
 ---
->* `1.1.0`：增加支持根据section单独判断是否计算对应headerview和footerview
->* `1.0.1`：优化代码逻辑，增加根据支持根据不同section分别设置不同底色逻辑和demo    
->* `1.0.0`：初始项目  
+* `1.1.0`：增加支持根据section单独判断是否计算对应headerview和footerview
+- `1.0.1`：优化代码逻辑，增加根据支持根据不同section分别设置不同底色逻辑和demo    
+- `1.0.0`：初始项目  
    1、collectionView section底色。  
    2、是否包含headerview。  
    3、是否包含footerview。  
