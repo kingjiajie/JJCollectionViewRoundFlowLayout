@@ -10,11 +10,6 @@
 
 static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoundSection";
 
-@implementation JJCollectionViewRoundConfigModel
-
-@end
-
-
 @interface JJCollectionViewRoundLayoutAttributes  : UICollectionViewLayoutAttributes
 
 //间距
@@ -262,11 +257,79 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     
     NSMutableArray * attrs = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
+    
+    NSArray *formatGroudAttr = [self groupLayoutAttributesForElementsByLineWithAttrs:attrs];
+    [self evaluatedAllCellSettingFrameWithAttr:formatGroudAttr useArr:&attrs];
+    
     for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttrs) {
-            [attrs addObject:attr];
+        [attrs addObject:attr];
     }
-    return [attrs copy];
+    
+    return attrs;
 }
+
+- (NSArray *)groupLayoutAttributesForElementsByLineWithAttrs:(NSArray *)attrs{
+    NSMutableDictionary *allDict = [NSMutableDictionary dictionaryWithCapacity:0];
+    for (UICollectionViewLayoutAttributes *attr  in attrs) {
+        NSMutableArray *dictArr = allDict[@(attr.frame.origin.y)];
+        if (dictArr) {
+            [dictArr addObject:[attr copy]];
+        }else{
+            NSMutableArray *arr = [NSMutableArray arrayWithObject:[attr copy]];
+            allDict[@(attr.frame.origin.y)] = arr;
+        }
+    }
+    return allDict.allValues;
+}
+
+- (NSMutableArray *)evaluatedAllCellSettingFrameWithAttr:(NSArray *)attrs useArr:(NSMutableArray **)useArr{
+    
+    NSMutableArray *newDataArr = *useArr;
+    [newDataArr removeAllObjects];
+    for (NSArray *arr in attrs) {
+        UICollectionViewLayoutAttributes *pAttr = nil;
+        
+        //left
+        for (UICollectionViewLayoutAttributes *attr in arr) {
+            if (attr.representedElementKind != nil) {
+                //nil when representedElementCategory is UICollectionElementCategoryCell (空的时候为cell)
+                continue;
+            }
+            CGRect frame = attr.frame;
+            if (pAttr) {
+                frame.origin.x = pAttr.frame.origin.x + pAttr.frame.size.width + [self evaluatedMinimumInteritemSpacingForSectionAtIndex:attr.indexPath.section];
+            }else{
+                frame.origin.x = [self evaluatedSectionInsetForItemAtIndex:attr.indexPath.section].left;
+            }
+            attr.frame = frame;
+            pAttr = attr;
+        }
+        [newDataArr addObjectsFromArray:arr];
+    }
+    return newDataArr;
+}
+
+
+- (CGFloat)evaluatedMinimumInteritemSpacingForSectionAtIndex:(NSInteger)sectionIndex{
+    if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]) {
+        id<JJCollectionViewDelegateRoundFlowLayout> delegate = (id<JJCollectionViewDelegateRoundFlowLayout>)self.collectionView.delegate;
+
+        return [delegate collectionView:self.collectionView layout:self minimumInteritemSpacingForSectionAtIndex:sectionIndex];
+    } else {
+        return self.minimumInteritemSpacing;
+    }
+}
+
+- (UIEdgeInsets)evaluatedSectionInsetForItemAtIndex:(NSInteger)index{
+    if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {
+        id<JJCollectionViewDelegateRoundFlowLayout> delegate = (id<JJCollectionViewDelegateRoundFlowLayout>)self.collectionView.delegate;
+
+        return [delegate collectionView:self.collectionView layout:self insetForSectionAtIndex:index];
+    } else {
+        return self.sectionInset;
+    }
+}
+#pragma mark - other
 
 - (NSMutableArray<UICollectionViewLayoutAttributes *> *)decorationViewAttrs{
     if (!_decorationViewAttrs) {
