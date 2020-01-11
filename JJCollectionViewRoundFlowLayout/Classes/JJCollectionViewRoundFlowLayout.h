@@ -3,14 +3,14 @@
 //  FuLaDuo
 //
 //  Created by jiajie on 2019/9/17.
-//  Copyright © 2019 aihuo. All rights reserved.
+//  Copyright © 2019 谢家杰. All rights reserved.
 //
 
 #import <UIKit/UIKit.h>
+#import "JJCollectionViewRoundConfigModel.h"
+#import "JJCollectionViewFlowLayoutConfig.h"
 
 NS_ASSUME_NONNULL_BEGIN
-
-@class JJCollectionViewRoundConfigModel;
 
 @protocol JJCollectionViewDelegateRoundFlowLayout <UICollectionViewDelegateFlowLayout>
 
@@ -47,6 +47,12 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JJCollectionViewRoundFlowLayout : UICollectionViewFlowLayout
 
+/// 设置cell对齐方式，不设置为使用系统默认，支持Left
+@property (assign, nonatomic) JJCollectionViewRoundFlowLayoutAlignmentType collectionCellAlignmentType;
+
+/// 是否开始Round计算，（默认YES），当该位置为NO时，计算模块都不开启，包括设置的代理
+@property (assign, nonatomic) BOOL isRoundEnabled;
+
 /// 是否计算header（若实现collectionView: layout: isCalculateHeaderViewIndex:）该字段不起作用
 @property (assign, nonatomic) BOOL isCalculateHeader;
 
@@ -55,26 +61,5 @@ NS_ASSUME_NONNULL_BEGIN
 
 @end
 
-@interface JJCollectionViewRoundConfigModel : NSObject
-
-/// 外圈line边显示宽度
-@property (assign, nonatomic) CGFloat borderWidth;
-
-/// 外圈line边显示颜色
-@property (strong, nonatomic) UIColor *borderColor;
-
-/// 背景颜色
-@property (strong, nonatomic) UIColor *backgroundColor;
-
-/// 投影相关参数
-@property (strong, nonatomic) UIColor *shadowColor;
-@property (assign, nonatomic) CGSize shadowOffset;
-@property (assign, nonatomic) CGFloat shadowOpacity;
-@property (assign, nonatomic) CGFloat shadowRadius;
-
-/// 圆角
-@property (assign, nonatomic) CGFloat cornerRadius;
-
-@end
 
 NS_ASSUME_NONNULL_END

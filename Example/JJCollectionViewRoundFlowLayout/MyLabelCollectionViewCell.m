@@ -1,20 +1,21 @@
 //
-//  CollectionViewCell.m
-//  JJCollectionViewRoundFlowLayout
+//  MyLabelCollectionViewCell.m
+//  JJCollectionViewRoundFlowLayout_Example
 //
-//  Created by jiajie on 2019/10/30.
-//  Copyright © 2019 谢家杰. All rights reserved.
+//  Created by jiajie on 2020/1/11.
+//  Copyright © 2020 谢家杰. All rights reserved.
 //
 
-#import "MyCollectionViewCell.h"
+#import "MyLabelCollectionViewCell.h"
 
-@interface MyCollectionViewCell()
+@interface MyLabelCollectionViewCell ()
 
 @property (strong, nonatomic,readwrite) UILabel *myLabel;
 
 @end
 
-@implementation MyCollectionViewCell
+@implementation MyLabelCollectionViewCell
+
 
 - (instancetype)initWithFrame:(CGRect)frame{
     self = [super initWithFrame:frame];
@@ -28,16 +29,19 @@
     _myLabel = ({
         UILabel *label = [[UILabel alloc]init];
         label.translatesAutoresizingMaskIntoConstraints = NO;
-
+        
+        [label setBackgroundColor:[UIColor clearColor]];
+        [label setTextColor:[UIColor whiteColor]];
+        [label setFont:[UIFont systemFontOfSize:15.f]];
         [label setTextAlignment:NSTextAlignmentCenter];
         [self addSubview:label];
-        
         label;
     });
     
     [self initLayout];
-    
-    [self setBackgroundColor:[UIColor colorWithRed:250/255.0 green:185/255.0 blue:105/255.0 alpha:1.0]];
+
+    self.contentView.layer.cornerRadius = 15.f;
+    [self.contentView setBackgroundColor:[UIColor colorWithRed:250/255.0 green:185/255.0 blue:105/255.0 alpha:1.0]];
 }
 
 
@@ -63,7 +67,7 @@
                                        toItem:superview
                                     attribute:NSLayoutAttributeLeft
                                    multiplier:1.0
-                                     constant:0],
+                                     constant:5],
 
        [NSLayoutConstraint constraintWithItem:view
                                     attribute:NSLayoutAttributeBottom
@@ -79,9 +83,10 @@
                                        toItem:superview
                                     attribute:NSLayoutAttributeRight
                                    multiplier:1
-                                     constant:0],
+                                     constant:-5],
 
     ]];
 }
+
 
 @end

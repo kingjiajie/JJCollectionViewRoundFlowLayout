@@ -3,7 +3,7 @@ This application makes use of the following third party libraries:
 
 ## JJCollectionViewRoundFlowLayout
 
-Copyright (c) 2019 谢家杰 <xjj@gzaihuo.cn>
+Copyright (c) 2019 谢家杰 <303559363@qq.com>
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

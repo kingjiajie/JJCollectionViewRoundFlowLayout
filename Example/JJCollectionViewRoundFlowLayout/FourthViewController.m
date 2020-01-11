@@ -1,23 +1,25 @@
 //
-//  NextViewController.m
-//  JJCollectionViewRoundFlowLayout
+//  FourthViewController.m
+//  JJCollectionViewRoundFlowLayout_Example
 //
-//  Created by jiajie on 2019/10/30.
-//  Copyright © 2019 谢家杰. All rights reserved.
+//  Created by jiajie on 2020/1/11.
+//  Copyright © 2020 谢家杰. All rights reserved.
 //
 
-#import "NextViewController.h"
+#import "FourthViewController.h"
 @import JJCollectionViewRoundFlowLayout;
-#import "MyCollectionViewCell.h"
+#import "MyLabelCollectionViewCell.h"
 #import "MyCollectionReusableView.h"
 
-@interface NextViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,JJCollectionViewDelegateRoundFlowLayout>
+@interface FourthViewController ()<UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout,JJCollectionViewDelegateRoundFlowLayout>
 
 @property (strong, nonatomic) UICollectionView *myCollectionView;
+@property (strong, nonatomic) NSMutableArray *myDataArr;
 
 @end
 
-@implementation NextViewController
+@implementation FourthViewController
+
 
 - (void)viewDidLoad {
     [super viewDidLoad];
@@ -25,17 +27,42 @@
     
     [self initialization];
     [self initLayout];
+    [self initData];
+}
+
+- (void)initData{
+    _myDataArr = ({
+        NSMutableArray *arr = [NSMutableArray arrayWithCapacity:0];
+        [arr addObject:@"Hello"];
+        [arr addObject:@"你好"];
+        [arr addObject:@"您好啊。"];
+        [arr addObject:@"大家好，这里是JJCollectionView"];
+        [arr addObject:@"标签"];
+        [arr addObject:@"对应不错的东西哦"];
+        [arr addObject:@"GitHub"];
+        [arr addObject:@"支持左对齐方式"];
+        [arr addObject:@"这个东西就是很长，就想弄一个很长的出来"];
+        [arr addObject:@"上面的文字好像不够长"];
+        [arr addObject:@"想一下接下来做什么功能呢"];
+        [arr addObject:@"嗯，知道了"];
+        [arr addObject:@"优秀"];
+        arr;
+    });
 }
 
 - (void)initialization{
     _myCollectionView = ({
         JJCollectionViewRoundFlowLayout *layout = [[JJCollectionViewRoundFlowLayout alloc]init];
-        layout.scrollDirection = self.isHorizontal ? UICollectionViewScrollDirectionHorizontal : UICollectionViewScrollDirectionVertical;
-        layout.isCalculateHeader = self.isRoundWithHeaerView;
-        layout.isCalculateFooter = self.isRoundWithFooterView;
+        
+        
+        if (self.isAlignmentLeft) {
+            layout.collectionCellAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByLelt;
+        }
+        layout.isRoundEnabled = self.isHaveRoundBGView;
+        
         
         UICollectionView *collectionView = [[UICollectionView alloc]initWithFrame:CGRectMake(0, 0, 100, 100) collectionViewLayout:layout];
-        [collectionView registerClass:[MyCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([MyCollectionViewCell class])];
+        [collectionView registerClass:[MyLabelCollectionViewCell class] forCellWithReuseIdentifier:NSStringFromClass([MyLabelCollectionViewCell class])];
         
         [collectionView registerClass:[MyCollectionReusableView class] forSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:NSStringFromClass([MyCollectionReusableView class])];
         
@@ -95,28 +122,43 @@
     ]];
 }
 
+/**
+ 计算整体尺寸
+ */
++ (CGSize)calculateStringViewSizeWithShowSize:(CGSize)showSize fontSize:(UIFont *)fontSize string:(NSString *)string{
+    //---- 计算高度 ---- //
+    CGSize size = showSize;
+    NSDictionary *dic = [NSDictionary dictionaryWithObjectsAndKeys:fontSize,NSFontAttributeName, nil];
+    CGSize cur = [string boundingRectWithSize:size
+                                      options:NSStringDrawingUsesLineFragmentOrigin | NSStringDrawingUsesFontLeading
+                                   attributes:dic
+                                      context:nil].size;
+    return cur;
+}
+
 #pragma mark - <UICollectionViewDataSource,UICollectionViewDelegate,UICollectionViewDelegateFlowLayout>
 
 - (NSInteger)numberOfSectionsInCollectionView:(UICollectionView *)collectionView{
-    return 2;
+    return 5;
 }
 
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 10;
+    return self.myDataArr.count;
 }
 
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    return CGSizeMake(100, 100);
+    NSString *string = self.myDataArr[indexPath.row];
+    CGSize size = [FourthViewController calculateStringViewSizeWithShowSize:CGSizeMake(CGFLOAT_MAX, 38.f) fontSize:[UIFont systemFontOfSize:15.f] string:string];
+    return CGSizeMake(size.width + 10 + 1, 30.f);
 }
 
 - (__kindof UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    MyCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([MyCollectionViewCell  class]) forIndexPath:indexPath];
-    cell.myLabel.text = @"测试内容";
+    MyLabelCollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:NSStringFromClass([MyLabelCollectionViewCell  class]) forIndexPath:indexPath];
+    cell.myLabel.text = self.myDataArr[indexPath.row];
     return cell;
 }
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout insetForSectionAtIndex:(NSInteger)section{
-
     return UIEdgeInsetsMake(20, 20, 20, 20);
 }
 
@@ -137,52 +179,16 @@
 
 - (UIEdgeInsets)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout borderEdgeInsertsForSectionAtIndex:(NSInteger)section{
     return UIEdgeInsetsMake(5.f, 12, 5, 12);
-//    return UIEdgeInsetsMake(0, 20, 20, 20);
 }
 
 - (JJCollectionViewRoundConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout configModelForSectionAtIndex:(NSInteger)section{
+    
     JJCollectionViewRoundConfigModel *model = [[JJCollectionViewRoundConfigModel alloc]init];
+    
     model.backgroundColor = [UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1.0];
     model.cornerRadius = 10;
-    
-    
-    if (self.isShowDifferentColor) {
-        if (section == 0) {
-            model.backgroundColor = [UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1.0];
-        }else{
-            model.backgroundColor = [UIColor colorWithRed:100/255.0 green:233/255.0 blue:233/255.0 alpha:1.0];
-        }
-    }
-    
     return model;
 }
 
-
-#pragma mark - header&footer
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section{
-    if (self.isHaveHeaderFooterView) {
-        return CGSizeMake(100, 60);
-    }
-    return CGSizeMake(0, 0);
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForFooterInSection:(NSInteger)section{
-    if (self.isHaveHeaderFooterView) {
-        return CGSizeMake(100, 60);
-    }
-    return CGSizeMake(0, 0);
-}
-
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    MyCollectionReusableView *view = [collectionView dequeueReusableSupplementaryViewOfKind:kind withReuseIdentifier:NSStringFromClass([MyCollectionReusableView class]) forIndexPath:indexPath];
-    if ([kind isEqualToString:UICollectionElementKindSectionHeader]) {
-        view.myLabel.text = @"Header";
-        return view;
-    }else{
-        view.myLabel.text = @"Footer";
-        return view;
-    }
-}
 
 @end

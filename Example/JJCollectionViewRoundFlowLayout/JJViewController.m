@@ -10,6 +10,7 @@
 #import "NextViewController.h"
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
+#import "FourthViewController.h"
 
 @interface JJViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -86,7 +87,7 @@
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 12;
+    return 14;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
@@ -128,7 +129,13 @@
                 cell.textLabel.text = @"CollectionView（单独设置某个 header 底色）";
             }break;
             case 11:{
-                cell.textLabel.text = @"CollectionView（单独设置某个 footer 底色））";
+                cell.textLabel.text = @"CollectionView（单独设置某个 footer 底色）";
+            }break;
+            case 12:{
+                cell.textLabel.text = @"CollectionView,无sections底色，cell左对齐";
+            }break;
+            case 13:{
+                cell.textLabel.text = @"CollectionView,有sections底色，cell左对齐";
             }break;
                 
             default:
@@ -202,6 +209,19 @@
             thirdVC.isHaveHeaderFooterView = YES;
             thirdVC.isRoundWithFooterView = YES;
             [self.navigationController pushViewController:thirdVC animated:YES];
+            return;
+        }break;
+        case 12:{
+            FourthViewController *fourthVC = [[FourthViewController alloc]init];
+            fourthVC.isAlignmentLeft = YES;
+            [self.navigationController pushViewController:fourthVC animated:YES];
+            return;
+        }break;
+        case 13:{
+            FourthViewController *fourthVC = [[FourthViewController alloc]init];
+            fourthVC.isHaveRoundBGView = YES;
+            fourthVC.isAlignmentLeft = YES;
+            [self.navigationController pushViewController:fourthVC animated:YES];
             return;
         }break;
             

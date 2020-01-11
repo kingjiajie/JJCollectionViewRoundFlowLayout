@@ -3,17 +3,14 @@
 //  FuLaDuo
 //
 //  Created by jiajie on 2019/9/17.
-//  Copyright © 2019 aihuo. All rights reserved.
+//  Copyright © 2019 谢家杰. All rights reserved.
 //
 
 #import "JJCollectionViewRoundFlowLayout.h"
+#import "JJCollectionViewFlowLayoutUtils.h"
+#import "JJCollectionViewRoundFlowLayout+Alignment.h"
 
 static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoundSection";
-
-@implementation JJCollectionViewRoundConfigModel
-
-@end
-
 
 @interface JJCollectionViewRoundLayoutAttributes  : UICollectionViewLayoutAttributes
 
@@ -61,8 +58,20 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 
 @implementation JJCollectionViewRoundFlowLayout
 
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        self.isRoundEnabled = YES;
+    }
+    return self;
+}
+
 - (void)prepareLayout{
     [super prepareLayout];
+    
+    if (!self.isRoundEnabled) {
+        return;
+    }
     
     NSInteger sections = [self.collectionView numberOfSections];
     id <JJCollectionViewDelegateRoundFlowLayout> delegate  = (id <JJCollectionViewDelegateRoundFlowLayout>)self.collectionView.delegate;
@@ -126,13 +135,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
             }
             
             //获取sectionInset
-            UIEdgeInsets sectionInset = self.sectionInset;
-            if ([delegate respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {
-                UIEdgeInsets inset = [delegate collectionView:self.collectionView layout:self insetForSectionAtIndex:section];
-                if (!UIEdgeInsetsEqualToEdgeInsets(inset, sectionInset)) {
-                    sectionInset = inset;
-                }
-            }
+            UIEdgeInsets sectionInset = [JJCollectionViewFlowLayoutUtils evaluatedSectionInsetForItemWithCollectionLayout:self atIndex:section];
             
             UIEdgeInsets userCustomSectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
             if ([delegate respondsToSelector:@selector(collectionView:layout:borderEdgeInsertsForSectionAtIndex:)]) {
@@ -262,11 +265,26 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     
     NSMutableArray * attrs = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
-    for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttrs) {
-            [attrs addObject:attr];
+    
+    //用户设置了对称方式，进行对称设置 (若没设置，不执行，继续其他计算)
+    if (self.collectionCellAlignmentType != JJCollectionViewFlowLayoutAlignmentTypeBySystem) {
+        NSArray *formatGroudAttr = self.scrollDirection == UICollectionViewScrollDirectionVertical ?
+        [self groupLayoutAttributesForElementsByYLineWithLayoutAttributesAttrs:attrs] : //竖向
+        [self groupLayoutAttributesForElementsByXLineWithLayoutAttributesAttrs:attrs] ; //横向
+
+        [self evaluatedAllCellSettingFrameWithLayoutAttributesAttrs:formatGroudAttr
+                                        toChangeAttributesAttrsList:&attrs
+                                                  cellAlignmentType:self.collectionCellAlignmentType];
     }
-    return [attrs copy];
+
+    for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttrs) {
+        [attrs addObject:attr];
+    }
+    
+    return attrs;
 }
+
+#pragma mark - other
 
 - (NSMutableArray<UICollectionViewLayoutAttributes *> *)decorationViewAttrs{
     if (!_decorationViewAttrs) {
@@ -274,6 +292,5 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     }
     return _decorationViewAttrs;
 }
-
 
 @end

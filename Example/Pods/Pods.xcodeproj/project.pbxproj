@@ -7,6 +7,13 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		0426B6BC23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0426B6BA23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0426B6BD23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426B6BB23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.m */; };
+		0473445223C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0473445023C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0473445323C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473445123C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.m */; };
+		0473445623C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.h in Headers */ = {isa = PBXBuildFile; fileRef = 0473445423C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0473445723C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473445523C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.m */; };
+		048D33F523C854B1009788C1 /* JJCollectionViewFlowLayoutConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 048D33F423C853A0009788C1 /* JJCollectionViewFlowLayoutConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BFA75839267C9123BD893D4F5AC6894 /* Pods-JJCollectionViewRoundFlowLayout_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F90C58D42592EEAF68C321DEFDBD5FE /* Pods-JJCollectionViewRoundFlowLayout_Example-dummy.m */; };
 		22FD16D54D070CB6ACA5D40A5CC1FA43 /* Pods-JJCollectionViewRoundFlowLayout_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E5B78BADE9CAB855FEE8CC739F6038A /* Pods-JJCollectionViewRoundFlowLayout_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		39649DF9E89570996E2C2E7DF580404F /* JJCollectionViewRoundFlowLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 282351FFC41C0503DE103DF76B2F2788 /* JJCollectionViewRoundFlowLayout-dummy.m */; };
@@ -39,16 +46,23 @@
 
 /* Begin PBXFileReference section */
 		03F49F9B8FED6C5D6D529AF2A0968DA3 /* Pods-JJCollectionViewRoundFlowLayout_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JJCollectionViewRoundFlowLayout_Example.debug.xcconfig"; sourceTree = "<group>"; };
+		0426B6BA23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JJCollectionViewRoundConfigModel.h; path = JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewRoundConfigModel.h; sourceTree = "<group>"; };
+		0426B6BB23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JJCollectionViewRoundConfigModel.m; path = JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewRoundConfigModel.m; sourceTree = "<group>"; };
+		0473445023C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JJCollectionViewFlowLayoutUtils.h; path = JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewFlowLayoutUtils.h; sourceTree = "<group>"; };
+		0473445123C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JJCollectionViewFlowLayoutUtils.m; path = JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewFlowLayoutUtils.m; sourceTree = "<group>"; };
+		0473445423C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "JJCollectionViewRoundFlowLayout+Alignment.h"; path = "JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewRoundFlowLayout+Alignment.h"; sourceTree = "<group>"; };
+		0473445523C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "JJCollectionViewRoundFlowLayout+Alignment.m"; path = "JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewRoundFlowLayout+Alignment.m"; sourceTree = "<group>"; };
+		048D33F423C853A0009788C1 /* JJCollectionViewFlowLayoutConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JJCollectionViewFlowLayoutConfig.h; path = JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewFlowLayoutConfig.h; sourceTree = "<group>"; };
 		10507A31D4980F54E49D86614CDCE2AE /* Pods-JJCollectionViewRoundFlowLayout_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JJCollectionViewRoundFlowLayout_Tests.modulemap"; sourceTree = "<group>"; };
 		1123B042807CA499C6FB2CE2904DEA08 /* Pods-JJCollectionViewRoundFlowLayout_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JJCollectionViewRoundFlowLayout_Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		1D60517FECE51829C5F75451C673E5A1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; path = README.md; sourceTree = "<group>"; };
+		1D60517FECE51829C5F75451C673E5A1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
 		221B3AC4DA62F75210481D98A43F6E2A /* Pods-JJCollectionViewRoundFlowLayout_Tests-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JJCollectionViewRoundFlowLayout_Tests-Info.plist"; sourceTree = "<group>"; };
-		2431B4F7AFA21562569E1F7B690E6925 /* JJCollectionViewRoundFlowLayout.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; path = JJCollectionViewRoundFlowLayout.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		2640315387D9DE35E9C6967047BF77F4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; path = LICENSE; sourceTree = "<group>"; };
+		2431B4F7AFA21562569E1F7B690E6925 /* JJCollectionViewRoundFlowLayout.podspec */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; path = JJCollectionViewRoundFlowLayout.podspec; sourceTree = "<group>"; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		2640315387D9DE35E9C6967047BF77F4 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = LICENSE; sourceTree = "<group>"; };
 		282351FFC41C0503DE103DF76B2F2788 /* JJCollectionViewRoundFlowLayout-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "JJCollectionViewRoundFlowLayout-dummy.m"; sourceTree = "<group>"; };
 		3212113385A8FBBDB272BD23C409FF61 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS12.2.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		36D522E2086C4E13F6F53843879ECF3F /* JJCollectionViewRoundFlowLayout-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "JJCollectionViewRoundFlowLayout-umbrella.h"; sourceTree = "<group>"; };
-		3C78A5AB80BDA35695AA7E6FE61E626A /* Pods_JJCollectionViewRoundFlowLayout_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JJCollectionViewRoundFlowLayout_Example.framework; path = "Pods-JJCollectionViewRoundFlowLayout_Example.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		3C78A5AB80BDA35695AA7E6FE61E626A /* Pods_JJCollectionViewRoundFlowLayout_Example.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JJCollectionViewRoundFlowLayout_Example.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		4854BA61BD7364FB847AEFE4940A3EA1 /* JJCollectionViewRoundFlowLayout.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; name = JJCollectionViewRoundFlowLayout.m; path = JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewRoundFlowLayout.m; sourceTree = "<group>"; };
 		5F90C58D42592EEAF68C321DEFDBD5FE /* Pods-JJCollectionViewRoundFlowLayout_Example-dummy.m */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.objc; path = "Pods-JJCollectionViewRoundFlowLayout_Example-dummy.m"; sourceTree = "<group>"; };
 		6E8BA39606A1E74DD505DFC97A3472A2 /* JJCollectionViewRoundFlowLayout-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "JJCollectionViewRoundFlowLayout-Info.plist"; sourceTree = "<group>"; };
@@ -57,9 +71,9 @@
 		96D58F305F196E388F9B8D9BB7CCF76F /* Pods-JJCollectionViewRoundFlowLayout_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-JJCollectionViewRoundFlowLayout_Example-frameworks.sh"; sourceTree = "<group>"; };
 		9A5A9ED80CBBC956450ED83E141AB693 /* JJCollectionViewRoundFlowLayout.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = JJCollectionViewRoundFlowLayout.xcconfig; sourceTree = "<group>"; };
 		9A6105DAC3292B13673C8F3E0F3A4E2E /* Pods-JJCollectionViewRoundFlowLayout_Example-acknowledgements.markdown */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; path = "Pods-JJCollectionViewRoundFlowLayout_Example-acknowledgements.markdown"; sourceTree = "<group>"; };
-		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; lastKnownFileType = text; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		9D940727FF8FB9C785EB98E56350EF41 /* Podfile */ = {isa = PBXFileReference; explicitFileType = text.script.ruby; includeInIndex = 1; indentWidth = 2; name = Podfile; path = ../Podfile; sourceTree = SOURCE_ROOT; tabWidth = 2; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		9E5B78BADE9CAB855FEE8CC739F6038A /* Pods-JJCollectionViewRoundFlowLayout_Tests-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JJCollectionViewRoundFlowLayout_Tests-umbrella.h"; sourceTree = "<group>"; };
-		A4897EC10580FA572E4C2C9104A2EEBC /* Pods_JJCollectionViewRoundFlowLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = Pods_JJCollectionViewRoundFlowLayout_Tests.framework; path = "Pods-JJCollectionViewRoundFlowLayout_Tests.framework"; sourceTree = BUILT_PRODUCTS_DIR; };
+		A4897EC10580FA572E4C2C9104A2EEBC /* Pods_JJCollectionViewRoundFlowLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JJCollectionViewRoundFlowLayout_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		A829B519A25E69F74C50D5C14C81439B /* Pods-JJCollectionViewRoundFlowLayout_Example-Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JJCollectionViewRoundFlowLayout_Example-Info.plist"; sourceTree = "<group>"; };
 		ACEFA2EDBD0EC066E7CAB32ECB5002EF /* Pods-JJCollectionViewRoundFlowLayout_Tests-acknowledgements.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = "Pods-JJCollectionViewRoundFlowLayout_Tests-acknowledgements.plist"; sourceTree = "<group>"; };
 		B000C26139137032FCD7DFDDC371B28A /* Pods-JJCollectionViewRoundFlowLayout_Example-umbrella.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "Pods-JJCollectionViewRoundFlowLayout_Example-umbrella.h"; sourceTree = "<group>"; };
@@ -69,7 +83,7 @@
 		CAF2A40DA1C3EDDD597BFE920AE71351 /* Pods-JJCollectionViewRoundFlowLayout_Example.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JJCollectionViewRoundFlowLayout_Example.modulemap"; sourceTree = "<group>"; };
 		DF6540C54C5147A1A78AC68B67BC217E /* Pods-JJCollectionViewRoundFlowLayout_Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JJCollectionViewRoundFlowLayout_Tests.release.xcconfig"; sourceTree = "<group>"; };
 		E9E15770C2E09CF66911B3CB534AB40D /* JJCollectionViewRoundFlowLayout.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = JJCollectionViewRoundFlowLayout.modulemap; sourceTree = "<group>"; };
-		EA15DC1A5095C0A18A9E8108D3F56AE1 /* JJCollectionViewRoundFlowLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; name = JJCollectionViewRoundFlowLayout.framework; path = JJCollectionViewRoundFlowLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		EA15DC1A5095C0A18A9E8108D3F56AE1 /* JJCollectionViewRoundFlowLayout.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = JJCollectionViewRoundFlowLayout.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		EC81CD7EB7D6457E3E05C18AFF1FCF03 /* Pods-JJCollectionViewRoundFlowLayout_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JJCollectionViewRoundFlowLayout_Example.release.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -131,8 +145,15 @@
 		7569C06E42C570FAB659057132347813 /* JJCollectionViewRoundFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
+				048D33F423C853A0009788C1 /* JJCollectionViewFlowLayoutConfig.h */,
 				7E501E341B8F1CD6E23A36FC16CFE3CD /* JJCollectionViewRoundFlowLayout.h */,
 				4854BA61BD7364FB847AEFE4940A3EA1 /* JJCollectionViewRoundFlowLayout.m */,
+				0426B6BA23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.h */,
+				0426B6BB23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.m */,
+				0473445023C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.h */,
+				0473445123C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.m */,
+				0473445423C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.h */,
+				0473445523C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.m */,
 				6910CE297AD1878F3A5803272D8F28A9 /* Pod */,
 				B897556FCF2D4C655103904BE0956377 /* Support Files */,
 			);
@@ -233,6 +254,10 @@
 			files = (
 				7D8D41712D1B87770F53E8CDF976239B /* JJCollectionViewRoundFlowLayout-umbrella.h in Headers */,
 				E7D2AADE4ECA31A1D44DB342E7211261 /* JJCollectionViewRoundFlowLayout.h in Headers */,
+				0426B6BC23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.h in Headers */,
+				048D33F523C854B1009788C1 /* JJCollectionViewFlowLayoutConfig.h in Headers */,
+				0473445223C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.h in Headers */,
+				0473445623C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -369,7 +394,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0473445723C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */,
+				0426B6BD23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.m in Sources */,
 				39649DF9E89570996E2C2E7DF580404F /* JJCollectionViewRoundFlowLayout-dummy.m in Sources */,
+				0473445323C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.m in Sources */,
 				E1A06F42518587A176D024B6EAA09DD7 /* JJCollectionViewRoundFlowLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -593,8 +621,7 @@
 				MTL_FAST_MATH = YES;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				STRIP_INSTALLED_PRODUCT = NO;
-				SWIFT_COMPILATION_MODE = wholemodule;
-				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
 				SWIFT_VERSION = 5.0;
 				SYMROOT = "${SRCROOT}/../build";
 			};
