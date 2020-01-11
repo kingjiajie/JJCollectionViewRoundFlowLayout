@@ -3,7 +3,7 @@
 //  JJCollectionViewRoundFlowLayout
 //
 //  Created by jiajie on 2019/10/30.
-//  Copyright © 2019 aihuo. All rights reserved.
+//  Copyright © 2019 谢家杰. All rights reserved.
 //
 
 #import "MyCollectionViewCell.h"

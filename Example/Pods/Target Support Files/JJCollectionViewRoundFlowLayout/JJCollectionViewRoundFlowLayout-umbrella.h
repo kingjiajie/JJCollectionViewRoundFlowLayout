@@ -11,6 +11,8 @@
 #endif
 
 #import "JJCollectionViewRoundFlowLayout.h"
+#import "JJCollectionViewFlowLayoutUtils.h"
+#import "JJCollectionViewRoundFlowLayout+Alignment.h"
 
 FOUNDATION_EXPORT double JJCollectionViewRoundFlowLayoutVersionNumber;
 FOUNDATION_EXPORT const unsigned char JJCollectionViewRoundFlowLayoutVersionString[];

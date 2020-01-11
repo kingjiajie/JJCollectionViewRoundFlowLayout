@@ -3,10 +3,12 @@
 //  FuLaDuo
 //
 //  Created by jiajie on 2019/9/17.
-//  Copyright © 2019 aihuo. All rights reserved.
+//  Copyright © 2019 谢家杰. All rights reserved.
 //
 
 #import "JJCollectionViewRoundFlowLayout.h"
+#import "JJCollectionViewFlowLayoutUtils.h"
+#import "JJCollectionViewRoundFlowLayout+Alignment.h"
 
 static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoundSection";
 
@@ -56,8 +58,20 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 
 @implementation JJCollectionViewRoundFlowLayout
 
+- (instancetype)init{
+    self = [super init];
+    if (self) {
+        self.isRoundEnabled = YES;
+    }
+    return self;
+}
+
 - (void)prepareLayout{
     [super prepareLayout];
+    
+    if (!self.isRoundEnabled) {
+        return;
+    }
     
     NSInteger sections = [self.collectionView numberOfSections];
     id <JJCollectionViewDelegateRoundFlowLayout> delegate  = (id <JJCollectionViewDelegateRoundFlowLayout>)self.collectionView.delegate;
@@ -121,13 +135,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
             }
             
             //获取sectionInset
-            UIEdgeInsets sectionInset = self.sectionInset;
-            if ([delegate respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {
-                UIEdgeInsets inset = [delegate collectionView:self.collectionView layout:self insetForSectionAtIndex:section];
-                if (!UIEdgeInsetsEqualToEdgeInsets(inset, sectionInset)) {
-                    sectionInset = inset;
-                }
-            }
+            UIEdgeInsets sectionInset = [JJCollectionViewFlowLayoutUtils evaluatedSectionInsetForItemWithCollectionLayout:self atIndex:section];
             
             UIEdgeInsets userCustomSectionInset = UIEdgeInsetsMake(0, 0, 0, 0);
             if ([delegate respondsToSelector:@selector(collectionView:layout:borderEdgeInsertsForSectionAtIndex:)]) {
@@ -258,9 +266,17 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     
     NSMutableArray * attrs = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
     
-    NSArray *formatGroudAttr = [self groupLayoutAttributesForElementsByLineWithAttrs:attrs];
-    [self evaluatedAllCellSettingFrameWithAttr:formatGroudAttr useArr:&attrs];
-    
+    //用户设置了对称方式，进行对称设置 (若没设置，不执行，继续其他计算)
+    if (self.collectionCellAlignmentType != JJCollectionViewFlowLayoutAlignmentTypeBySystem) {
+        NSArray *formatGroudAttr = self.scrollDirection == UICollectionViewScrollDirectionVertical ?
+        [self groupLayoutAttributesForElementsByYLineWithLayoutAttributesAttrs:attrs] : //竖向
+        [self groupLayoutAttributesForElementsByXLineWithLayoutAttributesAttrs:attrs] ; //横向
+
+        [self evaluatedAllCellSettingFrameWithLayoutAttributesAttrs:formatGroudAttr
+                                        toChangeAttributesAttrsList:&attrs
+                                                  cellAlignmentType:self.collectionCellAlignmentType];
+    }
+
     for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttrs) {
         [attrs addObject:attr];
     }
@@ -268,67 +284,6 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     return attrs;
 }
 
-- (NSArray *)groupLayoutAttributesForElementsByLineWithAttrs:(NSArray *)attrs{
-    NSMutableDictionary *allDict = [NSMutableDictionary dictionaryWithCapacity:0];
-    for (UICollectionViewLayoutAttributes *attr  in attrs) {
-        NSMutableArray *dictArr = allDict[@(attr.frame.origin.y)];
-        if (dictArr) {
-            [dictArr addObject:[attr copy]];
-        }else{
-            NSMutableArray *arr = [NSMutableArray arrayWithObject:[attr copy]];
-            allDict[@(attr.frame.origin.y)] = arr;
-        }
-    }
-    return allDict.allValues;
-}
-
-- (NSMutableArray *)evaluatedAllCellSettingFrameWithAttr:(NSArray *)attrs useArr:(NSMutableArray **)useArr{
-    
-    NSMutableArray *newDataArr = *useArr;
-    [newDataArr removeAllObjects];
-    for (NSArray *arr in attrs) {
-        UICollectionViewLayoutAttributes *pAttr = nil;
-        
-        //left
-        for (UICollectionViewLayoutAttributes *attr in arr) {
-            if (attr.representedElementKind != nil) {
-                //nil when representedElementCategory is UICollectionElementCategoryCell (空的时候为cell)
-                continue;
-            }
-            CGRect frame = attr.frame;
-            if (pAttr) {
-                frame.origin.x = pAttr.frame.origin.x + pAttr.frame.size.width + [self evaluatedMinimumInteritemSpacingForSectionAtIndex:attr.indexPath.section];
-            }else{
-                frame.origin.x = [self evaluatedSectionInsetForItemAtIndex:attr.indexPath.section].left;
-            }
-            attr.frame = frame;
-            pAttr = attr;
-        }
-        [newDataArr addObjectsFromArray:arr];
-    }
-    return newDataArr;
-}
-
-
-- (CGFloat)evaluatedMinimumInteritemSpacingForSectionAtIndex:(NSInteger)sectionIndex{
-    if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:minimumInteritemSpacingForSectionAtIndex:)]) {
-        id<JJCollectionViewDelegateRoundFlowLayout> delegate = (id<JJCollectionViewDelegateRoundFlowLayout>)self.collectionView.delegate;
-
-        return [delegate collectionView:self.collectionView layout:self minimumInteritemSpacingForSectionAtIndex:sectionIndex];
-    } else {
-        return self.minimumInteritemSpacing;
-    }
-}
-
-- (UIEdgeInsets)evaluatedSectionInsetForItemAtIndex:(NSInteger)index{
-    if ([self.collectionView.delegate respondsToSelector:@selector(collectionView:layout:insetForSectionAtIndex:)]) {
-        id<JJCollectionViewDelegateRoundFlowLayout> delegate = (id<JJCollectionViewDelegateRoundFlowLayout>)self.collectionView.delegate;
-
-        return [delegate collectionView:self.collectionView layout:self insetForSectionAtIndex:index];
-    } else {
-        return self.sectionInset;
-    }
-}
 #pragma mark - other
 
 - (NSMutableArray<UICollectionViewLayoutAttributes *> *)decorationViewAttrs{
@@ -337,6 +292,5 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     }
     return _decorationViewAttrs;
 }
-
 
 @end

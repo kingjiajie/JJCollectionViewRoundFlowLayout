@@ -9,6 +9,11 @@
 /* Begin PBXBuildFile section */
 		0426B6BC23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.h in Headers */ = {isa = PBXBuildFile; fileRef = 0426B6BA23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		0426B6BD23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 0426B6BB23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.m */; };
+		0473445223C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.h in Headers */ = {isa = PBXBuildFile; fileRef = 0473445023C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0473445323C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473445123C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.m */; };
+		0473445623C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.h in Headers */ = {isa = PBXBuildFile; fileRef = 0473445423C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.h */; settings = {ATTRIBUTES = (Public, ); }; };
+		0473445723C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */ = {isa = PBXBuildFile; fileRef = 0473445523C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.m */; };
+		048D33F523C854B1009788C1 /* JJCollectionViewFlowLayoutConfig.h in Headers */ = {isa = PBXBuildFile; fileRef = 048D33F423C853A0009788C1 /* JJCollectionViewFlowLayoutConfig.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		1BFA75839267C9123BD893D4F5AC6894 /* Pods-JJCollectionViewRoundFlowLayout_Example-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 5F90C58D42592EEAF68C321DEFDBD5FE /* Pods-JJCollectionViewRoundFlowLayout_Example-dummy.m */; };
 		22FD16D54D070CB6ACA5D40A5CC1FA43 /* Pods-JJCollectionViewRoundFlowLayout_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 9E5B78BADE9CAB855FEE8CC739F6038A /* Pods-JJCollectionViewRoundFlowLayout_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		39649DF9E89570996E2C2E7DF580404F /* JJCollectionViewRoundFlowLayout-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 282351FFC41C0503DE103DF76B2F2788 /* JJCollectionViewRoundFlowLayout-dummy.m */; };
@@ -43,6 +48,11 @@
 		03F49F9B8FED6C5D6D529AF2A0968DA3 /* Pods-JJCollectionViewRoundFlowLayout_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JJCollectionViewRoundFlowLayout_Example.debug.xcconfig"; sourceTree = "<group>"; };
 		0426B6BA23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = JJCollectionViewRoundConfigModel.h; path = JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewRoundConfigModel.h; sourceTree = "<group>"; };
 		0426B6BB23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = JJCollectionViewRoundConfigModel.m; path = JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewRoundConfigModel.m; sourceTree = "<group>"; };
+		0473445023C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JJCollectionViewFlowLayoutUtils.h; path = JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewFlowLayoutUtils.h; sourceTree = "<group>"; };
+		0473445123C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = JJCollectionViewFlowLayoutUtils.m; path = JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewFlowLayoutUtils.m; sourceTree = "<group>"; };
+		0473445423C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = "JJCollectionViewRoundFlowLayout+Alignment.h"; path = "JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewRoundFlowLayout+Alignment.h"; sourceTree = "<group>"; };
+		0473445523C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; name = "JJCollectionViewRoundFlowLayout+Alignment.m"; path = "JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewRoundFlowLayout+Alignment.m"; sourceTree = "<group>"; };
+		048D33F423C853A0009788C1 /* JJCollectionViewFlowLayoutConfig.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; name = JJCollectionViewFlowLayoutConfig.h; path = JJCollectionViewRoundFlowLayout/Classes/JJCollectionViewFlowLayoutConfig.h; sourceTree = "<group>"; };
 		10507A31D4980F54E49D86614CDCE2AE /* Pods-JJCollectionViewRoundFlowLayout_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-JJCollectionViewRoundFlowLayout_Tests.modulemap"; sourceTree = "<group>"; };
 		1123B042807CA499C6FB2CE2904DEA08 /* Pods-JJCollectionViewRoundFlowLayout_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; path = "Pods-JJCollectionViewRoundFlowLayout_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		1D60517FECE51829C5F75451C673E5A1 /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = "<group>"; };
@@ -135,10 +145,15 @@
 		7569C06E42C570FAB659057132347813 /* JJCollectionViewRoundFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
+				048D33F423C853A0009788C1 /* JJCollectionViewFlowLayoutConfig.h */,
 				7E501E341B8F1CD6E23A36FC16CFE3CD /* JJCollectionViewRoundFlowLayout.h */,
 				4854BA61BD7364FB847AEFE4940A3EA1 /* JJCollectionViewRoundFlowLayout.m */,
 				0426B6BA23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.h */,
 				0426B6BB23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.m */,
+				0473445023C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.h */,
+				0473445123C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.m */,
+				0473445423C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.h */,
+				0473445523C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.m */,
 				6910CE297AD1878F3A5803272D8F28A9 /* Pod */,
 				B897556FCF2D4C655103904BE0956377 /* Support Files */,
 			);
@@ -240,6 +255,9 @@
 				7D8D41712D1B87770F53E8CDF976239B /* JJCollectionViewRoundFlowLayout-umbrella.h in Headers */,
 				E7D2AADE4ECA31A1D44DB342E7211261 /* JJCollectionViewRoundFlowLayout.h in Headers */,
 				0426B6BC23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.h in Headers */,
+				048D33F523C854B1009788C1 /* JJCollectionViewFlowLayoutConfig.h in Headers */,
+				0473445223C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.h in Headers */,
+				0473445623C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.h in Headers */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -376,8 +394,10 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				0473445723C84E69003E5AE1 /* JJCollectionViewRoundFlowLayout+Alignment.m in Sources */,
 				0426B6BD23C6D2EE00CD31A0 /* JJCollectionViewRoundConfigModel.m in Sources */,
 				39649DF9E89570996E2C2E7DF580404F /* JJCollectionViewRoundFlowLayout-dummy.m in Sources */,
+				0473445323C82D9B003E5AE1 /* JJCollectionViewFlowLayoutUtils.m in Sources */,
 				E1A06F42518587A176D024B6EAA09DD7 /* JJCollectionViewRoundFlowLayout.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
