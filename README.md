@@ -236,6 +236,17 @@ layout.isCalculateFooter = YES;
 
 ```  
 
+#### 支持对Cell的对齐模式进行设置、可选是否填充底色(左对齐)
+  
+![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/7.png)
+
+``` obj-c
+
+    JJCollectionViewRoundFlowLayout *layout = [[JJCollectionViewRoundFlowLayout alloc]init];
+    layout.collectionCellAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByLelt; //设置对齐方式
+    layout.isRoundEnabled = NO; //设置是否填充底色
+
+```
 
 ## Author
 
