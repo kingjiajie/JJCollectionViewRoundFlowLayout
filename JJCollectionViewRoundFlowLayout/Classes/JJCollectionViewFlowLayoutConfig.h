@@ -10,7 +10,7 @@
 
 typedef enum : NSUInteger {
     JJCollectionViewFlowLayoutAlignmentTypeBySystem = 0,
-    JJCollectionViewFlowLayoutAlignmentTypeByLelt,
+    JJCollectionViewFlowLayoutAlignmentTypeByLeft,
 } JJCollectionViewRoundFlowLayoutAlignmentType;
 
 #endif /* JJCollectionViewFlowLayoutConfig_h */
