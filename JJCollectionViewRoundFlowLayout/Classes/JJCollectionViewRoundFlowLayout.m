@@ -91,6 +91,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
         NSInteger numberOfItems = [self.collectionView numberOfItemsInSection:section];
         if (numberOfItems > 0) {
             UICollectionViewLayoutAttributes *firstAttr = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
+            CGRect firstFrame = firstAttr.frame;
             
             //判断是否计算headerview
             BOOL isCalculateHeaderView = NO;
@@ -105,14 +106,25 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
                 UICollectionViewLayoutAttributes *headerAttr = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionHeader atIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
                 if (headerAttr &&
                     (headerAttr.frame.size.width != 0|| headerAttr.frame.size.height != 0)) {
-                    firstAttr = headerAttr;
+                    firstFrame = headerAttr.frame;
                 }else{
-                    CGRect rect = firstAttr.frame;
-                    firstAttr.frame = CGRectMake(rect.origin.x, rect.origin.y, self.collectionView.bounds.size.width, rect.size.height);
+                    CGRect rect = firstFrame;
+                    if (self.isCalculateTypeOpenIrregularitiesCell) {
+                        rect = [JJCollectionViewFlowLayoutUtils calculateIrregularitiesCellByMinTopFrameWithLayout:self section:section numberOfItems:numberOfItems defaultFrame:rect];
+                    }
+                    firstFrame = self.scrollDirection == UICollectionViewScrollDirectionVertical ?
+                    CGRectMake(rect.origin.x, rect.origin.y, self.collectionView.bounds.size.width, rect.size.height):
+                    CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, self.collectionView.bounds.size.height);
+                }
+            }else{
+                //不计算headerview的情况
+                if (self.isCalculateTypeOpenIrregularitiesCell) {
+                    firstFrame = [JJCollectionViewFlowLayoutUtils calculateIrregularitiesCellByMinTopFrameWithLayout:self section:section numberOfItems:numberOfItems defaultFrame:firstFrame];
                 }
             }
 
             UICollectionViewLayoutAttributes *lastAttr = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:(numberOfItems - 1) inSection:section]];
+            CGRect lastFrame = lastAttr.frame;
             
             //判断是否计算headerview
             BOOL isCalculateFooterView = NO;
@@ -127,10 +139,20 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
                 UICollectionViewLayoutAttributes *footerAttr = [self layoutAttributesForSupplementaryViewOfKind:UICollectionElementKindSectionFooter atIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
                 if (footerAttr &&
                     (footerAttr.frame.size.width != 0 || footerAttr.frame.size.height != 0)) {
-                    lastAttr = footerAttr;
+                    lastFrame = footerAttr.frame;
                 }else{
-                    CGRect rect = lastAttr.frame;
-                    lastAttr.frame = CGRectMake(rect.origin.x, rect.origin.y, self.collectionView.bounds.size.width, rect.size.height);
+                    CGRect rect = lastFrame;
+                    if (self.isCalculateTypeOpenIrregularitiesCell) {
+                        rect = [JJCollectionViewFlowLayoutUtils calculateIrregularitiesCellByMaxBottomFrameWithLayout:self section:section numberOfItems:numberOfItems defaultFrame:rect];
+                    }
+                    lastFrame = self.scrollDirection == UICollectionViewScrollDirectionVertical ?
+                    CGRectMake(rect.origin.x, rect.origin.y, self.collectionView.bounds.size.width, rect.size.height):
+                    CGRectMake(rect.origin.x, rect.origin.y, rect.size.width, self.collectionView.bounds.size.height);
+                }
+            }else{
+                //不计算footerView的情况
+                if (self.isCalculateTypeOpenIrregularitiesCell) {
+                    lastFrame = [JJCollectionViewFlowLayoutUtils calculateIrregularitiesCellByMaxBottomFrameWithLayout:self section:section numberOfItems:numberOfItems defaultFrame:lastFrame];
                 }
             }
             
@@ -143,7 +165,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
                 userCustomSectionInset = [delegate collectionView:self.collectionView layout:self borderEdgeInsertsForSectionAtIndex:section];
             }
             
-            CGRect sectionFrame = CGRectUnion(firstAttr.frame, lastAttr.frame);
+            CGRect sectionFrame = CGRectUnion(firstFrame, lastFrame);
             if (!isCalculateHeaderView && !isCalculateFooterView) {
                 //都没有headerView&footerView
                 sectionFrame = [self calculateDefaultFrameWithSectionFrame:sectionFrame sectionInset:sectionInset];
@@ -267,11 +289,11 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     NSMutableArray * attrs = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
     
     //用户设置了对称方式，进行对称设置 (若没设置，不执行，继续其他计算)
-    if (self.collectionCellAlignmentType != JJCollectionViewFlowLayoutAlignmentTypeBySystem) {
-        NSArray *formatGroudAttr = self.scrollDirection == UICollectionViewScrollDirectionVertical ?
-        [self groupLayoutAttributesForElementsByYLineWithLayoutAttributesAttrs:attrs] : //竖向
-        [self groupLayoutAttributesForElementsByXLineWithLayoutAttributesAttrs:attrs] ; //横向
-
+    if (self.collectionCellAlignmentType != JJCollectionViewFlowLayoutAlignmentTypeBySystem
+        && self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+        //竖向,Cell对齐方式暂不支持横向
+        NSArray *formatGroudAttr = [self groupLayoutAttributesForElementsByYLineWithLayoutAttributesAttrs:attrs];
+        
         [self evaluatedAllCellSettingFrameWithLayoutAttributesAttrs:formatGroudAttr
                                         toChangeAttributesAttrsList:&attrs
                                                   cellAlignmentType:self.collectionCellAlignmentType];

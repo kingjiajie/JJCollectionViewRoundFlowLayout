@@ -19,6 +19,28 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param index index description
 + (UIEdgeInsets)evaluatedSectionInsetForItemWithCollectionLayout:(UICollectionViewFlowLayout *)layout atIndex:(NSInteger)index;
 
+
+#pragma mark - 不规则Cell计算方案
+
+/// 不规则cell找出top最高位置
+/// @param section section description
+/// @param numberOfItems numberOfItems description
+/// @param defaultFrame defaultFrame description
++ (CGRect)calculateIrregularitiesCellByMinTopFrameWithLayout:(UICollectionViewFlowLayout *)layout
+                                                     section:(NSInteger)section
+                                               numberOfItems:(NSInteger)numberOfItems
+                                                defaultFrame:(CGRect)defaultFrame;
+
+/// 不规则cell找出bootom最低位置
+/// @param layout layout description
+/// @param section section description
+/// @param numberOfItems numberOfItems description
+/// @param defaultFrame defaultFrame description
++ (CGRect)calculateIrregularitiesCellByMaxBottomFrameWithLayout:(UICollectionViewFlowLayout *)layout
+                                                        section:(NSInteger)section
+                                                  numberOfItems:(NSInteger)numberOfItems
+                                                   defaultFrame:(CGRect)defaultFrame;
+
 @end
 
 NS_ASSUME_NONNULL_END

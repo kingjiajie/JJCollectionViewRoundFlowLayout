@@ -51,7 +51,7 @@
     [toChangeList removeAllObjects];
     for (NSArray *calculateAttributesAttrsArr in layoutAttributesAttrs) {
         switch (alignmentType) {
-            case JJCollectionViewFlowLayoutAlignmentTypeByLelt:{
+            case JJCollectionViewFlowLayoutAlignmentTypeByLeft:{
                 [self evaluatedCellSettingFrameByLeftWithWithJJCollectionLayout:self layoutAttributesAttrs:calculateAttributesAttrsArr];
             }break;
             default:

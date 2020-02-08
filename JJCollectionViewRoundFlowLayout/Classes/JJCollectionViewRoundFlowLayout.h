@@ -59,6 +59,10 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否计算footer
 @property (assign, nonatomic) BOOL isCalculateFooter;
 
+/// 是否使用不规则Cell大小的计算方式(若Cell的大小是相同固定大小，则无需开启该方法)，默认NO
+@property (assign, nonatomic) BOOL isCalculateTypeOpenIrregularitiesCell;
+
+
 @end
 
 
