@@ -7,13 +7,14 @@
 //
 
 #import <UIKit/UIKit.h>
+@import JJCollectionViewRoundFlowLayout;
 
 NS_ASSUME_NONNULL_BEGIN
 
 @interface FourthViewController : UIViewController
 
 @property (assign, nonatomic) BOOL isHaveRoundBGView;
-@property (assign, nonatomic) BOOL isAlignmentLeft;
+@property (assign, nonatomic) JJCollectionViewRoundFlowLayoutAlignmentType myAlignmentType;
 
 @end
 

@@ -15,6 +15,7 @@
 @interface JJViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *myTableView;
+@property (strong, nonatomic) NSArray *myCellTitleArr;
 
 @end
 
@@ -84,63 +85,37 @@
         
         tableview;
     });
+    
+    _myCellTitleArr = ({
+        NSArray *arr = [NSArray arrayWithObjects:
+                        @"CollectionView（包住section圆角）",
+                        @"有Header&Footer，包Header,不包Footer",
+                        @"有Header&Footer，包Header,包Footer",
+                        @"有Header&Footer，不包Header,包Footer",
+                        @"CollectionView（包住section圆角）(横向)",
+                        @"CollectionView (横向 有H&F View)",
+                        @"borderLine 包Section",
+                        @"borderLine 包Section（带投影）",
+                        @"BackgroundColor 底色（带投影）",
+                        @"CollectionView（底色 圆角 分别不同颜色）",
+                        @"CollectionView（单独设置某个 header 底色）",
+                        @"CollectionView（单独设置某个 footer 底色）",
+                        @"CollectionView,无sections底色，cell左对齐",
+                        @"CollectionView,有sections底色，cell左对齐",
+                        nil];
+        arr;
+    });
 }
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return 14;
+    return _myCellTitleArr.count;
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-        switch (indexPath.row) {
-            case 0:{
-                cell.textLabel.text = @"CollectionView（包住section圆角）";
-            }break;
-            case 1:{
-                cell.textLabel.text = @"有Header&Footer，包Header,不包Footer";
-            }break;
-            case 2:{
-                cell.textLabel.text = @"有Header&Footer，包Header,包Footer";
-            }break;
-            case 3:{
-                cell.textLabel.text = @"有Header&Footer，不包Header,包Footer";
-            }break;
-            case 4:{
-                cell.textLabel.text = @"CollectionView（包住section圆角）(横向)";
-            }break;
-            case 5:{
-                cell.textLabel.text = @"CollectionView (横向 有H&F View)";
-            }break;
-            case 6:{
-                cell.textLabel.text = @"borderLine 包Section";
-            }break;
-            case 7:{
-                cell.textLabel.text = @"borderLine 包Section（带投影）";
-            }break;
-            case 8:{
-                cell.textLabel.text = @"BackgroundColor 底色（带投影）";
-            }break;
-            case 9:{
-                cell.textLabel.text = @"CollectionView（底色 圆角 分别不同颜色）";
-            }break;
-            case 10:{
-                cell.textLabel.text = @"CollectionView（单独设置某个 header 底色）";
-            }break;
-            case 11:{
-                cell.textLabel.text = @"CollectionView（单独设置某个 footer 底色）";
-            }break;
-            case 12:{
-                cell.textLabel.text = @"CollectionView,无sections底色，cell左对齐";
-            }break;
-            case 13:{
-                cell.textLabel.text = @"CollectionView,有sections底色，cell左对齐";
-            }break;
-                
-            default:
-                break;
-        }
+        cell.textLabel.text = _myCellTitleArr[indexPath.row];
     }
     return cell;
 }
@@ -189,8 +164,8 @@
         case 8:{
             SecondViewController *secondVC = [[SecondViewController alloc]init];
             secondVC.isHaveShadow = YES;
-   
-            [self.navigationController pushViewController:secondVC animated:YES];         secondVC.isHaveBGColor = YES;
+            secondVC.isHaveBGColor = YES;
+            [self.navigationController pushViewController:secondVC animated:YES];
             return;
         }break;
         case 9:{
@@ -213,14 +188,14 @@
         }break;
         case 12:{
             FourthViewController *fourthVC = [[FourthViewController alloc]init];
-            fourthVC.isAlignmentLeft = YES;
+            fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByLeft;
             [self.navigationController pushViewController:fourthVC animated:YES];
             return;
         }break;
         case 13:{
             FourthViewController *fourthVC = [[FourthViewController alloc]init];
             fourthVC.isHaveRoundBGView = YES;
-            fourthVC.isAlignmentLeft = YES;
+            fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByLeft;
             [self.navigationController pushViewController:fourthVC animated:YES];
             return;
         }break;

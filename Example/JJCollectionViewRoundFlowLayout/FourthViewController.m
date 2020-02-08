@@ -54,9 +54,8 @@
     _myCollectionView = ({
         JJCollectionViewRoundFlowLayout *layout = [[JJCollectionViewRoundFlowLayout alloc]init];
         
-        
-        if (self.isAlignmentLeft) {
-            layout.collectionCellAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByLelt;
+        if (self.myAlignmentType != 0) {
+            layout.collectionCellAlignmentType = self.myAlignmentType;
         }
         layout.isRoundEnabled = self.isHaveRoundBGView;
         
