@@ -102,6 +102,7 @@
                         @"CollectionView（单独设置某个 footer 底色）",
                         @"CollectionView,无sections底色，cell左对齐",
                         @"CollectionView,有sections底色，cell左对齐",
+                        @"CollectionView,无sections底色，cell居中",
                         nil];
         arr;
     });
@@ -196,6 +197,12 @@
             FourthViewController *fourthVC = [[FourthViewController alloc]init];
             fourthVC.isHaveRoundBGView = YES;
             fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByLeft;
+            [self.navigationController pushViewController:fourthVC animated:YES];
+            return;
+        }break;
+        case 14:{
+            FourthViewController *fourthVC = [[FourthViewController alloc]init];
+            fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByCenter;
             [self.navigationController pushViewController:fourthVC animated:YES];
             return;
         }break;

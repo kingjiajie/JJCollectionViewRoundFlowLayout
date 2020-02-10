@@ -145,6 +145,10 @@
     return self.myDataArr.count;
 }
 
+ -(int)getRandomNumber:(int)from to:(int)to{
+   return (int)(from + (arc4random() % (to - from + 1)));
+}
+
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
     NSString *string = self.myDataArr[indexPath.row];
     CGSize size = [FourthViewController calculateStringViewSizeWithShowSize:CGSizeMake(CGFLOAT_MAX, 38.f) fontSize:[UIFont systemFontOfSize:15.f] string:string];
