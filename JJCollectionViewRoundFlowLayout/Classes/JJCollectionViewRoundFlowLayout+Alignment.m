@@ -15,12 +15,13 @@
 - (NSArray *)groupLayoutAttributesForElementsByYLineWithLayoutAttributesAttrs:(NSArray *)layoutAttributesAttrs{
     NSMutableDictionary *allDict = [NSMutableDictionary dictionaryWithCapacity:0];
     for (UICollectionViewLayoutAttributes *attr  in layoutAttributesAttrs) {
-        NSMutableArray *dictArr = allDict[@(attr.frame.origin.y)];
+        
+        NSMutableArray *dictArr = allDict[@(CGRectGetMidY(attr.frame))];
         if (dictArr) {
             [dictArr addObject:[attr copy]];
         }else{
             NSMutableArray *arr = [NSMutableArray arrayWithObject:[attr copy]];
-            allDict[@(attr.frame.origin.y)] = arr;
+            allDict[@(CGRectGetMidY(attr.frame))] = arr;
         }
     }
     return allDict.allValues;
@@ -54,6 +55,9 @@
             case JJCollectionViewFlowLayoutAlignmentTypeByLeft:{
                 [self evaluatedCellSettingFrameByLeftWithWithJJCollectionLayout:self layoutAttributesAttrs:calculateAttributesAttrsArr];
             }break;
+            case JJCollectionViewFlowLayoutAlignmentTypeByCenter:{
+                [self evaluatedCellSettingFrameByCentertWithWithJJCollectionLayout:self layoutAttributesAttrs:calculateAttributesAttrsArr];
+            }break;
             default:
                 break;
         }
@@ -84,6 +88,50 @@
             }else{
                 frame.origin.x = [JJCollectionViewFlowLayoutUtils evaluatedSectionInsetForItemWithCollectionLayout:layout atIndex:attr.indexPath.section].left;
             }
+        }else{
+            //横向
+            if (pAttr) {
+                frame.origin.y = pAttr.frame.origin.y + pAttr.frame.size.height + [JJCollectionViewFlowLayoutUtils evaluatedMinimumInteritemSpacingForSectionWithCollectionLayout:layout atIndex:attr.indexPath.section];
+            }else{
+                frame.origin.y = [JJCollectionViewFlowLayoutUtils evaluatedSectionInsetForItemWithCollectionLayout:layout atIndex:attr.indexPath.section].top;
+            }
+        }
+        attr.frame = frame;
+        pAttr = attr;
+    }
+}
+
+/// 计算AttributesAttrs居中对齐
+/// @param layout JJCollectionViewRoundFlowLayout
+/// @param layoutAttributesAttrs 需计算的AttributesAttrs列表
+- (void)evaluatedCellSettingFrameByCentertWithWithJJCollectionLayout:(JJCollectionViewRoundFlowLayout *)layout layoutAttributesAttrs:(NSArray *)layoutAttributesAttrs{
+    
+    //center
+    UICollectionViewLayoutAttributes *pAttr = nil;
+    
+    CGFloat useWidth = 0;
+            NSInteger theSection = ((UICollectionViewLayoutAttributes *)layoutAttributesAttrs.firstObject).indexPath.section;
+            for (UICollectionViewLayoutAttributes *attr in layoutAttributesAttrs) {
+                useWidth += attr.bounds.size.width;
+            }
+    CGFloat firstLeft = (self.collectionView.bounds.size.width - useWidth - ([JJCollectionViewFlowLayoutUtils evaluatedMinimumInteritemSpacingForSectionWithCollectionLayout:layout atIndex:theSection]*layoutAttributesAttrs.count))/2;
+    
+    for (UICollectionViewLayoutAttributes *attr in layoutAttributesAttrs) {
+        if (attr.representedElementKind != nil) {
+            //nil when representedElementCategory is UICollectionElementCategoryCell (空的时候为cell)
+            continue;
+        }
+        CGRect frame = attr.frame;
+
+        if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+            //竖向
+            if (pAttr) {
+                frame.origin.x = pAttr.frame.origin.x + pAttr.frame.size.width + [JJCollectionViewFlowLayoutUtils evaluatedMinimumInteritemSpacingForSectionWithCollectionLayout:layout atIndex:attr.indexPath.section];
+            }else{
+                frame.origin.x = firstLeft;
+            }
+            attr.frame = frame;
+            pAttr = attr;
         }else{
             //横向
             if (pAttr) {

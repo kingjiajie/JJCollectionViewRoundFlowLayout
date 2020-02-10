@@ -76,7 +76,7 @@
     if (layout.scrollDirection == UICollectionViewScrollDirectionVertical) {
         //竖向
         CGFloat maxY = CGRectGetMinY(lastFrame);
-        NSInteger index = 0;
+        NSInteger index = numberOfItems-1;
         for (NSInteger i = 0; i <= numberOfItems - 1; i ++ ) {
             UICollectionViewLayoutAttributes *attr = [layout layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:section]];
             if (maxY < MAX(maxY, CGRectGetMaxY(attr.frame))) {
@@ -88,7 +88,7 @@
     }else{
         //横向
         CGFloat maxX = CGRectGetMaxX(lastFrame);
-        NSInteger index = 0;
+        NSInteger index = numberOfItems-1;
         for (NSInteger i = 0; i <= numberOfItems - 1; i ++ ) {
             UICollectionViewLayoutAttributes *attr = [layout layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:i inSection:section]];
             if (maxX < MAX(maxX, CGRectGetMaxX(attr.frame))) {
