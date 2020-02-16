@@ -18,8 +18,9 @@
    7、支持根据不同section分别设置不同底色显示。  
    8、支持根据section单独判断是否计算对应headerview和footerview  
    9、新增对Cell的对齐模式进行设置，支持（左对齐）--- V2.0.0  
-   10、增加对不规则Cell大小的计算方式支持，支持对不规则Cell计算实际背景视图大小，默认不开启计算，如使用不规则计算需手动开启isCalculateTypeOpenIrregularitiesCell字段
-   11、新增对Cell的对齐模式进行设置，支持（居中对齐）--- V2.1.0
+   10、增加对不规则Cell大小的计算方式支持，支持对不规则Cell计算实际背景视图大小，默认不开启计算，如使用不规则计算需手动开启isCalculateTypeOpenIrregularitiesCell字段  
+   11、新增对Cell的对齐模式进行设置，支持（居中对齐）--- V2.1.0  
+   12、新增对Cell的对齐模式进行设置，支持（右对齐）--- V2.2.0  
    
    Swift版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift)  
    OC版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout)
@@ -27,7 +28,8 @@
 
 ## 更新日志
 ---
-* `2.1.0`:新增支持设置Cell对齐模式（居中对齐）。
+* `2.2.0`:新增支持设置Cell对齐模式（右对齐）。
+- `2.1.0`:新增支持设置Cell对齐模式（居中对齐）。
 - `2.0.1`:  
 增加对不规则Cell大小的计算方式支持，支持对不规则Cell计算实际背景视图大小，默认不开启计算，如使用不规则计算需手动开启isCalculateTypeOpenIrregularitiesCell字段。
 - `2.0.0`：  
@@ -252,6 +254,7 @@ layout.isCalculateFooter = YES;
     
     layout.collectionCellAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByLeft; //设置对齐方式（左对齐）
     //layout.collectionCellAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByCenter; //设置对齐方式（居中）
+    //layout.collectionCellAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByRight; //设置对齐方式（右对齐）
 
 ```
 
