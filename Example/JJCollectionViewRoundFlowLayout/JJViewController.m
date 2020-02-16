@@ -103,6 +103,7 @@
                         @"CollectionView,无sections底色，cell左对齐",
                         @"CollectionView,有sections底色，cell左对齐",
                         @"CollectionView,无sections底色，cell居中",
+                        @"CollectionView,无sections底色，cell右对齐",
                         nil];
         arr;
     });
@@ -203,6 +204,12 @@
         case 14:{
             FourthViewController *fourthVC = [[FourthViewController alloc]init];
             fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByCenter;
+            [self.navigationController pushViewController:fourthVC animated:YES];
+            return;
+        }break;
+        case 15:{
+            FourthViewController *fourthVC = [[FourthViewController alloc]init];
+            fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByRight;
             [self.navigationController pushViewController:fourthVC animated:YES];
             return;
         }break;

@@ -58,6 +58,10 @@
             case JJCollectionViewFlowLayoutAlignmentTypeByCenter:{
                 [self evaluatedCellSettingFrameByCentertWithWithJJCollectionLayout:self layoutAttributesAttrs:calculateAttributesAttrsArr];
             }break;
+            case JJCollectionViewFlowLayoutAlignmentTypeByRight:{
+                NSArray* reversedArray = [[calculateAttributesAttrsArr reverseObjectEnumerator] allObjects];
+                [self evaluatedCellSettingFrameByRightWithWithJJCollectionLayout:self layoutAttributesAttrs:reversedArray];
+            }break;
             default:
                 break;
         }
@@ -114,7 +118,7 @@
             for (UICollectionViewLayoutAttributes *attr in layoutAttributesAttrs) {
                 useWidth += attr.bounds.size.width;
             }
-    CGFloat firstLeft = (self.collectionView.bounds.size.width - useWidth - ([JJCollectionViewFlowLayoutUtils evaluatedMinimumInteritemSpacingForSectionWithCollectionLayout:layout atIndex:theSection]*layoutAttributesAttrs.count))/2;
+    CGFloat firstLeft = (self.collectionView.bounds.size.width - useWidth - ([JJCollectionViewFlowLayoutUtils evaluatedMinimumInteritemSpacingForSectionWithCollectionLayout:layout atIndex:theSection]*layoutAttributesAttrs.count))/2.0;
     
     for (UICollectionViewLayoutAttributes *attr in layoutAttributesAttrs) {
         if (attr.representedElementKind != nil) {
@@ -139,6 +143,35 @@
             }else{
                 frame.origin.y = [JJCollectionViewFlowLayoutUtils evaluatedSectionInsetForItemWithCollectionLayout:layout atIndex:attr.indexPath.section].top;
             }
+        }
+        attr.frame = frame;
+        pAttr = attr;
+    }
+}
+
+
+/// 计算AttributesAttrs右对齐
+/// @param layout JJCollectionViewRoundFlowLayout
+/// @param layoutAttributesAttrs 需计算的AttributesAttrs列表
+- (void)evaluatedCellSettingFrameByRightWithWithJJCollectionLayout:(JJCollectionViewRoundFlowLayout *)layout layoutAttributesAttrs:(NSArray *)layoutAttributesAttrs{
+//    right
+    UICollectionViewLayoutAttributes *pAttr = nil;
+    for (UICollectionViewLayoutAttributes *attr in layoutAttributesAttrs) {
+        if (attr.representedElementKind != nil) {
+            //nil when representedElementCategory is UICollectionElementCategoryCell (空的时候为cell)
+            continue;
+        }
+        CGRect frame = attr.frame;
+
+        if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+            //竖向
+            if (pAttr) {
+                frame.origin.x = pAttr.frame.origin.x - [JJCollectionViewFlowLayoutUtils evaluatedMinimumInteritemSpacingForSectionWithCollectionLayout:layout atIndex:attr.indexPath.section] - frame.size.width;
+            }else{
+                frame.origin.x = layout.collectionView.bounds.size.width - [JJCollectionViewFlowLayoutUtils evaluatedSectionInsetForItemWithCollectionLayout:layout atIndex:attr.indexPath.section].right - frame.size.width;
+            }
+        }else{
+            
         }
         attr.frame = frame;
         pAttr = attr;
