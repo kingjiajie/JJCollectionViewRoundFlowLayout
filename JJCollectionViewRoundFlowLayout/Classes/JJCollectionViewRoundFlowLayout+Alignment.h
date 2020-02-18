@@ -43,6 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param layoutAttributesAttrs 需计算的AttributesAttrs列表
 - (void)evaluatedCellSettingFrameByCentertWithWithJJCollectionLayout:(JJCollectionViewRoundFlowLayout *)layout layoutAttributesAttrs:(NSArray *)layoutAttributesAttrs;
 
+/// 计算AttributesAttrs右对齐
+/// @param layout JJCollectionViewRoundFlowLayout
+/// @param layoutAttributesAttrs 需计算的AttributesAttrs列表
+- (void)evaluatedCellSettingFrameByRightWithWithJJCollectionLayout:(JJCollectionViewRoundFlowLayout *)layout layoutAttributesAttrs:(NSArray *)layoutAttributesAttrs;
+
 @end
 
 

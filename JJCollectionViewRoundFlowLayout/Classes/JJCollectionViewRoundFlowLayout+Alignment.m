@@ -62,6 +62,9 @@
                 NSArray* reversedArray = [[calculateAttributesAttrsArr reverseObjectEnumerator] allObjects];
                 [self evaluatedCellSettingFrameByRightWithWithJJCollectionLayout:self layoutAttributesAttrs:reversedArray];
             }break;
+            case JJCollectionViewFlowLayoutAlignmentTypeByRightAndStartR:{
+                [self evaluatedCellSettingFrameByRightWithWithJJCollectionLayout:self layoutAttributesAttrs:calculateAttributesAttrsArr];
+            }break;
             default:
                 break;
         }
