@@ -263,7 +263,7 @@ layout.isCalculateFooter = YES;
 
 ## Author
 
-kingjiajie, kingjiajie@sian.com
+kingjiajie, kingjiajie@sina.com
 
 ## License
 
