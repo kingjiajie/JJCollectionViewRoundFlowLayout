@@ -16,14 +16,14 @@ NS_ASSUME_NONNULL_BEGIN
 
 @required
 
+
+@optional
+
 /// 设置底色参数
 /// @param collectionView collectionView description
 /// @param collectionViewLayout collectionViewLayout description
 /// @param section section description
 - (JJCollectionViewRoundConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout configModelForSectionAtIndex:(NSInteger)section;
-
-
-@optional
 
 /// 设置底色偏移点量（与collectionview的sectionInset用法相同，但是与sectionInset区分）
 /// @param collectionView collectionView description
@@ -56,7 +56,7 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否计算header（若实现collectionView: layout: isCalculateHeaderViewIndex:）该字段不起作用
 @property (assign, nonatomic) BOOL isCalculateHeader;
 
-/// 是否计算footer
+/// 是否计算footer（若实现collectionView: layout: isCalculateFooterViewIndex:）该字段不起作用
 @property (assign, nonatomic) BOOL isCalculateFooter;
 
 /// 是否使用不规则Cell大小的计算方式(若Cell的大小是相同固定大小，则无需开启该方法)，默认NO
