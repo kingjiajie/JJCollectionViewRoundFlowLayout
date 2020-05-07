@@ -26,6 +26,8 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 
 @interface JJCollectionReusableView : UICollectionReusableView
 
+@property (weak, nonatomic) JJCollectionViewRoundLayoutAttributes *myCacheAttr;
+
 @end
 
 @implementation JJCollectionReusableView
@@ -33,18 +35,47 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 - (void)applyLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes{
     [super applyLayoutAttributes:layoutAttributes];
     JJCollectionViewRoundLayoutAttributes *attr = (JJCollectionViewRoundLayoutAttributes *)layoutAttributes;
+    _myCacheAttr = attr;
+    [self toChangeCollectionReusableViewRoundInfoWithLayoutAttributes:attr];
+}
+
+- (void)traitCollectionDidChange:(UITraitCollection *)previousTraitCollection{
+    [super traitCollectionDidChange:previousTraitCollection];
+    [self toChangeCollectionReusableViewRoundInfoWithLayoutAttributes:_myCacheAttr];
+}
+
+- (void)toChangeCollectionReusableViewRoundInfoWithLayoutAttributes:(UICollectionViewLayoutAttributes *)layoutAttributes{
     
+    JJCollectionViewRoundLayoutAttributes *attr = (JJCollectionViewRoundLayoutAttributes *)layoutAttributes;
     if (attr.myConfigModel) {
         JJCollectionViewRoundConfigModel *model = attr.myConfigModel;
         UIView *view = self;
-        view.layer.backgroundColor = model.backgroundColor.CGColor;
-        view.layer.shadowColor = model.shadowColor.CGColor;
+        
+        if (@available(iOS 13.0, *)) {
+            view.layer.backgroundColor = [model.backgroundColor resolvedColorWithTraitCollection:self.traitCollection].CGColor;
+        } else {
+            view.layer.backgroundColor = model.backgroundColor.CGColor;
+        }
+        
+        if (@available(iOS 13.0, *)) {
+            view.layer.shadowColor = [model.shadowColor resolvedColorWithTraitCollection:self.traitCollection].CGColor;
+        } else {
+            view.layer.shadowColor = model.shadowColor.CGColor;
+        }
+        
         view.layer.shadowOffset = model.shadowOffset;
         view.layer.shadowOpacity = model.shadowOpacity;
         view.layer.shadowRadius = model.shadowRadius;
         view.layer.cornerRadius = model.cornerRadius;
         view.layer.borderWidth = model.borderWidth;
-        view.layer.borderColor = model.borderColor.CGColor;
+        
+        if (@available(iOS 13.0, *)) {
+            view.layer.borderColor = [model.borderColor resolvedColorWithTraitCollection:self.traitCollection].CGColor;
+        } else {
+            view.layer.borderColor = model.borderColor.CGColor;
+        }
+        
+        
     }
 }
 
