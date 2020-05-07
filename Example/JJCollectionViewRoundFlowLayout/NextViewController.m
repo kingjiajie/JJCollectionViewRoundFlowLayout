@@ -142,7 +142,14 @@
 
 - (JJCollectionViewRoundConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout configModelForSectionAtIndex:(NSInteger)section{
     JJCollectionViewRoundConfigModel *model = [[JJCollectionViewRoundConfigModel alloc]init];
-    model.backgroundColor = [UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1.0];
+    if (@available(iOS 13.0, *)) {
+        model.backgroundColor = [UIColor colorWithDynamicProvider:^UIColor * _Nonnull(UITraitCollection * _Nonnull traitCollection) {
+            return traitCollection.userInterfaceStyle == UIUserInterfaceStyleLight ? [UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1.0] : [UIColor blackColor];
+        }];
+    } else {
+        // Fallback on earlier versions
+        model.backgroundColor = [UIColor colorWithRed:233/255.0 green:233/255.0 blue:233/255.0 alpha:1.0];
+    }
     model.cornerRadius = 10;
     
     
@@ -153,7 +160,6 @@
             model.backgroundColor = [UIColor colorWithRed:100/255.0 green:233/255.0 blue:233/255.0 alpha:1.0];
         }
     }
-    
     return model;
 }
 
