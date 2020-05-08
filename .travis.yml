@@ -12,5 +12,5 @@ before_install:
 script:
 #- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/JJCollectionViewRoundFlowLayout.xcworkspace -scheme JJCollectionViewRoundFlowLayout-Example | xcpretty
 #- set -o pipefail && xcodebuild test -enableCodeCoverage YES -workspace Example/JJCollectionViewRoundFlowLayout.xcworkspace -scheme JJCollectionViewRoundFlowLayout-Example -sdk iphonesimulator11.4 ONLY_ACTIVE_ARCH=NO | xcpretty
-- set -o pipefail && xcodebuild -workspace Example/JJCollectionViewRoundFlowLayout.xcworkspace -scheme JJCollectionViewRoundFlowLayout-Example -destination 'platform=iOS Simulator,name=iPhone 6s,OS=9.0' ONLY_ACTIVE_ARCH=NO | xcpretty -c 
+- set -o pipefail && xcodebuild -workspace Example/JJCollectionViewRoundFlowLayout.xcworkspace -scheme JJCollectionViewRoundFlowLayout-Example -destination 'platform=iOS Simulator,name=iPhone 6s,OS=10.3.1' ONLY_ACTIVE_ARCH=NO | xcpretty -c 
 - pod lib lint
