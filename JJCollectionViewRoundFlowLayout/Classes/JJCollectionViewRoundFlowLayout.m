@@ -97,6 +97,11 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     return self;
 }
 
+- (void)awakeFromNib{
+    [super awakeFromNib];
+    _isRoundEnabled = YES;
+}
+
 - (void)prepareLayout{
     [super prepareLayout];
     

@@ -8,6 +8,8 @@
 
 /* Begin PBXBuildFile section */
 		040C10F523A779BB00D1C506 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040C10F423A779BB00D1C506 /* ThirdViewController.m */; };
+		04663100250133CF00DBA60D /* JJTestWakeFormNibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046630FE250133CF00DBA60D /* JJTestWakeFormNibViewController.m */; };
+		04663101250133CF00DBA60D /* JJTestWakeFormNibViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046630FF250133CF00DBA60D /* JJTestWakeFormNibViewController.xib */; };
 		04D2E57923C9DB55004D3816 /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2E57823C9DB55004D3816 /* FourthViewController.m */; };
 		04D2E57C23C9DDD9004D3816 /* MyLabelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2E57B23C9DDD9004D3816 /* MyLabelCollectionViewCell.m */; };
 		04FEFAF22369BA73000ECEDE /* MyCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FEFAEB2369BA72000ECEDE /* MyCollectionReusableView.m */; };
@@ -46,6 +48,9 @@
 /* Begin PBXFileReference section */
 		040C10F323A779BB00D1C506 /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
 		040C10F423A779BB00D1C506 /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		046630FD250133CF00DBA60D /* JJTestWakeFormNibViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJTestWakeFormNibViewController.h; sourceTree = "<group>"; };
+		046630FE250133CF00DBA60D /* JJTestWakeFormNibViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJTestWakeFormNibViewController.m; sourceTree = "<group>"; };
+		046630FF250133CF00DBA60D /* JJTestWakeFormNibViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JJTestWakeFormNibViewController.xib; sourceTree = "<group>"; };
 		04D2E57723C9DB55004D3816 /* FourthViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
 		04D2E57823C9DB55004D3816 /* FourthViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
 		04D2E57A23C9DDD9004D3816 /* MyLabelCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyLabelCollectionViewCell.h; sourceTree = "<group>"; };
@@ -184,6 +189,9 @@
 				04D2E57A23C9DDD9004D3816 /* MyLabelCollectionViewCell.h */,
 				04D2E57B23C9DDD9004D3816 /* MyLabelCollectionViewCell.m */,
 				71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */,
+				046630FD250133CF00DBA60D /* JJTestWakeFormNibViewController.h */,
+				046630FE250133CF00DBA60D /* JJTestWakeFormNibViewController.m */,
+				046630FF250133CF00DBA60D /* JJTestWakeFormNibViewController.xib */,
 				6003F5A8195388D20070C39A /* Images.xcassets */,
 				6003F594195388D20070C39A /* Supporting Files */,
 			);
@@ -312,6 +320,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */,
+				04663101250133CF00DBA60D /* JJTestWakeFormNibViewController.xib in Resources */,
 				71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */,
 				6003F5A9195388D20070C39A /* Images.xcassets in Resources */,
 				6003F598195388D20070C39A /* InfoPlist.strings in Resources */,
@@ -402,6 +411,7 @@
 				04D2E57C23C9DDD9004D3816 /* MyLabelCollectionViewCell.m in Sources */,
 				6003F59E195388D20070C39A /* JJAppDelegate.m in Sources */,
 				040C10F523A779BB00D1C506 /* ThirdViewController.m in Sources */,
+				04663100250133CF00DBA60D /* JJTestWakeFormNibViewController.m in Sources */,
 				04FEFAF42369BA73000ECEDE /* MyCollectionViewCell.m in Sources */,
 				04FEFAF22369BA73000ECEDE /* MyCollectionReusableView.m in Sources */,
 				04FEFAF52369BA73000ECEDE /* NextViewController.m in Sources */,
