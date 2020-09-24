@@ -74,8 +74,26 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
         } else {
             view.layer.borderColor = model.borderColor.CGColor;
         }
-        
-        
+    }
+}
+
+- (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
+    if (event.type == UIEventTypeTouches) {
+        //touchType
+        [self decorationViewUserDidSelectEvent];
+    }
+}
+
+#pragma mark - touchEvent
+
+- (void)decorationViewUserDidSelectEvent {
+    UICollectionView *collectionView = (UICollectionView *)self.superview;
+    if ([collectionView isKindOfClass:[UICollectionView class]]) {
+        //is CollectionView
+        id <JJCollectionViewDelegateRoundFlowLayout> delegate  = (id <JJCollectionViewDelegateRoundFlowLayout>)collectionView.delegate;
+        if ([delegate respondsToSelector:@selector(collectionView:didSelectDecorationViewAtIndexPath:)]) {
+            [delegate collectionView:collectionView didSelectDecorationViewAtIndexPath:_myCacheAttr.indexPath];
+        }
     }
 }
 

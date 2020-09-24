@@ -22,6 +22,8 @@
    11、新增对Cell的对齐模式进行设置，支持（居中对齐）--- V2.1.0  
    12、新增对Cell的对齐模式进行设置，支持（右对齐）--- V2.2.0  
    13、新增对Cell的对齐模式进行设置，支持（右对齐和首个Cell右侧开始）---V2.3.0  
+   14、支持xib、storyboard 唤起，能够默认开启背景图开关设置 ---V2.3.2  
+   15、支持xib、storyboard 唤起，能够默认开启背景图开关设置 ---V2.4.0  
    
    Swift版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift)  
    OC版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout)
@@ -29,6 +31,7 @@
 
 ## 更新日志
 ---
+* `2.4.0`:增加对背景图的点击事件处理和控制，通过代理返回点击的背景图的IndexPath。  
 * `2.3.2`:增加对xib直接集成的支持，解决xib设置Layout后isRoundEnabled没有自动开启的问题。  
 - `2.3.1`:解决对暗黑模式的支持问题  
 - `2.3.0`:新增对Cell的对齐模式进行设置，支持（右对齐和首个Cell右侧开始）
@@ -261,6 +264,17 @@ layout.isCalculateFooter = YES;
     //layout.collectionCellAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByRight; //设置对齐方式（右对齐）
     //layout.collectionCellAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByRightAndStartR; //设置对齐方式（右对齐和首个Cell右侧开始）
 
+```  
+
+
+#### 支持对Cell的对齐模式进行设置、可选是否填充底色(左对齐、居中)  
+
+
+``` obj-c
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectDecorationViewAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    NSString *message = [NSString stringWithFormat:@"section --- %ld \n row --- %ld",indexPath.section,indexPath.row];
+}
 ```
 
 ## Author

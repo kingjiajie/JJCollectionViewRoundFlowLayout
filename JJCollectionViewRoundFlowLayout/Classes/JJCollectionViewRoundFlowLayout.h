@@ -43,6 +43,12 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param section section description
 - (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout isCalculateFooterViewIndex:(NSInteger)section;
 
+
+/// 背景图点击事件
+/// @param collectionView collectionView description
+/// @param indexPath 点击背景图的indexPath
+- (void)collectionView:(UICollectionView *)collectionView didSelectDecorationViewAtIndexPath:(NSIndexPath *)indexPath;
+
 @end
 
 @interface JJCollectionViewRoundFlowLayout : UICollectionViewFlowLayout

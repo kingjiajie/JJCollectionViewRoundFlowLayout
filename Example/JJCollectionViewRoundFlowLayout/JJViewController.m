@@ -11,6 +11,7 @@
 #import "SecondViewController.h"
 #import "ThirdViewController.h"
 #import "FourthViewController.h"
+#import "FifthlyViewController.h"
 
 @interface JJViewController ()<UITableViewDelegate,UITableViewDataSource>
 
@@ -105,6 +106,7 @@
                         @"CollectionView,无sections底色，cell居中",
                         @"CollectionView,无sections底色，cell右对齐",
                         @"CollectionView,cell右对齐与cell右侧开始",
+                        @"CollectionView,背景图点击事件响应",
                         nil];
         arr;
     });
@@ -220,7 +222,11 @@
             [self.navigationController pushViewController:fourthVC animated:YES];
             return;
         }break;
-            
+        case 17: {
+            FifthlyViewController *fifthlyVC = [[FifthlyViewController alloc]init];
+            [self.navigationController pushViewController:fifthlyVC animated:YES];
+            return;
+        }break;
             
         default:
             break;

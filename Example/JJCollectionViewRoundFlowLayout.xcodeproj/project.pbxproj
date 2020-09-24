@@ -10,6 +10,7 @@
 		040C10F523A779BB00D1C506 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040C10F423A779BB00D1C506 /* ThirdViewController.m */; };
 		04663100250133CF00DBA60D /* JJTestWakeFormNibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046630FE250133CF00DBA60D /* JJTestWakeFormNibViewController.m */; };
 		04663101250133CF00DBA60D /* JJTestWakeFormNibViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046630FF250133CF00DBA60D /* JJTestWakeFormNibViewController.xib */; };
+		0484A63E251CEA5A0019A0FF /* FifthlyViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 0484A63D251CEA5A0019A0FF /* FifthlyViewController.m */; };
 		04D2E57923C9DB55004D3816 /* FourthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2E57823C9DB55004D3816 /* FourthViewController.m */; };
 		04D2E57C23C9DDD9004D3816 /* MyLabelCollectionViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 04D2E57B23C9DDD9004D3816 /* MyLabelCollectionViewCell.m */; };
 		04FEFAF22369BA73000ECEDE /* MyCollectionReusableView.m in Sources */ = {isa = PBXBuildFile; fileRef = 04FEFAEB2369BA72000ECEDE /* MyCollectionReusableView.m */; };
@@ -51,6 +52,8 @@
 		046630FD250133CF00DBA60D /* JJTestWakeFormNibViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJTestWakeFormNibViewController.h; sourceTree = "<group>"; };
 		046630FE250133CF00DBA60D /* JJTestWakeFormNibViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJTestWakeFormNibViewController.m; sourceTree = "<group>"; };
 		046630FF250133CF00DBA60D /* JJTestWakeFormNibViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JJTestWakeFormNibViewController.xib; sourceTree = "<group>"; };
+		0484A63C251CEA5A0019A0FF /* FifthlyViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FifthlyViewController.h; sourceTree = "<group>"; };
+		0484A63D251CEA5A0019A0FF /* FifthlyViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FifthlyViewController.m; sourceTree = "<group>"; };
 		04D2E57723C9DB55004D3816 /* FourthViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = FourthViewController.h; sourceTree = "<group>"; };
 		04D2E57823C9DB55004D3816 /* FourthViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = FourthViewController.m; sourceTree = "<group>"; };
 		04D2E57A23C9DDD9004D3816 /* MyLabelCollectionViewCell.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = MyLabelCollectionViewCell.h; sourceTree = "<group>"; };
@@ -182,6 +185,8 @@
 				040C10F423A779BB00D1C506 /* ThirdViewController.m */,
 				04D2E57723C9DB55004D3816 /* FourthViewController.h */,
 				04D2E57823C9DB55004D3816 /* FourthViewController.m */,
+				0484A63C251CEA5A0019A0FF /* FifthlyViewController.h */,
+				0484A63D251CEA5A0019A0FF /* FifthlyViewController.m */,
 				04FEFAEC2369BA72000ECEDE /* MyCollectionViewCell.h */,
 				04FEFAF02369BA73000ECEDE /* MyCollectionViewCell.m */,
 				04FEFAEA2369BA72000ECEDE /* MyCollectionReusableView.h */,
@@ -410,6 +415,7 @@
 				04FEFAF32369BA73000ECEDE /* SecondViewController.m in Sources */,
 				04D2E57C23C9DDD9004D3816 /* MyLabelCollectionViewCell.m in Sources */,
 				6003F59E195388D20070C39A /* JJAppDelegate.m in Sources */,
+				0484A63E251CEA5A0019A0FF /* FifthlyViewController.m in Sources */,
 				040C10F523A779BB00D1C506 /* ThirdViewController.m in Sources */,
 				04663100250133CF00DBA60D /* JJTestWakeFormNibViewController.m in Sources */,
 				04FEFAF42369BA73000ECEDE /* MyCollectionViewCell.m in Sources */,
