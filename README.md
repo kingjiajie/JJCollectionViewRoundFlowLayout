@@ -23,7 +23,7 @@
    12、新增对Cell的对齐模式进行设置，支持（右对齐）--- V2.2.0  
    13、新增对Cell的对齐模式进行设置，支持（右对齐和首个Cell右侧开始）---V2.3.0  
    14、支持xib、storyboard 唤起，能够默认开启背景图开关设置 ---V2.3.2  
-   15、支持xib、storyboard 唤起，能够默认开启背景图开关设置 ---V2.4.0  
+   15、增加对背景图的点击事件处理和控制，通过代理返回点击的背景图的IndexPath ---V2.4.0  
    
    Swift版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift)  
    OC版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout)
