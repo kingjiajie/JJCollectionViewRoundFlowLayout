@@ -267,7 +267,7 @@ layout.isCalculateFooter = YES;
 ```  
 
 
-#### 支持对Cell的对齐模式进行设置、可选是否填充底色(左对齐、居中)  
+#### 增加对背景图的点击事件处理和控制，通过代理返回点击的背景图的IndexPath
 
 
 ``` obj-c
