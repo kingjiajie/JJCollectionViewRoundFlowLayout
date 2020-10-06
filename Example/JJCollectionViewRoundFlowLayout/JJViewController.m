@@ -13,6 +13,43 @@
 #import "FourthViewController.h"
 #import "FifthlyViewController.h"
 
+typedef NS_OPTIONS(NSInteger, JJViewSectionType) {
+    JJViewSectionTypeByRoundDemo = 0,
+    JJViewSectionTypeByAlignmentDemo,
+    JJViewSectionTypeByEventDemo,
+    JJViewSectionTypeByAllSection
+};
+
+typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByRoundRowType) {
+    JJViewSectionTypeByRoundRowTypeBaseRound = 0,
+    JJViewSectionTypeByRoundRowTypeBaseRoundWithHeader,
+    JJViewSectionTypeByRoundRowTypeBaseRoundWithHF,
+    JJViewSectionTypeByRoundRowTypeBaseRoundWithFooter,
+    JJViewSectionTypeByRoundRowTypeHorizontalRound,
+    JJViewSectionTypeByRoundRowTypeHorizontalRoundWithHF,
+    JJViewSectionTypeByRoundRowTypeBorderLine,
+    JJViewSectionTypeByRoundRowTypeBorderLineWithShadow,
+    JJViewSectionTypeByRoundRowTypeBackgroundColorWithShadow,
+    JJViewSectionTypeByRoundRowTypeRoundWithDifferentColor,
+    JJViewSectionTypeByRoundRowTypeRoundAccordingToHeader,
+    JJViewSectionTypeByRoundRowTypeRoundAccordingToFooter,
+    JJViewSectionTypeByRoundRowTypeAllRow
+};
+
+typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByAlignmentRowType) {
+    JJViewSectionTypeByAlignmentRowTypeByLeft = 0,
+    JJViewSectionTypeByAlignmentRowTypeByLeftAndHaveRound,
+    JJViewSectionTypeByAlignmentRowTypeByCenter,
+    JJViewSectionTypeByAlignmentRowTypeByRight,
+    JJViewSectionTypeByAlignmentRowTypeByRightAndStartR,
+    JJViewSectionTypeByAlignmentRowTypeByAllRow
+};
+
+typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
+    JJViewSectionTypeByEventRowTypeByBackViewTouch = 0,
+    JJViewSectionTypeByEventRowTypeByAllRow
+};
+
 @interface JJViewController ()<UITableViewDelegate,UITableViewDataSource>
 
 @property (strong, nonatomic) UITableView *myTableView;
@@ -36,7 +73,7 @@
 
 - (void)initialization{
     _myTableView = ({
-        UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 100, 100) style:UITableViewStylePlain];
+        UITableView *tableview = [[UITableView alloc]initWithFrame:CGRectMake(0, 0, 100, 100) style:UITableViewStyleGrouped];
         tableview.delegate = self;
         tableview.dataSource = self;
         
@@ -101,137 +138,199 @@
                         @"CollectionView（底色 圆角 分别不同颜色）",
                         @"CollectionView（单独设置某个 header 底色）",
                         @"CollectionView（单独设置某个 footer 底色）",
+                        
+#pragma mark - alignment
                         @"CollectionView,无sections底色，cell左对齐",
                         @"CollectionView,有sections底色，cell左对齐",
                         @"CollectionView,无sections底色，cell居中",
                         @"CollectionView,无sections底色，cell右对齐",
                         @"CollectionView,cell右对齐与cell右侧开始",
+                        
+#pragma mark - touch
                         @"CollectionView,背景图点击事件响应",
                         nil];
         arr;
     });
 }
 
+#pragma mark - delegate , dataSource
+
+- (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
+    return JJViewSectionTypeByAllSection;
+}
+
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
-    return _myCellTitleArr.count;
+    switch (section) {
+        case JJViewSectionTypeByRoundDemo:      return JJViewSectionTypeByRoundRowTypeAllRow;       break;
+        case JJViewSectionTypeByAlignmentDemo:  return JJViewSectionTypeByAlignmentRowTypeByAllRow; break;
+        case JJViewSectionTypeByEventDemo:      return JJViewSectionTypeByEventRowTypeByAllRow;     break;
+        default:                                return 0;                                           break;
+    }
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView cellForRowAtIndexPath:indexPath];
+    static NSString *cellIdentifier = @"Cell";
+    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:cellIdentifier];
     if (!cell) {
         cell = [[UITableViewCell alloc]initWithStyle:UITableViewCellStyleDefault reuseIdentifier:@"Cell"];
-        cell.textLabel.text = _myCellTitleArr[indexPath.row];
     }
+    switch (indexPath.section) {
+        case JJViewSectionTypeByRoundDemo: {
+            cell.textLabel.text = _myCellTitleArr[indexPath.row];
+        } break;
+        case JJViewSectionTypeByAlignmentDemo: {
+            cell.textLabel.text = _myCellTitleArr[JJViewSectionTypeByRoundRowTypeAllRow + indexPath.row];
+        } break;
+        case JJViewSectionTypeByEventDemo: {
+            cell.textLabel.text = _myCellTitleArr[JJViewSectionTypeByRoundRowTypeAllRow + JJViewSectionTypeByAlignmentRowTypeByAllRow + indexPath.row];
+        } break;
+        default:
+            break;
+    }
+    
     return cell;
 }
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    NextViewController *VC = [[NextViewController alloc]init];
-    switch (indexPath.row) {
-        case 0:{
-            VC.isHaveHeaderFooterView = NO;
-        }break;
-        case 1:{
-            VC.isHaveHeaderFooterView = YES;
-            VC.isRoundWithHeaerView = YES;
-        }break;
-        case 2:{
-            VC.isHaveHeaderFooterView = YES;
-            VC.isRoundWithHeaerView = YES;
-            VC.isRoundWithFooterView = YES;
-        }break;
-        case 3:{
-            VC.isHaveHeaderFooterView = YES;
-            VC.isRoundWithFooterView = YES;
-        }break;
-        case 4:{
-            VC.isHaveHeaderFooterView = NO;
-            VC.isHorizontal = YES;
-        }break;
-        case 5:{
-            VC.isHaveHeaderFooterView = YES;
-            VC.isRoundWithHeaerView = YES;
-            VC.isRoundWithFooterView = YES;
-            VC.isHorizontal = YES;
-        }break;
-        case 6:{
-            SecondViewController *secondVC = [[SecondViewController alloc]init];
-            secondVC.isHaveShadow = NO;
-            [self.navigationController pushViewController:secondVC animated:YES];
-            return;
-        }break;
-        case 7:{
-            SecondViewController *secondVC = [[SecondViewController alloc]init];
-            secondVC.isHaveShadow = YES;
-            [self.navigationController pushViewController:secondVC animated:YES];
-            return;
-        }break;
-        case 8:{
-            SecondViewController *secondVC = [[SecondViewController alloc]init];
-            secondVC.isHaveShadow = YES;
-            secondVC.isHaveBGColor = YES;
-            [self.navigationController pushViewController:secondVC animated:YES];
-            return;
-        }break;
-        case 9:{
-            VC.isHaveHeaderFooterView = NO;
-            VC.isShowDifferentColor = YES;
-        }break;
-        case 10:{
-            ThirdViewController *thirdVC = [[ThirdViewController alloc]init];
-            thirdVC.isHaveHeaderFooterView = YES;
-            thirdVC.isRoundWithHeaerView = YES;
-            [self.navigationController pushViewController:thirdVC animated:YES];
-            return;
-        }break;
-        case 11:{
-            ThirdViewController *thirdVC = [[ThirdViewController alloc]init];
-            thirdVC.isHaveHeaderFooterView = YES;
-            thirdVC.isRoundWithFooterView = YES;
-            [self.navigationController pushViewController:thirdVC animated:YES];
-            return;
-        }break;
-        case 12:{
+    switch (indexPath.section) {
+        case JJViewSectionTypeByRoundDemo: {
+            NextViewController *VC = [[NextViewController alloc]init];
+            switch(indexPath.row) {
+                case JJViewSectionTypeByRoundRowTypeBaseRound : {
+                    //CollectionView（包住section圆角）
+                    VC.isHaveHeaderFooterView = NO;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeBaseRoundWithHeader: {
+                    //有Header&Footer，包Header,不包Footer
+                    VC.isHaveHeaderFooterView = YES;
+                    VC.isRoundWithHeaerView = YES;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeBaseRoundWithHF: {
+                    //有Header&Footer，包Header,包Footer
+                    VC.isHaveHeaderFooterView = YES;
+                    VC.isRoundWithHeaerView = YES;
+                    VC.isRoundWithFooterView = YES;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeBaseRoundWithFooter: {
+                    //有Header&Footer，不包Header,包Footer
+                    VC.isHaveHeaderFooterView = YES;
+                    VC.isRoundWithFooterView = YES;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeHorizontalRound: {
+                    //CollectionView（包住section圆角）(横向)
+                    VC.isHaveHeaderFooterView = NO;
+                    VC.isHorizontal = YES;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeHorizontalRoundWithHF: {
+                    //CollectionView (横向 有H&F View)
+                    VC.isHaveHeaderFooterView = YES;
+                    VC.isRoundWithHeaerView = YES;
+                    VC.isRoundWithFooterView = YES;
+                    VC.isHorizontal = YES;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeBorderLine: {
+                    //borderLine 包Section
+                    SecondViewController *secondVC = [[SecondViewController alloc]init];
+                    secondVC.isHaveShadow = NO;
+                    [self.navigationController pushViewController:secondVC animated:YES];
+                    return;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeBorderLineWithShadow: {
+                    //borderLine 包Section（带投影）
+                    SecondViewController *secondVC = [[SecondViewController alloc]init];
+                    secondVC.isHaveShadow = YES;
+                    [self.navigationController pushViewController:secondVC animated:YES];
+                    return;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeBackgroundColorWithShadow: {
+                    //BackgroundColor 底色（带投影）
+                    SecondViewController *secondVC = [[SecondViewController alloc]init];
+                    secondVC.isHaveShadow = YES;
+                    secondVC.isHaveBGColor = YES;
+                    [self.navigationController pushViewController:secondVC animated:YES];
+                    return;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeRoundWithDifferentColor: {
+                    //CollectionView（底色 圆角 分别不同颜色）
+                    VC.isHaveHeaderFooterView = NO;
+                    VC.isShowDifferentColor = YES;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeRoundAccordingToHeader: {
+                    //CollectionView（单独设置某个 header 底色）
+                    ThirdViewController *thirdVC = [[ThirdViewController alloc]init];
+                    thirdVC.isHaveHeaderFooterView = YES;
+                    thirdVC.isRoundWithHeaerView = YES;
+                    [self.navigationController pushViewController:thirdVC animated:YES];
+                    return;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeRoundAccordingToFooter: {
+                    //CollectionView（单独设置某个 footer 底色）
+                    ThirdViewController *thirdVC = [[ThirdViewController alloc]init];
+                    thirdVC.isHaveHeaderFooterView = YES;
+                    thirdVC.isRoundWithFooterView = YES;
+                    [self.navigationController pushViewController:thirdVC animated:YES];
+                    return;
+                    break;
+                }
+            }
+            [self.navigationController pushViewController:VC animated:YES];
+        } break;
+        case JJViewSectionTypeByAlignmentDemo: {
             FourthViewController *fourthVC = [[FourthViewController alloc]init];
-            fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByLeft;
-            [self.navigationController pushViewController:fourthVC animated:YES];
-            return;
-        }break;
-        case 13:{
-            FourthViewController *fourthVC = [[FourthViewController alloc]init];
-            fourthVC.isHaveRoundBGView = YES;
-            fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByLeft;
-            [self.navigationController pushViewController:fourthVC animated:YES];
-            return;
-        }break;
-        case 14:{
-            FourthViewController *fourthVC = [[FourthViewController alloc]init];
-            fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByCenter;
-            [self.navigationController pushViewController:fourthVC animated:YES];
-            return;
-        }break;
-        case 15:{
-            FourthViewController *fourthVC = [[FourthViewController alloc]init];
-            fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByRight;
-            [self.navigationController pushViewController:fourthVC animated:YES];
-            return;
-        }break;
-        case 16:{
-            FourthViewController *fourthVC = [[FourthViewController alloc]init];
-            fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByRightAndStartR;
-            [self.navigationController pushViewController:fourthVC animated:YES];
-            return;
-        }break;
-        case 17: {
-            FifthlyViewController *fifthlyVC = [[FifthlyViewController alloc]init];
-            [self.navigationController pushViewController:fifthlyVC animated:YES];
-            return;
-        }break;
             
+            switch(indexPath.row) {
+                case JJViewSectionTypeByAlignmentRowTypeByLeft : {
+                    //CollectionView,无sections底色，cell左对齐
+                    fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByLeft;
+                }break;
+                case JJViewSectionTypeByAlignmentRowTypeByLeftAndHaveRound : {
+                    //CollectionView,有sections底色，cell左对齐
+                    fourthVC.isHaveRoundBGView = YES;
+                    fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByLeft;
+                }break;
+                case JJViewSectionTypeByAlignmentRowTypeByCenter: {
+                    //CollectionView,无sections底色，cell居中
+                    fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByCenter;
+                }
+                    break;
+                case JJViewSectionTypeByAlignmentRowTypeByRight: {
+                    //CollectionView,无sections底色，cell右对齐
+                    fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByRight;
+                }
+                    break;
+                case JJViewSectionTypeByAlignmentRowTypeByRightAndStartR: {
+                    //CollectionView,cell右对齐与cell右侧开始
+                    fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByRightAndStartR;
+                }break;
+            }
+            [self.navigationController pushViewController:fourthVC animated:YES];
+        } break;
+        case JJViewSectionTypeByEventDemo: {
+            switch (indexPath.row) {
+                case JJViewSectionTypeByEventRowTypeByBackViewTouch:{
+                    //CollectionView,背景图点击事件响应
+                    FifthlyViewController *fifthlyVC = [[FifthlyViewController alloc]init];
+                    [self.navigationController pushViewController:fifthlyVC animated:YES];
+                }break;
+                    
+                default:
+                    break;
+            }
+        } break;
         default:
             break;
     }
-    [self.navigationController pushViewController:VC animated:YES];
 }
 
 
