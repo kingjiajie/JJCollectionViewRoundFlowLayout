@@ -155,6 +155,15 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
 
 #pragma mark - delegate , dataSource
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section {
+    switch(section) {
+        case JJViewSectionTypeByRoundDemo :         return @"CollectionView Section底色设置";        break;
+        case JJViewSectionTypeByAlignmentDemo:      return @"CollectionView Cell对齐方式";           break;
+        case JJViewSectionTypeByEventDemo:          return @"CollectionView DecorationView点击响应"; break;
+    }
+    return @"";
+}
+
 - (NSInteger)numberOfSectionsInTableView:(UITableView *)tableView {
     return JJViewSectionTypeByAllSection;
 }

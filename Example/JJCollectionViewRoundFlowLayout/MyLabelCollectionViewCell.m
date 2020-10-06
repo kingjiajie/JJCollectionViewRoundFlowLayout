@@ -34,7 +34,7 @@
         [label setTextColor:[UIColor whiteColor]];
         [label setFont:[UIFont systemFontOfSize:15.f]];
         [label setTextAlignment:NSTextAlignmentCenter];
-        [self addSubview:label];
+        [self.contentView addSubview:label];
         label;
     });
     
