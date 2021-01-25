@@ -270,7 +270,7 @@ layout.isCalculateFooter = YES;
 #### 增加对背景图的点击事件处理和控制，通过代理返回点击的背景图的IndexPath
 
 
-![底部点击](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift/blob/master/BGTouch.gif)
+![底部点击](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/BGTouch.gif)
 
 ``` obj-c
 
