@@ -281,7 +281,7 @@ layout.isCalculateFooter = YES;
 
 ## Author
 
-kingjiajie, kingjiajie@sina.com
+kingjiajie, kingjiajie@sina.com 
 
 ## License
 
