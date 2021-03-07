@@ -24,6 +24,8 @@
    13、新增对Cell的对齐模式进行设置，支持（右对齐和首个Cell右侧开始）---V2.3.0  
    14、支持xib、storyboard 唤起，能够默认开启背景图开关设置 ---V2.3.2  
    15、增加对背景图的点击事件处理和控制，通过代理返回点击的背景图的IndexPath ---V2.4.0  
+   16、增加支持Cell个数为0时，可以单独对Section的Header&Footer进行计算，支持全局设置和单独根据Section设置是否计算。---V2.5.0  
+   
    
    Swift版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift)  
    OC版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout)
@@ -31,8 +33,9 @@
 
 ## 更新日志
 ---
-* `2.4.0`:增加对背景图的点击事件处理和控制，通过代理返回点击的背景图的IndexPath。  
-* `2.3.2`:增加对xib直接集成的支持，解决xib设置Layout后isRoundEnabled没有自动开启的问题。  
+* `2.5.0`:增加支持Cell个数为0时，可以单独对Section的Header&Footer进行计算，支持全局设置和单独根据Section设置是否计算。  
+- `2.4.0`:增加对背景图的点击事件处理和控制，通过代理返回点击的背景图的IndexPath。  
+- `2.3.2`:增加对xib直接集成的支持，解决xib设置Layout后isRoundEnabled没有自动开启的问题。  
 - `2.3.1`:解决对暗黑模式的支持问题  
 - `2.3.0`:新增对Cell的对齐模式进行设置，支持（右对齐和首个Cell右侧开始）
 - `2.2.0`:新增支持设置Cell对齐模式（右对齐）。
