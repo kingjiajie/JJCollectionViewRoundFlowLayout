@@ -43,6 +43,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param section section description
 - (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout isCalculateFooterViewIndex:(NSInteger)section;
 
+/// 当Cell个数为0时，是否允许进行计算（根据section判断是否单独计算，Cell个数为0时，会检测计算Header或Footer）
+/// @param collectionView collectionView description
+/// @param collectionViewLayout collectionViewLayout description
+/// @param section section description
+- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout isCanCalculateWhenRowEmptyWithSection:(NSInteger)section;
 
 /// 背景图点击事件
 /// @param collectionView collectionView description
@@ -68,6 +73,11 @@ NS_ASSUME_NONNULL_BEGIN
 /// 是否使用不规则Cell大小的计算方式(若Cell的大小是相同固定大小，则无需开启该方法)，默认NO
 @property (assign, nonatomic) BOOL isCalculateTypeOpenIrregularitiesCell;
 
+/// 当Cell个数为0时，是否允许进行计算（开启后，Cell个数为0时，会检测计算Header或Footer）
+/// 注意！！！是否计算Header或Footer，会根据设置的isCalculateHeader、isCalculateFooter和对应代理方法进行判断！！！请注意！！！
+///（若实现collectionView:layout:isCanCalculateWhenRowEmptyWithSection:）该字段不起作用
+/// 注意！！！！！！ 在使用该功能的时候，请自行检测和处理sectionInset的偏移量，Cell无数据时，有header&footer，设置了的sectionInset还是生效的，底色在计算时候会进行sectionInset相关的偏移处理。
+@property (assign, nonatomic) BOOL isCanCalculateWhenRowEmpty;
 
 @end
 

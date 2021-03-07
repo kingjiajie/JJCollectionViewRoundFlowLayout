@@ -12,6 +12,7 @@
 #import "ThirdViewController.h"
 #import "FourthViewController.h"
 #import "FifthlyViewController.h"
+#import "SixthViewController.h"
 
 typedef NS_OPTIONS(NSInteger, JJViewSectionType) {
     JJViewSectionTypeByRoundDemo = 0,
@@ -33,6 +34,7 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByRoundRowType) {
     JJViewSectionTypeByRoundRowTypeRoundWithDifferentColor,
     JJViewSectionTypeByRoundRowTypeRoundAccordingToHeader,
     JJViewSectionTypeByRoundRowTypeRoundAccordingToFooter,
+    JJViewSectionTypeByRoundRowTypeWhenCellIsEmpty,
     JJViewSectionTypeByRoundRowTypeAllRow
 };
 
@@ -138,6 +140,7 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
                         @"CollectionView（底色 圆角 分别不同颜色）",
                         @"CollectionView（单独设置某个 header 底色）",
                         @"CollectionView（单独设置某个 footer 底色）",
+                        @"有H&F，Cell为0，判断是否计算H&F",
                         
 #pragma mark - alignment
                         @"CollectionView,无sections底色，cell左对齐",
@@ -289,6 +292,15 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
                     thirdVC.isHaveHeaderFooterView = YES;
                     thirdVC.isRoundWithFooterView = YES;
                     [self.navigationController pushViewController:thirdVC animated:YES];
+                    return;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeWhenCellIsEmpty:{
+                    SixthViewController *vc = [[SixthViewController alloc]init];
+                    vc.isHaveHeaderFooterView = YES;
+                    vc.isRoundWithHeaerView = YES;
+                    vc.isRoundWithFooterView = YES;
+                    [self.navigationController pushViewController:vc animated:YES];
                     return;
                     break;
                 }
