@@ -361,6 +361,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
               sectionFrame.size.height = self.collectionView.frame.size.height - fabs(self.collectionView.contentOffset.y)/*适配iOS11以下*/;
           }
       }else{
+          sectionFrame.origin.x = 0;
           sectionFrame.size.width = self.collectionView.frame.size.width;
           sectionFrame.size.height += sectionInset.top + sectionInset.bottom;
       }
