@@ -165,6 +165,9 @@
 }
 
 - (void)collectionView:(UICollectionView *)collectionView didSelectDecorationViewAtIndexPath:(nonnull NSIndexPath *)indexPath {
+    if (self.isShowTouchAnimation) {
+        return;
+    }
     NSString *message = [NSString stringWithFormat:@"section --- %ld \n row --- %ld",indexPath.section,indexPath.row];
     UIAlertController *alert = [UIAlertController alertControllerWithTitle:@"JJCollectionViewRoundFlowLayout"
                                                                    message:message
@@ -173,5 +176,21 @@
     [self presentViewController:alert animated:YES completion:nil];
 }
 
+/// 背景图点按动画
+/// @param collectionView collectionView description
+/// @param collectionViewLayout collectionViewLayout description
+/// @param section 背景图的indexPath
+- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout  isDecorationViewShowAnimationAtIndex:(NSInteger)section {
+    return self.isShowTouchAnimation;
+}
+
+- (JJCollectionViewTouchAnimationConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout animationConfigModelForSection:(NSInteger)section {
+    JJCollectionViewTouchAnimationConfigModel *model = [JJCollectionViewTouchAnimationConfigModel createDefaultModel];
+    if (section != 0 && section %2 == 0) {
+        model.isCellsAnimationEnable = NO; //cells不跟随动画
+        model.endDuration = 0.8;
+    }
+    return model;
+}
 
 @end

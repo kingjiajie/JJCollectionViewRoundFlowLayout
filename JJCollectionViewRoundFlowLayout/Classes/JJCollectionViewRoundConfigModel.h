@@ -12,22 +12,22 @@ NS_ASSUME_NONNULL_BEGIN
 @interface JJCollectionViewRoundConfigModel : NSObject
 
 /// 外圈line边显示宽度
-@property (assign, nonatomic) CGFloat borderWidth;
+@property (nonatomic, assign) CGFloat borderWidth;
 
 /// 外圈line边显示颜色
-@property (strong, nonatomic) UIColor *borderColor;
+@property (nonatomic, strong) UIColor *borderColor;
 
 /// 背景颜色
-@property (strong, nonatomic) UIColor *backgroundColor;
+@property (nonatomic, strong) UIColor *backgroundColor;
 
 /// 投影相关参数
-@property (strong, nonatomic) UIColor *shadowColor;
-@property (assign, nonatomic) CGSize shadowOffset;
-@property (assign, nonatomic) CGFloat shadowOpacity;
-@property (assign, nonatomic) CGFloat shadowRadius;
+@property (nonatomic, strong) UIColor *shadowColor;
+@property (nonatomic, assign) CGSize shadowOffset;
+@property (nonatomic, assign) CGFloat shadowOpacity;
+@property (nonatomic, assign) CGFloat shadowRadius;
 
 /// 圆角
-@property (assign, nonatomic) CGFloat cornerRadius;
+@property (nonatomic, assign) CGFloat cornerRadius;
 
 @end
 

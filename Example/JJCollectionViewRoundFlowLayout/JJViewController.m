@@ -49,6 +49,7 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByAlignmentRowType) {
 
 typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
     JJViewSectionTypeByEventRowTypeByBackViewTouch = 0,
+    JJViewSectionTypeByEventRowTypeByBackViewAnimation,
     JJViewSectionTypeByEventRowTypeByAllRow
 };
 
@@ -151,6 +152,7 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
                         
 #pragma mark - touch
                         @"CollectionView,背景图点击事件响应",
+                        @"CollectionView,背景图点按动画",
                         nil];
         arr;
     });
@@ -344,7 +346,12 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
                     FifthlyViewController *fifthlyVC = [[FifthlyViewController alloc]init];
                     [self.navigationController pushViewController:fifthlyVC animated:YES];
                 }break;
-                    
+                case JJViewSectionTypeByEventRowTypeByBackViewAnimation: {
+                    //CollectionView,背景图点按动画
+                    FifthlyViewController *fifthlyVC = [[FifthlyViewController alloc]init];
+                    fifthlyVC.isShowTouchAnimation = YES;
+                    [self.navigationController pushViewController:fifthlyVC animated:YES];
+                }break;
                 default:
                     break;
             }

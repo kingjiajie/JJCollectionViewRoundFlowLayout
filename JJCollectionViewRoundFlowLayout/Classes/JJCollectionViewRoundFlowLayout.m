@@ -14,13 +14,26 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 
 @interface JJCollectionViewRoundLayoutAttributes  : UICollectionViewLayoutAttributes
 
-//间距
-@property (nonatomic, assign) UIEdgeInsets borderEdgeInsets;
-@property (nonatomic, strong) JJCollectionViewRoundConfigModel *myConfigModel;
+@property (nonatomic, assign) UIEdgeInsets borderEdgeInsets;///间距
+@property (nonatomic, strong) JJCollectionViewRoundConfigModel *myConfigModel;///底色样式配置属性
+@property (nonatomic ,assign) BOOL isTouchAnimationEnable;///是否开启点按动画
+@property (nonatomic, strong) JJCollectionViewTouchAnimationConfigModel *myTouchAnimationConfigModel;///点按动画配置
 
 @end
 
 @implementation JJCollectionViewRoundLayoutAttributes
+
+- (void)setIsTouchAnimationEnable:(BOOL)isTouchAnimationEnable {
+    _isTouchAnimationEnable = isTouchAnimationEnable;
+    
+    //根据开启点按动画设置默认动画数值
+    _myTouchAnimationConfigModel = isTouchAnimationEnable ? [JJCollectionViewTouchAnimationConfigModel createDefaultModel] : nil;
+}
+
+- (void)setMyTouchAnimationConfigModel:(JJCollectionViewTouchAnimationConfigModel *)myTouchAnimationConfigModel {
+    _myTouchAnimationConfigModel = [myTouchAnimationConfigModel isKindOfClass:[JJCollectionViewTouchAnimationConfigModel class]] ?
+    myTouchAnimationConfigModel : [[JJCollectionViewTouchAnimationConfigModel alloc]init];
+}
 
 @end
 
@@ -81,7 +94,76 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     if (event.type == UIEventTypeTouches) {
         //touchType
         [self decorationViewUserDidSelectEvent];
+        if (self.myCacheAttr.isTouchAnimationEnable) {
+            CGFloat point = 1.0;
+            [self touchAnimationEventWithScaleSxPoint:point
+                                         scaleSyPoint:point
+                                             duration:self.myCacheAttr.myTouchAnimationConfigModel.endDuration
+                               isCellsAnimationEnable:self.myCacheAttr.myTouchAnimationConfigModel.isCellsAnimationEnable];
+        }
     }
+}
+
+- (void)touchesBegan:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
+    if (self.myCacheAttr.isTouchAnimationEnable) {
+        [self touchAnimationEventWithScaleSxPoint:self.myCacheAttr.myTouchAnimationConfigModel.transformScaleSx
+                                     scaleSyPoint:self.myCacheAttr.myTouchAnimationConfigModel.transformScaleSy
+                                         duration:self.myCacheAttr.myTouchAnimationConfigModel.startDuration
+                           isCellsAnimationEnable:self.myCacheAttr.myTouchAnimationConfigModel.isCellsAnimationEnable];
+    }
+}
+
+- (void)touchesCancelled:(NSSet<UITouch *> *)touches withEvent:(nullable UIEvent *)event {
+    if (self.myCacheAttr.isTouchAnimationEnable) {
+        CGFloat point = 1.0;
+        [self touchAnimationEventWithScaleSxPoint:point
+                                     scaleSyPoint:point
+                                         duration:self.myCacheAttr.myTouchAnimationConfigModel.endDuration
+                           isCellsAnimationEnable:self.myCacheAttr.myTouchAnimationConfigModel.isCellsAnimationEnable];
+    }
+}
+
+#pragma mark - animation
+
+/// 点按动画操作
+/// @param scaleSxPoint sx
+/// @param scaleSyPoint xy
+/// @param duration 动画时长
+- (void)touchAnimationEventWithScaleSxPoint:(CGFloat)scaleSxPoint
+                               scaleSyPoint:(CGFloat)scaleSyPoint
+                                   duration:(CGFloat)duration
+                     isCellsAnimationEnable:(BOOL)isCellsAnimationEnable{
+    __weak JJCollectionReusableView *mySelf = self;
+    [UIView animateWithDuration:duration animations:^{
+        CGAffineTransform transform = CGAffineTransformIdentity;
+        mySelf.transform = CGAffineTransformScale(transform, scaleSxPoint , scaleSyPoint);
+        
+        //判断是否需要进行cell计算
+        if (isCellsAnimationEnable) {
+            UICollectionView *collectionView = (UICollectionView *)self.superview;
+            if ([collectionView isKindOfClass:[UICollectionView class]]) {
+                NSArray *cellsArr = [collectionView visibleCells];
+                for (UICollectionViewCell *cell in cellsArr) {
+                    if ([collectionView indexPathForCell:cell].section == self.myCacheAttr.indexPath.section) {
+                        if (scaleSxPoint < 1.0
+                            || scaleSyPoint < 1.0) {
+                            CGAffineTransform transform = CGAffineTransformIdentity;
+                            CGPoint center1 = self.center;
+                            CGPoint centerChange = cell.center;
+                            CGFloat x1 = center1.x - centerChange.x;
+                            CGFloat y1 = center1.y - centerChange.y;
+                            transform = CGAffineTransformTranslate(transform, x1*(1-scaleSxPoint), y1*(1-scaleSyPoint));
+                            transform = CGAffineTransformScale(transform, scaleSxPoint, scaleSyPoint);
+                            cell.transform = transform;
+                        }else {
+                            cell.transform = CGAffineTransformScale(CGAffineTransformIdentity, scaleSxPoint , scaleSyPoint);
+                        }
+                    }
+                }
+            }
+        }
+        [mySelf layoutIfNeeded];
+    }];
 }
 
 #pragma mark - touchEvent
@@ -341,6 +423,30 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
         if ([delegate respondsToSelector:@selector(collectionView:layout:configModelForSectionAtIndex:)]) {
             attr.myConfigModel = [delegate collectionView:self.collectionView layout:self configModelForSectionAtIndex:section];
         }
+        
+        //判断是否开启点按动画
+        if (self.isDecorationViewTouchAnimationEnable) {
+            attr.isTouchAnimationEnable = YES;
+            if ([delegate respondsToSelector:@selector(collectionView:layout:animationConfigModelForSection:)]) {
+                attr.myTouchAnimationConfigModel = [delegate collectionView:self.collectionView
+                                                                     layout:self
+                                             animationConfigModelForSection:section];
+            }
+        }else {
+            if ([delegate respondsToSelector:@selector(collectionView:layout:isDecorationViewShowAnimationAtIndex:)]) {
+                attr.isTouchAnimationEnable = [delegate collectionView:self.collectionView
+                                                                layout:self
+                                  isDecorationViewShowAnimationAtIndex:section];
+                if (attr.isTouchAnimationEnable &&
+                    [delegate respondsToSelector:@selector(collectionView:layout:animationConfigModelForSection:)]) {
+                    attr.myTouchAnimationConfigModel = [delegate collectionView:self.collectionView
+                                                                         layout:self
+                                                 animationConfigModelForSection:section];
+                }
+            }else {
+                attr.isTouchAnimationEnable = NO;
+            }
+        }
         [self.decorationViewAttrs addObject:attr];
     }
 }
@@ -351,20 +457,20 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 - (CGRect)calculateDefaultFrameWithSectionFrame:(CGRect)frame sectionInset:(UIEdgeInsets)sectionInset{
     CGRect sectionFrame = frame;
     sectionFrame.origin.x -= sectionInset.left;
-      sectionFrame.origin.y -= sectionInset.top;
-      if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
-          sectionFrame.size.width += sectionInset.left + sectionInset.right;
-          //减去系统adjustInset的top
-          if (@available(iOS 11.0, *)) {
-              sectionFrame.size.height = self.collectionView.frame.size.height - self.collectionView.adjustedContentInset.top;
-          } else {
-              sectionFrame.size.height = self.collectionView.frame.size.height - fabs(self.collectionView.contentOffset.y)/*适配iOS11以下*/;
-          }
-      }else{
-          sectionFrame.origin.x = 0;
-          sectionFrame.size.width = self.collectionView.frame.size.width;
-          sectionFrame.size.height += sectionInset.top + sectionInset.bottom;
-      }
+    sectionFrame.origin.y -= sectionInset.top;
+    if (self.scrollDirection == UICollectionViewScrollDirectionHorizontal) {
+        sectionFrame.size.width += sectionInset.left + sectionInset.right;
+        //减去系统adjustInset的top
+        if (@available(iOS 11.0, *)) {
+            sectionFrame.size.height = self.collectionView.frame.size.height - self.collectionView.adjustedContentInset.top;
+        } else {
+            sectionFrame.size.height = self.collectionView.frame.size.height - fabs(self.collectionView.contentOffset.y)/*适配iOS11以下*/;
+        }
+    }else{
+        sectionFrame.origin.x = 0;
+        sectionFrame.size.width = self.collectionView.frame.size.width;
+        sectionFrame.size.height += sectionInset.top + sectionInset.bottom;
+    }
     return sectionFrame;
 }
 
@@ -382,7 +488,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
                                         toChangeAttributesAttrsList:&attrs
                                                   cellAlignmentType:self.collectionCellAlignmentType];
     }
-
+    
     for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttrs) {
         [attrs addObject:attr];
     }
