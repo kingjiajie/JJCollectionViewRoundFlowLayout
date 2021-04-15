@@ -98,6 +98,17 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
         }else {
             _myBGImageView.image = nil;
         }
+    }else {
+        UIView *view = self;
+        view.layer.backgroundColor = nil;
+        view.layer.shadowColor = nil;
+        view.layer.shadowOffset = CGSizeZero;
+        view.layer.shadowOpacity = 0;
+        view.layer.shadowRadius = 0;
+        view.layer.cornerRadius = 0;
+        view.layer.borderWidth = 0;
+        view.layer.borderColor = nil;
+        _myBGImageView.image = nil;
     }
 }
 

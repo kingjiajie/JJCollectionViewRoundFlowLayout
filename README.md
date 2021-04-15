@@ -27,6 +27,7 @@
    16、增加支持Cell个数为0时，可以单独对Section的Header&Footer进行计算，支持全局设置和单独根据Section设置是否计算。---V2.5.0  
    17、增加背景点击动画，支持单独设置点按相关属性，支持点按后设置Cells是否跟随背景动画。---V2.6.0  
    18、增加背景支持图片展示功能。---V2.7.0  
+   19、增加对不设置JJCollectionViewRoundConfigModel的处理。---V2.7.1  
    
    
    Swift版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift)  
@@ -35,7 +36,8 @@
 
 ## 更新日志
 ---
-* `2.7.0`:功能增加：增加背景支持图片展示功能。    
+* `2.7.1`:增加对不设置JJCollectionViewRoundConfigModel的处理。    
+- `2.7.0`:功能增加：增加背景支持图片展示功能。    
 - `2.6.0`:功能增加：增加背景点击动画，支持单独设置点按相关属性，支持点按后设置Cells是否跟随背景动画。    
 - `2.5.1`:修复当cell大小不一时，首个Cell单独在首行显示时,底色判断出错问题。  
 - `2.5.0`:增加支持Cell个数为0时，可以单独对Section的Header&Footer进行计算，支持全局设置和单独根据Section设置是否计算。  
