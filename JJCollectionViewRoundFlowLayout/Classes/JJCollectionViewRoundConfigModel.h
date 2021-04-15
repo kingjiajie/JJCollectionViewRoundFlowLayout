@@ -29,6 +29,9 @@ NS_ASSUME_NONNULL_BEGIN
 /// 圆角
 @property (nonatomic, assign) CGFloat cornerRadius;
 
+//图片
+@property (nonatomic, strong) UIImage *bgImage;
+
 @end
 
 NS_ASSUME_NONNULL_END

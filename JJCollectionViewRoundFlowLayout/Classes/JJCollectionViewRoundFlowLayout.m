@@ -39,7 +39,8 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 
 @interface JJCollectionReusableView : UICollectionReusableView
 
-@property (weak, nonatomic) JJCollectionViewRoundLayoutAttributes *myCacheAttr;
+@property (nonatomic, weak) JJCollectionViewRoundLayoutAttributes *myCacheAttr;
+@property (nonatomic, strong) UIImageView *myBGImageView;
 
 @end
 
@@ -87,8 +88,20 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
         } else {
             view.layer.borderColor = model.borderColor.CGColor;
         }
+        
+        //image
+        if (model.bgImage) {
+            UIImageView *imageV = [self getBGImageViewWithFrame:self.bounds];
+            [imageV setImage:model.bgImage];
+            imageV.layer.cornerRadius = model.cornerRadius;
+            [imageV setClipsToBounds:YES];
+        }else {
+            _myBGImageView.image = nil;
+        }
     }
 }
+
+#pragma mark - touch
 
 - (void)touchesEnded:(NSSet<UITouch *> *)touches withEvent:(UIEvent *)event {
     if (event.type == UIEventTypeTouches) {
@@ -177,6 +190,17 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
             [delegate collectionView:collectionView didSelectDecorationViewAtIndexPath:_myCacheAttr.indexPath];
         }
     }
+}
+
+#pragma mark - initSetup
+
+- (UIImageView *)getBGImageViewWithFrame:(CGRect)frame {
+    if (!_myBGImageView) {
+        _myBGImageView = [[UIImageView alloc]init];
+        [self addSubview:_myBGImageView];
+    }
+    [_myBGImageView setFrame:frame];
+    return _myBGImageView;
 }
 
 @end
