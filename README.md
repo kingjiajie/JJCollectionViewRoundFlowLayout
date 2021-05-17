@@ -130,8 +130,9 @@ pod 'JJCollectionViewRoundFlowLayout'
 
 ```
 
-### Setting
-#### collectionView section底色
+### Setting  
+
+>#### collectionView section底色
   
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/1.png)
@@ -148,7 +149,7 @@ pod 'JJCollectionViewRoundFlowLayout'
 ```  
 
 
-#### 包含headerview、包含footerview
+>#### 包含headerview、包含footerview
   
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/2.png)
@@ -170,7 +171,7 @@ layout.isCalculateFooter = YES;
 ```  
 
 
-#### 支持collectionView，Vertical，Horizontal
+>#### 支持collectionView，Vertical，Horizontal
   
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/3.png)
@@ -181,7 +182,7 @@ layout.isCalculateFooter = YES;
 
 ```  
   
-#### 支持shadow投影
+>#### 支持shadow投影
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/4.png)
 
@@ -204,7 +205,7 @@ layout.isCalculateFooter = YES;
 ```  
 
 
-#### 支持根据不同section分别设置不同底色显示
+>#### 支持根据不同section分别设置不同底色显示
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/5.png)
 
@@ -228,7 +229,7 @@ layout.isCalculateFooter = YES;
 }
 ```  
 
-#### 支持根据不同section分别单独设置是否计算对应Headerview和footerview
+>#### 支持根据不同section分别单独设置是否计算对应Headerview和footerview
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/6.png)
 
@@ -260,7 +261,7 @@ layout.isCalculateFooter = YES;
 
 ```  
 
-#### 支持对Cell的对齐模式进行设置、可选是否填充底色(左对齐、居中)
+>#### 支持对Cell的对齐模式进行设置、可选是否填充底色(左对齐、居中)
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/7.png)
 
@@ -277,7 +278,7 @@ layout.isCalculateFooter = YES;
 ```  
 
 
-#### 增加对背景图的点击事件处理和控制，通过代理返回点击的背景图的IndexPath
+>#### 增加对背景图的点击事件处理和控制，通过代理返回点击的背景图的IndexPath
 
 
 ![底部点击](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/BGTouch.gif)
@@ -288,6 +289,43 @@ layout.isCalculateFooter = YES;
     NSString *message = [NSString stringWithFormat:@"section --- %ld \n row --- %ld",indexPath.section,indexPath.row];
 }
 ```
+
+>#### 背景点击动画支持单独设置点按相关属性，支持点按后设置Cells是否跟随背景动画
+![底部点击动画](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/BGAnimation.gif)
+
+``` obj-c
+
+-------------------------------------------------
+/// 是否使用背景图点按动画（开启后背景底图点击会出现点按动画）
+@property (nonatomic, assign) BOOL isDecorationViewTouchAnimationEnable;
+
+-------------------------------------------------
+
+/// 背景图点按动画设置开启代理
+/// @param collectionView collectionView description
+/// @param collectionViewLayout collectionViewLayout description
+/// @param section 背景图的indexPath
+- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout  isDecorationViewShowAnimationAtIndex:(NSInteger)section {
+    //这里可以单独根据indexPath设置是否有点按动画
+    return YES;
+}
+
+/// 背景点按动画配置(若开启动画，不实现该代理，显示默认动画配置)
+/// @param collectionView collectionView description
+/// @param collectionViewLayout collectionViewLayout description
+/// @param section 配置section
+- (JJCollectionViewTouchAnimationConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout animationConfigModelForSection:(NSInteger)section {
+    JJCollectionViewTouchAnimationConfigModel *model = [JJCollectionViewTouchAnimationConfigModel createDefaultModel];
+    if (section != 0 && section %2 == 0) {
+        model.isCellsAnimationEnable = NO; //cells不跟随动画
+        model.endDuration = 0.8;
+    }
+    return model;
+}
+
+```
+
+
 
 ## Author
 

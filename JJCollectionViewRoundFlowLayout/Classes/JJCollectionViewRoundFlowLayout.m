@@ -32,7 +32,7 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 
 - (void)setMyTouchAnimationConfigModel:(JJCollectionViewTouchAnimationConfigModel *)myTouchAnimationConfigModel {
     _myTouchAnimationConfigModel = [myTouchAnimationConfigModel isKindOfClass:[JJCollectionViewTouchAnimationConfigModel class]] ?
-    myTouchAnimationConfigModel : [[JJCollectionViewTouchAnimationConfigModel alloc]init];
+    myTouchAnimationConfigModel : [JJCollectionViewTouchAnimationConfigModel createDefaultModel];
 }
 
 @end
@@ -264,12 +264,12 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
             UICollectionViewLayoutAttributes *firstAttr = [self layoutAttributesForItemAtIndexPath:[NSIndexPath indexPathForRow:0 inSection:section]];
             firstFrame = firstAttr.frame;
         }else if ([delegate respondsToSelector:@selector(collectionView:layout:isCanCalculateWhenRowEmptyWithSection:)]) {
-            //如果没有设置当Cell个数为0时，实现了代理，执行代理方法判断section是否进行计算
+            //当Cell个数为0时，实现了代理，执行代理方法判断section是否进行计算
             if (![delegate collectionView:self.collectionView layout:self isCanCalculateWhenRowEmptyWithSection:section]) {
                 continue;
             }
         }else if(!self.isCanCalculateWhenRowEmpty) {
-            //如果没有设置当Cell个数为0时，进行是否计算的字段
+            //当Cell个数为0时，判断字段是否计算的
             continue;
         }
         

@@ -57,17 +57,17 @@ NS_ASSUME_NONNULL_BEGIN
 
 #pragma mark - 点按动画配置
 
-/// 背景图点按动画
+/// 背景图点按动画设置开启代理
 /// @param collectionView collectionView description
 /// @param collectionViewLayout collectionViewLayout description
 /// @param section 背景图的indexPath
-- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout  isDecorationViewShowAnimationAtIndex:(NSInteger)section;
+- (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout  isDecorationViewShowAnimationAtIndex:(NSInteger)section;
 
-/// 背景点按动画配置
+/// 背景点按动画配置(若开启动画，不实现该代理，显示默认动画)
 /// @param collectionView collectionView description
 /// @param collectionViewLayout collectionViewLayout description
 /// @param section 配置section
-- (JJCollectionViewTouchAnimationConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout animationConfigModelForSection:(NSInteger)section;
+- (JJCollectionViewTouchAnimationConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout animationConfigModelForSection:(NSInteger)section;
 
 @end
 
@@ -90,11 +90,11 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 当Cell个数为0时，是否允许进行计算（开启后，Cell个数为0时，会检测计算Header或Footer）
 /// 注意！！！是否计算Header或Footer，会根据设置的isCalculateHeader、isCalculateFooter和对应代理方法进行判断！！！请注意！！！
-///（若实现collectionView:layout:isCanCalculateWhenRowEmptyWithSection:）该字段不起作用
+///（若实现collectionView:layout:isCanCalculateWhenRowEmptyWithSection:），isCanCalculateWhenRowEmpty该字段不起作用（由于该功能的特殊性，内部逻辑先检测代理方法，再检测设置字段）
 /// 注意！！！！！！ 在使用该功能的时候，请自行检测和处理sectionInset的偏移量，Cell无数据时，有header&footer，设置了的sectionInset还是生效的，底色在计算时候会进行sectionInset相关的偏移处理。
 @property (nonatomic, assign) BOOL isCanCalculateWhenRowEmpty;
 
-/// 是否使用背景图点按动画（开启后）
+/// 是否使用背景图点按动画（开启后背景底图点击会出现点按动画）
 @property (nonatomic, assign) BOOL isDecorationViewTouchAnimationEnable;
 
 @end
