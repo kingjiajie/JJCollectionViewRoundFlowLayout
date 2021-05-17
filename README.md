@@ -133,7 +133,7 @@ pod 'JJCollectionViewRoundFlowLayout'
 ### Setting  
 
 >#
->#### collectionView section底色
+>### collectionView section底色
   
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/1.png)
@@ -151,7 +151,7 @@ pod 'JJCollectionViewRoundFlowLayout'
 
 
 >#
->#### 包含headerview、包含footerview
+>### 包含headerview、包含footerview
   
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/2.png)
@@ -174,7 +174,7 @@ layout.isCalculateFooter = YES;
 
 
 >#
->#### 支持collectionView，Vertical，Horizontal
+>### 支持collectionView，Vertical，Horizontal
   
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/3.png)
@@ -186,7 +186,7 @@ layout.isCalculateFooter = YES;
 ```  
   
 >#
->#### 支持shadow投影
+>### 支持shadow投影
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/4.png)
 
@@ -210,7 +210,7 @@ layout.isCalculateFooter = YES;
 
 
 >#
->#### 支持根据不同section分别设置不同底色显示
+>### 支持根据不同section分别设置不同底色显示
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/5.png)
 
@@ -235,7 +235,7 @@ layout.isCalculateFooter = YES;
 ```  
 
 >#
->#### 支持根据不同section分别单独设置是否计算对应Headerview和footerview
+>### 支持根据不同section分别单独设置是否计算对应Headerview和footerview
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/6.png)
 
@@ -268,7 +268,7 @@ layout.isCalculateFooter = YES;
 ```  
 
 >#
->#### 支持对Cell的对齐模式进行设置、可选是否填充底色(左对齐、居中)
+>### 支持对Cell的对齐模式进行设置、可选是否填充底色(左对齐、居中)
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/7.png)
 
@@ -286,7 +286,7 @@ layout.isCalculateFooter = YES;
 
 
 >#
->#### 增加对背景图的点击事件处理和控制，通过代理返回点击的背景图的IndexPath
+>### 增加对背景图的点击事件处理和控制，通过代理返回点击的背景图的IndexPath
 
 
 ![底部点击](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/BGTouch.gif)
@@ -300,7 +300,7 @@ layout.isCalculateFooter = YES;
   
   
 >#
->## 背景点击动画支持单独设置点按相关属性，支持点按后设置Cells是否跟随背景动画
+>### 背景点击动画支持单独设置点按相关属性，支持点按后设置Cells是否跟随背景动画
 ![底部点击动画](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/BGAnimation.gif)
 
 ``` obj-c
