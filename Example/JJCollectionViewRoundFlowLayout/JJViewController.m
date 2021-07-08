@@ -13,6 +13,7 @@
 #import "FourthViewController.h"
 #import "FifthlyViewController.h"
 #import "SixthViewController.h"
+#import "IGListkitViewController.h"
 
 typedef NS_OPTIONS(NSInteger, JJViewSectionType) {
     JJViewSectionTypeByRoundDemo = 0,
@@ -30,6 +31,7 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByRoundRowType) {
     JJViewSectionTypeByRoundRowTypeHorizontalRoundWithHF,
     JJViewSectionTypeByRoundRowTypeBorderLine,
     JJViewSectionTypeByRoundRowTypeBorderLineWithShadow,
+    JJViewSectionTypeByRoundRowTypeIGlistKitWithShadow,
     JJViewSectionTypeByRoundRowTypeBackgroundColorWithShadow,
     JJViewSectionTypeByRoundRowTypeRoundWithDifferentColor,
     JJViewSectionTypeByRoundRowTypeRoundAccordingToHeader,
@@ -137,6 +139,7 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
                         @"CollectionView (横向 有H&F View)",
                         @"borderLine 包Section",
                         @"borderLine 包Section（带投影）",
+                        @"IGlistKit 扩展Layout 包Section（带投影）"
                         @"BackgroundColor 底色（带投影）",
                         @"CollectionView（底色 圆角 分别不同颜色）",
                         @"CollectionView（单独设置某个 header 底色）",
@@ -267,6 +270,15 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
                 case JJViewSectionTypeByRoundRowTypeBackgroundColorWithShadow: {
                     //BackgroundColor 底色（带投影）
                     SecondViewController *secondVC = [[SecondViewController alloc]init];
+                    secondVC.isHaveShadow = YES;
+                    secondVC.isHaveBGColor = YES;
+                    [self.navigationController pushViewController:secondVC animated:YES];
+                    return;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeIGlistKitWithShadow: {
+                    //BackgroundColor 底色（带投影）
+                    IGListkitViewController *secondVC = [[IGListkitViewController alloc]init];
                     secondVC.isHaveShadow = YES;
                     secondVC.isHaveBGColor = YES;
                     [self.navigationController pushViewController:secondVC animated:YES];
