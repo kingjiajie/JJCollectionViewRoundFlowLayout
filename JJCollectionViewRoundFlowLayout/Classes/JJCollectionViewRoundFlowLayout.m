@@ -245,7 +245,12 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     }
     
     NSInteger sections = [self.collectionView numberOfSections];
-    id <JJCollectionViewDelegateRoundFlowLayout> delegate  = (id <JJCollectionViewDelegateRoundFlowLayout>)self.collectionView.delegate;
+    
+    // 使用外部传递的delegate，否则使用collectionView自己的
+    id <JJCollectionViewDelegateRoundFlowLayout> delegate = self.delegate;
+    if (!delegate) {
+        delegate  = (id <JJCollectionViewDelegateRoundFlowLayout>)self.collectionView.delegate;
+    }
     
     //检测是否实现了背景样式模块代理
     if ([delegate respondsToSelector:@selector(collectionView:layout:configModelForSectionAtIndex:)]) {

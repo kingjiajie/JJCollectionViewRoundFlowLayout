@@ -73,6 +73,10 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JJCollectionViewRoundFlowLayout : UICollectionViewFlowLayout
 
+/// 外部可自定义delegate进行传入；（默认使用的是：collectionView.delegate）
+/// ps：增加JJFlowLayout的可扩展性，兼容像IGListCollectionView无delegate的情况
+@property (nonatomic, weak) id<JJCollectionViewDelegateRoundFlowLayout> delegate;
+
 /// 设置cell对齐方式，不设置为使用系统默认，支持Left
 @property (nonatomic, assign) JJCollectionViewRoundFlowLayoutAlignmentType collectionCellAlignmentType;
 

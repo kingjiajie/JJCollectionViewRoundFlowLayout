@@ -4,7 +4,8 @@ platform :ios, '8.0'
 
 target 'JJCollectionViewRoundFlowLayout_Example' do
   pod 'JJCollectionViewRoundFlowLayout', :path => '../'
-
+  pod 'IGListKit', '~> 2.1.0'
+  
   target 'JJCollectionViewRoundFlowLayout_Tests' do
     inherit! :search_paths
 

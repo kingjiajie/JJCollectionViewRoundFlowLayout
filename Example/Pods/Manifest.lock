@@ -1,16 +1,27 @@
 PODS:
-  - JJCollectionViewRoundFlowLayout (1.0.0)
+  - IGListKit (2.1.0):
+    - IGListKit/Default (= 2.1.0)
+  - IGListKit/Default (2.1.0):
+    - IGListKit/Diffing
+  - IGListKit/Diffing (2.1.0)
+  - JJCollectionViewRoundFlowLayout (2.7.1)
 
 DEPENDENCIES:
+  - IGListKit (~> 2.1.0)
   - JJCollectionViewRoundFlowLayout (from `../`)
+
+SPEC REPOS:
+  trunk:
+    - IGListKit
 
 EXTERNAL SOURCES:
   JJCollectionViewRoundFlowLayout:
     :path: "../"
 
 SPEC CHECKSUMS:
-  JJCollectionViewRoundFlowLayout: e95140be604d0154dbc01167b609dccc550ee02d
+  IGListKit: b826c68ef7a4ae1626c09d4d3e1ea7a169e6c36e
+  JJCollectionViewRoundFlowLayout: cd9dcc00ecf99a90b3567650f64aaabe5bbe8d9e
 
-PODFILE CHECKSUM: 225801a8ef4fa5a6e50988a18118ddeb7d038f74
+PODFILE CHECKSUM: 6f9033a7e3e8bd94cb6cd707153cb1eecd76bad8
 
-COCOAPODS: 1.8.4
+COCOAPODS: 1.10.1
