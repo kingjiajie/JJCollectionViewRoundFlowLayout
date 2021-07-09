@@ -34,6 +34,8 @@
 		71719F9F1E33DC2100824A3D /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71719F9D1E33DC2100824A3D /* LaunchScreen.storyboard */; };
 		7B8B693813FE2CAA2E3964C6 /* Pods_JJCollectionViewRoundFlowLayout_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8F49D3E6BF08AD8A17C0406F /* Pods_JJCollectionViewRoundFlowLayout_Tests.framework */; };
 		873B8AEB1B1F5CCA007FD442 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 873B8AEA1B1F5CCA007FD442 /* Main.storyboard */; };
+		92A4CEBF269705AE008065D1 /* SQCollectionRoundFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A4CEBE269705AE008065D1 /* SQCollectionRoundFlowLayout.m */; };
+		92A4CEC2269705EA008065D1 /* IGListkitViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 92A4CEC1269705EA008065D1 /* IGListkitViewController.m */; };
 		F33D9B8B55133DBB51F3B75E /* Pods_JJCollectionViewRoundFlowLayout_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 81E1DE489F519775141BCD3B /* Pods_JJCollectionViewRoundFlowLayout_Example.framework */; };
 /* End PBXBuildFile section */
 
@@ -97,6 +99,10 @@
 		873B8AEA1B1F5CCA007FD442 /* Main.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; name = Main.storyboard; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		894CE0DFCF11B0968AC60F7A /* README.md */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = net.daringfireball.markdown; name = README.md; path = ../README.md; sourceTree = "<group>"; };
 		8F49D3E6BF08AD8A17C0406F /* Pods_JJCollectionViewRoundFlowLayout_Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_JJCollectionViewRoundFlowLayout_Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		92A4CEBD269705AE008065D1 /* SQCollectionRoundFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SQCollectionRoundFlowLayout.h; sourceTree = "<group>"; };
+		92A4CEBE269705AE008065D1 /* SQCollectionRoundFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SQCollectionRoundFlowLayout.m; sourceTree = "<group>"; };
+		92A4CEC0269705EA008065D1 /* IGListkitViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = IGListkitViewController.h; sourceTree = "<group>"; };
+		92A4CEC1269705EA008065D1 /* IGListkitViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = IGListkitViewController.m; sourceTree = "<group>"; };
 		9574A219385170CF53EFE0E7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		95B2F2062EF22D0937EBDAAB /* Pods-JJCollectionViewRoundFlowLayout_Example.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-JJCollectionViewRoundFlowLayout_Example.debug.xcconfig"; path = "Target Support Files/Pods-JJCollectionViewRoundFlowLayout_Example/Pods-JJCollectionViewRoundFlowLayout_Example.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -175,6 +181,7 @@
 		6003F593195388D20070C39A /* Example for JJCollectionViewRoundFlowLayout */ = {
 			isa = PBXGroup;
 			children = (
+				92A4CEBC26970588008065D1 /* IGListKit */,
 				6003F59C195388D20070C39A /* JJAppDelegate.h */,
 				6003F59D195388D20070C39A /* JJAppDelegate.m */,
 				873B8AEA1B1F5CCA007FD442 /* Main.storyboard */,
@@ -249,6 +256,17 @@
 			name = "Podspec Metadata";
 			sourceTree = "<group>";
 		};
+		92A4CEBC26970588008065D1 /* IGListKit */ = {
+			isa = PBXGroup;
+			children = (
+				92A4CEBD269705AE008065D1 /* SQCollectionRoundFlowLayout.h */,
+				92A4CEBE269705AE008065D1 /* SQCollectionRoundFlowLayout.m */,
+				92A4CEC0269705EA008065D1 /* IGListkitViewController.h */,
+				92A4CEC1269705EA008065D1 /* IGListkitViewController.m */,
+			);
+			name = IGListKit;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -300,6 +318,9 @@
 				LastUpgradeCheck = 1110;
 				ORGANIZATIONNAME = "谢家杰";
 				TargetAttributes = {
+					6003F589195388D20070C39A = {
+						ProvisioningStyle = Automatic;
+					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
 					};
@@ -399,10 +420,12 @@
 			);
 			inputPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-JJCollectionViewRoundFlowLayout_Example/Pods-JJCollectionViewRoundFlowLayout_Example-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/IGListKit/IGListKit.framework",
 				"${BUILT_PRODUCTS_DIR}/JJCollectionViewRoundFlowLayout/JJCollectionViewRoundFlowLayout.framework",
 			);
 			name = "[CP] Embed Pods Frameworks";
 			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/IGListKit.framework",
 				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/JJCollectionViewRoundFlowLayout.framework",
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -423,12 +446,14 @@
 				0484A63E251CEA5A0019A0FF /* FifthlyViewController.m in Sources */,
 				040C10F523A779BB00D1C506 /* ThirdViewController.m in Sources */,
 				04663100250133CF00DBA60D /* JJTestWakeFormNibViewController.m in Sources */,
+				92A4CEBF269705AE008065D1 /* SQCollectionRoundFlowLayout.m in Sources */,
 				04FEFAF42369BA73000ECEDE /* MyCollectionViewCell.m in Sources */,
 				04FEFAF22369BA73000ECEDE /* MyCollectionReusableView.m in Sources */,
 				04FEFAF52369BA73000ECEDE /* NextViewController.m in Sources */,
 				048448AF25F37C1500CF5AFA /* SixthViewController.m in Sources */,
 				04D2E57923C9DB55004D3816 /* FourthViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* JJViewController.m in Sources */,
+				92A4CEC2269705EA008065D1 /* IGListkitViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -585,6 +610,9 @@
 			baseConfigurationReference = 95B2F2062EF22D0937EBDAAB /* Pods-JJCollectionViewRoundFlowLayout_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JJCollectionViewRoundFlowLayout/JJCollectionViewRoundFlowLayout-Prefix.pch";
 				INFOPLIST_FILE = "JJCollectionViewRoundFlowLayout/JJCollectionViewRoundFlowLayout-Info.plist";
@@ -592,6 +620,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -602,6 +631,9 @@
 			baseConfigurationReference = 63897C250BDCC7E1174103AB /* Pods-JJCollectionViewRoundFlowLayout_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JJCollectionViewRoundFlowLayout/JJCollectionViewRoundFlowLayout-Prefix.pch";
 				INFOPLIST_FILE = "JJCollectionViewRoundFlowLayout/JJCollectionViewRoundFlowLayout-Info.plist";
@@ -609,6 +641,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
