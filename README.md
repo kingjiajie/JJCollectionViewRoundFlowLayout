@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/JJCollectionViewRoundFlowLayout.svg?style=flat)](https://cocoapods.org/pods/JJCollectionViewRoundFlowLayout)
 
 
-   JJCollectionViewRoundFlowLayout可设置CollectionView的BackgroundColor，可跟据用户Cell个数计算背景图尺寸，可自定义是否包括计算CollectionViewHeaderView、CollectionViewFootererView或只计算Cells。设置简单，可自定义背景颜色偏移，设置显示方向（竖向、横向）显示,不同Section设置不同的背景颜色。
+   JJCollectionViewRoundFlowLayout可设置CollectionView的BackgroundColor，可跟据用户Cell个数计算背景图尺寸，可自定义是否包括计算CollectionViewHeaderView、CollectionViewFootererView或只计算Cells。设置简单，可自定义背景颜色偏移，设置显示方向（竖向、横向）显示,不同Section设置不同的背景颜色，支持自定义delegate 输入，并兼容像IGListCollectionView无delegate的情况。
    可设置内容：
    
    1、collectionView section底色。  
@@ -28,6 +28,7 @@
    17、增加背景点击动画，支持单独设置点按相关属性，支持点按后设置Cells是否跟随背景动画。---V2.6.0  
    18、增加背景支持图片展示功能。---V2.7.0  
    19、增加对不设置JJCollectionViewRoundConfigModel的处理。---V2.7.1  
+   20、扩展JJCollectionViewRoundFlowLayout 支持自定义delegate 输入，并兼容像IGListCollectionView无delegate的情况。-- 感谢liao3841054的提交。---V2.8.0  
    
    
    Swift版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift)  
@@ -36,7 +37,8 @@
 
 ## 更新日志
 ---
-* `2.7.1`:增加对不设置JJCollectionViewRoundConfigModel的处理。    
+* `2.8.0`:功能增加：扩展JJCollectionViewRoundFlowLayout 支持自定义delegate 输入，并兼容像IGListCollectionView无delegate的情况。-- 感谢liao3841054的提交。        
+- `2.7.1`:增加对不设置JJCollectionViewRoundConfigModel的处理。    
 - `2.7.0`:功能增加：增加背景支持图片展示功能。    
 - `2.6.0`:功能增加：增加背景点击动画，支持单独设置点按相关属性，支持点按后设置Cells是否跟随背景动画。    
 - `2.5.1`:修复当cell大小不一时，首个Cell单独在首行显示时,底色判断出错问题。  
