@@ -18,8 +18,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (nonatomic, weak) IGListAdapter *adapter;
 
-- (instancetype)init CP_UNAVAILABLE("Use -[TopicCollectionViewWaterfallLayout initWithIGListAdapter:] instead");
-+ (instancetype)new CP_UNAVAILABLE("Use -[TopicCollectionViewWaterfallLayout initWithIGListAdapter:] instead");
+- (instancetype)init CP_UNAVAILABLE("Use -[SQCollectionRoundFlowLayout initWithIGListAdapter:] instead");
++ (instancetype)new CP_UNAVAILABLE("Use -[SQCollectionRoundFlowLayout initWithIGListAdapter:] instead");
 - (instancetype)initWithIGListAdapter:(IGListAdapter *)adapter NS_DESIGNATED_INITIALIZER;
 
 @end

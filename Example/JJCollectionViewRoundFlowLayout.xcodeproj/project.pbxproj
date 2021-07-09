@@ -319,7 +319,7 @@
 				ORGANIZATIONNAME = "谢家杰";
 				TargetAttributes = {
 					6003F589195388D20070C39A = {
-						DevelopmentTeam = 865L62UDE9;
+						ProvisioningStyle = Automatic;
 					};
 					6003F5AD195388D20070C39A = {
 						TestTargetID = 6003F589195388D20070C39A;
@@ -610,7 +610,9 @@
 			baseConfigurationReference = 95B2F2062EF22D0937EBDAAB /* Pods-JJCollectionViewRoundFlowLayout_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 865L62UDE9;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JJCollectionViewRoundFlowLayout/JJCollectionViewRoundFlowLayout-Prefix.pch";
 				INFOPLIST_FILE = "JJCollectionViewRoundFlowLayout/JJCollectionViewRoundFlowLayout-Info.plist";
@@ -618,6 +620,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};
@@ -628,7 +631,9 @@
 			baseConfigurationReference = 63897C250BDCC7E1174103AB /* Pods-JJCollectionViewRoundFlowLayout_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = 865L62UDE9;
+				CODE_SIGN_IDENTITY = "Apple Development";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = "";
 				GCC_PRECOMPILE_PREFIX_HEADER = YES;
 				GCC_PREFIX_HEADER = "JJCollectionViewRoundFlowLayout/JJCollectionViewRoundFlowLayout-Prefix.pch";
 				INFOPLIST_FILE = "JJCollectionViewRoundFlowLayout/JJCollectionViewRoundFlowLayout-Info.plist";
@@ -636,6 +641,7 @@
 				MODULE_NAME = ExampleApp;
 				PRODUCT_BUNDLE_IDENTIFIER = "org.cocoapods.demo.${PRODUCT_NAME:rfc1034identifier}";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				PROVISIONING_PROFILE_SPECIFIER = "";
 				SWIFT_VERSION = 4.0;
 				WRAPPER_EXTENSION = app;
 			};

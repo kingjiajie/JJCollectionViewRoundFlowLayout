@@ -139,7 +139,7 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
                         @"CollectionView (横向 有H&F View)",
                         @"borderLine 包Section",
                         @"borderLine 包Section（带投影）",
-                        @"IGlistKit 扩展Layout 包Section（带投影）"
+                        @"IGlistKit 扩展Layout 包Section（带投影）",
                         @"BackgroundColor 底色（带投影）",
                         @"CollectionView（底色 圆角 分别不同颜色）",
                         @"CollectionView（单独设置某个 header 底色）",
@@ -375,3 +375,4 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
 
 
 @end
+
