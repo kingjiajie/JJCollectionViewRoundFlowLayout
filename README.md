@@ -206,7 +206,7 @@ layout.isCalculateFooter = YES;
     model.shadowRadius = 4;
     
     return model;
-}
+} 
 
 ```  
 
