@@ -516,17 +516,32 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 
 - (NSArray<UICollectionViewLayoutAttributes *> *)layoutAttributesForElementsInRect:(CGRect)rect{
     
-    NSMutableArray * attrs = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
+    __block NSMutableArray * attrs = [[super layoutAttributesForElementsInRect:rect] mutableCopy];
     
     //用户设置了对称方式，进行对称设置 (若没设置，不执行，继续其他计算)
-    if (self.collectionCellAlignmentType != JJCollectionViewFlowLayoutAlignmentTypeBySystem
-        && self.scrollDirection == UICollectionViewScrollDirectionVertical) {
-        //竖向,Cell对齐方式暂不支持横向
-        NSArray *formatGroudAttr = [self groupLayoutAttributesForElementsByYLineWithLayoutAttributesAttrs:attrs];
-        
-        [self evaluatedAllCellSettingFrameWithLayoutAttributesAttrs:formatGroudAttr
+    //竖向,Cell对齐方式暂不支持横向
+    if (self.scrollDirection == UICollectionViewScrollDirectionVertical) {
+        id delegate = self.collectionView.delegate;
+        if ([delegate respondsToSelector:@selector(collectionView:layout:alignmentTypeAtSection:)]) {
+            //竖向，根据section进行集合，后续根据section单独设置section内的cells对齐方式
+            NSDictionary *allSectionDict = [self groupLayoutAttributesForElementsBySectionWithLayoutAttributesAttrs:attrs];
+            [attrs removeAllObjects];
+            [allSectionDict enumerateKeysAndObjectsUsingBlock:^(NSNumber *  _Nonnull key, NSArray * _Nonnull obj, BOOL * _Nonnull stop) {
+                JJCollectionViewRoundFlowLayoutAlignmentType alignmentType = [delegate collectionView:self.collectionView
+                                                                                                    layout:self
+                                                                                    alignmentTypeAtSection:[key intValue]];
+                [self analysisCellSettingFrameWithLayoutAttributesAttrs:obj
+                                            toChangeAttributesAttrsList:&attrs
+                                                      cellAlignmentType:alignmentType];
+            }];
+        }else if(self.collectionCellAlignmentType != JJCollectionViewFlowLayoutAlignmentTypeBySystem){
+            //竖向，直接根据全局设置的AlignmentType设置cell对齐方式显示
+            NSArray *formatGroudAttr = [attrs copy];
+            [attrs removeAllObjects];
+            [self analysisCellSettingFrameWithLayoutAttributesAttrs:formatGroudAttr
                                         toChangeAttributesAttrsList:&attrs
                                                   cellAlignmentType:self.collectionCellAlignmentType];
+        }
     }
     
     for (UICollectionViewLayoutAttributes *attr in self.decorationViewAttrs) {

@@ -10,6 +10,23 @@
 
 @implementation JJCollectionViewRoundFlowLayout(Alignment)
 
+
+/// 将相同section的cell集合到一个集合中(竖向)
+/// @param layoutAttributesAttrs layoutAttributesAttrs description
+- (NSDictionary *)groupLayoutAttributesForElementsBySectionWithLayoutAttributesAttrs:(NSArray *)layoutAttributesAttrs{
+    NSMutableDictionary *allSectionDict = [NSMutableDictionary dictionaryWithCapacity:0];
+    for (UICollectionViewLayoutAttributes *attr  in layoutAttributesAttrs) {
+        NSMutableArray *dictArr = allSectionDict[@(attr.indexPath.section)];
+        if (dictArr) {
+            [dictArr addObject:[attr copy]];
+        }else{
+            NSMutableArray *arr = [NSMutableArray arrayWithObject:[attr copy]];
+            allSectionDict[@(attr.indexPath.section)] = arr;
+        }
+    }
+    return allSectionDict;
+}
+
 /// 将相同y位置的cell集合到一个列表中(竖向)
 /// @param layoutAttributesAttrs layoutAttributesAttrs description
 - (NSArray *)groupLayoutAttributesForElementsByYLineWithLayoutAttributesAttrs:(NSArray *)layoutAttributesAttrs{
@@ -43,33 +60,50 @@
     return allDict.allValues;
 }
 
+/// 进行cells集合对齐方式判断解析
+/// @param layoutAttributesAttrs layoutAttributesAttrs description
+/// @param toChangeAttributesAttrsList toChangeAttributesAttrsList description
+/// @param alignmentType alignmentType description
+- (void)analysisCellSettingFrameWithLayoutAttributesAttrs:(NSArray *)layoutAttributesAttrs
+                                 toChangeAttributesAttrsList:(NSMutableArray *_Nonnull *_Nonnull)toChangeAttributesAttrsList
+                                        cellAlignmentType:(JJCollectionViewRoundFlowLayoutAlignmentType)alignmentType {
+    if (alignmentType != JJCollectionViewFlowLayoutAlignmentTypeBySystem) {
+        NSArray *formatGroudAttr = [self groupLayoutAttributesForElementsByYLineWithLayoutAttributesAttrs:layoutAttributesAttrs];
+        
+        for (NSArray <UICollectionViewLayoutAttributes * >*calculateAttributesAttrsArr in formatGroudAttr) {
+            [self evaluatedAllCellSettingFrameWithLayoutAttributesAttrs:calculateAttributesAttrsArr
+                                            toChangeAttributesAttrsList:toChangeAttributesAttrsList
+                                                      cellAlignmentType:alignmentType];
+        }
+    }else {
+        [*toChangeAttributesAttrsList addObjectsFromArray:layoutAttributesAttrs];
+    }
+}
+
 /// 根据不同对齐方式进行Cell位置计算
 /// @param layoutAttributesAttrs 传入需计算的AttributesAttrs集合列表
 /// @param toChangeAttributesAttrsList 用来保存所有计算后的AttributesAttrs
 /// @param alignmentType 对齐方式
-- (NSMutableArray *)evaluatedAllCellSettingFrameWithLayoutAttributesAttrs:(NSArray *)layoutAttributesAttrs toChangeAttributesAttrsList:(NSMutableArray *_Nonnull *_Nonnull)toChangeAttributesAttrsList cellAlignmentType:(JJCollectionViewRoundFlowLayoutAlignmentType)alignmentType{
+- (NSMutableArray *)evaluatedAllCellSettingFrameWithLayoutAttributesAttrs:(NSArray *)layoutAttributesAttrs toChangeAttributesAttrsList:(NSMutableArray *_Nonnull *_Nonnull)toChangeAttributesAttrsList cellAlignmentType:(JJCollectionViewRoundFlowLayoutAlignmentType)alignmentType {
     NSMutableArray *toChangeList = *toChangeAttributesAttrsList;
-    [toChangeList removeAllObjects];
-    for (NSArray *calculateAttributesAttrsArr in layoutAttributesAttrs) {
-        switch (alignmentType) {
-            case JJCollectionViewFlowLayoutAlignmentTypeByLeft:{
-                [self evaluatedCellSettingFrameByLeftWithWithJJCollectionLayout:self layoutAttributesAttrs:calculateAttributesAttrsArr];
-            }break;
-            case JJCollectionViewFlowLayoutAlignmentTypeByCenter:{
-                [self evaluatedCellSettingFrameByCentertWithWithJJCollectionLayout:self layoutAttributesAttrs:calculateAttributesAttrsArr];
-            }break;
-            case JJCollectionViewFlowLayoutAlignmentTypeByRight:{
-                NSArray* reversedArray = [[calculateAttributesAttrsArr reverseObjectEnumerator] allObjects];
-                [self evaluatedCellSettingFrameByRightWithWithJJCollectionLayout:self layoutAttributesAttrs:reversedArray];
-            }break;
-            case JJCollectionViewFlowLayoutAlignmentTypeByRightAndStartR:{
-                [self evaluatedCellSettingFrameByRightWithWithJJCollectionLayout:self layoutAttributesAttrs:calculateAttributesAttrsArr];
-            }break;
-            default:
-                break;
-        }
-        [toChangeList addObjectsFromArray:calculateAttributesAttrsArr];
+    switch (alignmentType) {
+        case JJCollectionViewFlowLayoutAlignmentTypeByLeft:{
+            [self evaluatedCellSettingFrameByLeftWithWithJJCollectionLayout:self layoutAttributesAttrs:layoutAttributesAttrs];
+        }break;
+        case JJCollectionViewFlowLayoutAlignmentTypeByCenter:{
+            [self evaluatedCellSettingFrameByCentertWithWithJJCollectionLayout:self layoutAttributesAttrs:layoutAttributesAttrs];
+        }break;
+        case JJCollectionViewFlowLayoutAlignmentTypeByRight:{
+            NSArray* reversedArray = [[layoutAttributesAttrs reverseObjectEnumerator] allObjects];
+            [self evaluatedCellSettingFrameByRightWithWithJJCollectionLayout:self layoutAttributesAttrs:reversedArray];
+        }break;
+        case JJCollectionViewFlowLayoutAlignmentTypeByRightAndStartR:{
+            [self evaluatedCellSettingFrameByRightWithWithJJCollectionLayout:self layoutAttributesAttrs:layoutAttributesAttrs];
+        }break;
+        default:
+            break;
     }
+    [toChangeList addObjectsFromArray:layoutAttributesAttrs];
     return toChangeList;
 }
 

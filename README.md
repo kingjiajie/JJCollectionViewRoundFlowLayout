@@ -29,6 +29,7 @@
    18、增加背景支持图片展示功能。---V2.7.0  
    19、增加对不设置JJCollectionViewRoundConfigModel的处理。---V2.7.1  
    20、扩展JJCollectionViewRoundFlowLayout 支持自定义delegate 输入，并兼容像IGListCollectionView无delegate的情况。-- 感谢liao3841054的提交。---V2.8.0  
+   21、扩展JJCollectionViewRoundFlowLayout 增加根据Section自定义对应Section内Cells的对齐方式设置。---V2.9.0  
    
    
    Swift版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift)  
@@ -37,7 +38,8 @@
 
 ## 更新日志
 ---
-* `2.8.0`:功能增加：扩展JJCollectionViewRoundFlowLayout 支持自定义delegate 输入，并兼容像IGListCollectionView无delegate的情况。-- 感谢liao3841054的提交。        
+* `2.9.0`:功能增加：扩展JJCollectionViewRoundFlowLayout 增加根据Section自定义对应Section内Cells的对齐方式设置。        
+- `2.8.0`:功能增加：扩展JJCollectionViewRoundFlowLayout 支持自定义delegate 输入，并兼容像IGListCollectionView无delegate的情况。-- 感谢liao3841054的提交。     
 - `2.7.1`:增加对不设置JJCollectionViewRoundConfigModel的处理。    
 - `2.7.0`:功能增加：增加背景支持图片展示功能。    
 - `2.6.0`:功能增加：增加背景点击动画，支持单独设置点按相关属性，支持点按后设置Cells是否跟随背景动画。    
@@ -270,7 +272,7 @@ layout.isCalculateFooter = YES;
 ```  
 
 >#
->### 支持对Cell的对齐模式进行设置、可选是否填充底色(左对齐、居中)
+>### 支持对Cell的对齐模式进行设置、可选是否填充底色(左对齐、居中、右对齐、右对齐并首个Cell右侧开始)
   
 ![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/7.png)
 
@@ -283,6 +285,27 @@ layout.isCalculateFooter = YES;
     //layout.collectionCellAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByCenter; //设置对齐方式（居中）
     //layout.collectionCellAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByRight; //设置对齐方式（右对齐）
     //layout.collectionCellAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByRightAndStartR; //设置对齐方式（右对齐和首个Cell右侧开始）
+
+```  
+>#
+>### 支持对Cell的对齐模式进行设置、可选是否填充底色(左对齐、居中)
+  
+![](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout/blob/master/8.png)
+
+``` obj-c
+- (JJCollectionViewRoundFlowLayoutAlignmentType)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout alignmentTypeAtSection:(NSInteger)section {
+    if (section == 0) {
+        return JJCollectionViewFlowLayoutAlignmentTypeByLeft;
+    }else if(section == 1) {
+        return JJCollectionViewFlowLayoutAlignmentTypeByCenter;
+    }else if(section == 2){
+        return JJCollectionViewFlowLayoutAlignmentTypeByRight;
+    }else if(section == 3){
+        return JJCollectionViewFlowLayoutAlignmentTypeByRightAndStartR;
+    }else {
+        return JJCollectionViewFlowLayoutAlignmentTypeBySystem;
+    }
+}
 
 ```  
 

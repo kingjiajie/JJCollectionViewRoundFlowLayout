@@ -13,6 +13,9 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface JJCollectionViewRoundFlowLayout (Alignment)
 
+/// 将相同section的cell集合到一个集合中(竖向)
+/// @param layoutAttributesAttrs layoutAttributesAttrs description
+- (NSDictionary *)groupLayoutAttributesForElementsBySectionWithLayoutAttributesAttrs:(NSArray *)layoutAttributesAttrs;
 
 /// 将相同y位置的cell集合到一个列表中(竖向)
 /// @param layoutAttributesAttrs layoutAttributesAttrs description
@@ -23,6 +26,13 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param layoutAttributesAttrs layoutAttributesAttrs description
 - (NSArray *)groupLayoutAttributesForElementsByXLineWithLayoutAttributesAttrs:(NSArray *)layoutAttributesAttrs;
 
+/// 进行cells集合对齐方式判断解析
+/// @param layoutAttributesAttrs layoutAttributesAttrs description
+/// @param toChangeAttributesAttrsList toChangeAttributesAttrsList description
+/// @param alignmentType alignmentType description
+- (void)analysisCellSettingFrameWithLayoutAttributesAttrs:(NSArray *)layoutAttributesAttrs
+                                 toChangeAttributesAttrsList:(NSMutableArray *_Nonnull *_Nonnull)toChangeAttributesAttrsList
+                                        cellAlignmentType:(JJCollectionViewRoundFlowLayoutAlignmentType)alignmentType;
 
 /// 根据不同对齐方式进行Cell位置计算
 /// @param layoutAttributesAttrs 传入需计算的AttributesAttrs集合列表

@@ -44,6 +44,14 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param section section description
 - (BOOL)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout*)collectionViewLayout isCalculateFooterViewIndex:(NSInteger)section;
 
+/// 设置根据section判断对应section内Cells对齐方式
+/// @param collectionView collectionView description
+/// @param collectionViewLayout collectionViewLayout description
+/// @param section section description
+- (JJCollectionViewRoundFlowLayoutAlignmentType)collectionView:(UICollectionView *)collectionView
+                                                        layout:(UICollectionViewLayout*)collectionViewLayout
+                                        alignmentTypeAtSection:(NSInteger)section;
+
 /// 当Cell个数为0时，是否允许进行计算（根据section判断是否单独计算，Cell个数为0时，会检测计算Header或Footer）
 /// @param collectionView collectionView description
 /// @param collectionViewLayout collectionViewLayout description

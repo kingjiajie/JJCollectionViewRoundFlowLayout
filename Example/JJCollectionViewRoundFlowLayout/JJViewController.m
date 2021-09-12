@@ -13,6 +13,7 @@
 #import "FourthViewController.h"
 #import "FifthlyViewController.h"
 #import "SixthViewController.h"
+#import "SeventhViewController.h"
 #import "IGListkitViewController.h"
 
 typedef NS_OPTIONS(NSInteger, JJViewSectionType) {
@@ -46,6 +47,7 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByAlignmentRowType) {
     JJViewSectionTypeByAlignmentRowTypeByCenter,
     JJViewSectionTypeByAlignmentRowTypeByRight,
     JJViewSectionTypeByAlignmentRowTypeByRightAndStartR,
+    JJViewSectionTypeByAlignmentRowTypeByShowStatusBySection,
     JJViewSectionTypeByAlignmentRowTypeByAllRow
 };
 
@@ -152,6 +154,7 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
                         @"CollectionView,无sections底色，cell居中",
                         @"CollectionView,无sections底色，cell右对齐",
                         @"CollectionView,cell右对齐与cell右侧开始",
+                        @"CollectionView,根据Section配置对齐方式",
                         
 #pragma mark - touch
                         @"CollectionView,背景图点击事件响应",
@@ -348,6 +351,12 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
                     //CollectionView,cell右对齐与cell右侧开始
                     fourthVC.myAlignmentType = JJCollectionViewFlowLayoutAlignmentTypeByRightAndStartR;
                 }break;
+                case JJViewSectionTypeByAlignmentRowTypeByShowStatusBySection:{
+                    SeventhViewController *seventhVC = [SeventhViewController new];
+                    [self.navigationController pushViewController:seventhVC animated:YES];
+                    return;
+                    break;
+                }
             }
             [self.navigationController pushViewController:fourthVC animated:YES];
         } break;
@@ -364,12 +373,8 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
                     fifthlyVC.isShowTouchAnimation = YES;
                     [self.navigationController pushViewController:fifthlyVC animated:YES];
                 }break;
-                default:
-                    break;
             }
         } break;
-        default:
-            break;
     }
 }
 

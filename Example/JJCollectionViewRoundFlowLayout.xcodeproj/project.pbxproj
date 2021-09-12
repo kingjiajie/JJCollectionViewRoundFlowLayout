@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		040C10F523A779BB00D1C506 /* ThirdViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 040C10F423A779BB00D1C506 /* ThirdViewController.m */; };
+		04335C3C26EDEAB2009969A5 /* SeventhViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 04335C3B26EDEAB2009969A5 /* SeventhViewController.m */; };
 		04663100250133CF00DBA60D /* JJTestWakeFormNibViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 046630FE250133CF00DBA60D /* JJTestWakeFormNibViewController.m */; };
 		04663101250133CF00DBA60D /* JJTestWakeFormNibViewController.xib in Resources */ = {isa = PBXBuildFile; fileRef = 046630FF250133CF00DBA60D /* JJTestWakeFormNibViewController.xib */; };
 		048448AF25F37C1500CF5AFA /* SixthViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 048448AE25F37C1500CF5AFA /* SixthViewController.m */; };
@@ -52,6 +53,8 @@
 /* Begin PBXFileReference section */
 		040C10F323A779BB00D1C506 /* ThirdViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ThirdViewController.h; sourceTree = "<group>"; };
 		040C10F423A779BB00D1C506 /* ThirdViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ThirdViewController.m; sourceTree = "<group>"; };
+		04335C3A26EDEAB2009969A5 /* SeventhViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = SeventhViewController.h; sourceTree = "<group>"; };
+		04335C3B26EDEAB2009969A5 /* SeventhViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = SeventhViewController.m; sourceTree = "<group>"; };
 		046630FD250133CF00DBA60D /* JJTestWakeFormNibViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = JJTestWakeFormNibViewController.h; sourceTree = "<group>"; };
 		046630FE250133CF00DBA60D /* JJTestWakeFormNibViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = JJTestWakeFormNibViewController.m; sourceTree = "<group>"; };
 		046630FF250133CF00DBA60D /* JJTestWakeFormNibViewController.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = JJTestWakeFormNibViewController.xib; sourceTree = "<group>"; };
@@ -199,6 +202,8 @@
 				0484A63D251CEA5A0019A0FF /* FifthlyViewController.m */,
 				048448AD25F37C1500CF5AFA /* SixthViewController.h */,
 				048448AE25F37C1500CF5AFA /* SixthViewController.m */,
+				04335C3A26EDEAB2009969A5 /* SeventhViewController.h */,
+				04335C3B26EDEAB2009969A5 /* SeventhViewController.m */,
 				04FEFAEC2369BA72000ECEDE /* MyCollectionViewCell.h */,
 				04FEFAF02369BA73000ECEDE /* MyCollectionViewCell.m */,
 				04FEFAEA2369BA72000ECEDE /* MyCollectionReusableView.h */,
@@ -454,6 +459,7 @@
 				04D2E57923C9DB55004D3816 /* FourthViewController.m in Sources */,
 				6003F5A7195388D20070C39A /* JJViewController.m in Sources */,
 				92A4CEC2269705EA008065D1 /* IGListkitViewController.m in Sources */,
+				04335C3C26EDEAB2009969A5 /* SeventhViewController.m in Sources */,
 				6003F59A195388D20070C39A /* main.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
