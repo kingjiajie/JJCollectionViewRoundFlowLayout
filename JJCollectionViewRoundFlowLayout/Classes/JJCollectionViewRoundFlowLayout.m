@@ -12,7 +12,7 @@
 
 static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoundSection";
 
-@interface JJCollectionViewRoundLayoutAttributes  : UICollectionViewLayoutAttributes
+@interface JJCollectionViewRoundLayoutAttributes  : UICollectionViewLayoutAttributes <NSCopying>
 
 @property (nonatomic, assign) UIEdgeInsets borderEdgeInsets;///间距
 @property (nonatomic, strong) JJCollectionViewRoundConfigModel *myConfigModel;///底色样式配置属性
@@ -22,6 +22,25 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 @end
 
 @implementation JJCollectionViewRoundLayoutAttributes
+
+- (id)copyWithZone:(NSZone *)zone{
+    JJCollectionViewRoundLayoutAttributes *attr = [[[self class] allocWithZone:zone] init];
+    attr.frame = self.frame;
+    attr.center = self.center;
+    attr.size = self.size;
+    attr.transform3D = self.transform3D;
+    attr.bounds = self.bounds;
+    attr.transform = self.transform;
+    attr.alpha = self.alpha;
+    attr.zIndex = self.zIndex;
+    attr.hidden = self.hidden;
+    attr.indexPath = self.indexPath;
+    attr.borderEdgeInsets = self.borderEdgeInsets;
+    attr.myConfigModel = self.myConfigModel;
+    attr.isTouchAnimationEnable = self.isTouchAnimationEnable;
+    attr.myTouchAnimationConfigModel = self.myTouchAnimationConfigModel;
+    return attr;
+}
 
 - (void)setIsTouchAnimationEnable:(BOOL)isTouchAnimationEnable {
     _isTouchAnimationEnable = isTouchAnimationEnable;
