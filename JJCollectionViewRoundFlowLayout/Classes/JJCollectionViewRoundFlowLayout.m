@@ -24,22 +24,25 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 @implementation JJCollectionViewRoundLayoutAttributes
 
 - (id)copyWithZone:(NSZone *)zone{
-    JJCollectionViewRoundLayoutAttributes *attr = [[[self class] allocWithZone:zone] init];
-    attr.frame = self.frame;
-    attr.center = self.center;
-    attr.size = self.size;
-    attr.transform3D = self.transform3D;
-    attr.bounds = self.bounds;
-    attr.transform = self.transform;
-    attr.alpha = self.alpha;
-    attr.zIndex = self.zIndex;
-    attr.hidden = self.hidden;
-    attr.indexPath = self.indexPath;
+    JJCollectionViewRoundLayoutAttributes *attr = [super copyWithZone:zone];
     attr.borderEdgeInsets = self.borderEdgeInsets;
     attr.myConfigModel = self.myConfigModel;
     attr.isTouchAnimationEnable = self.isTouchAnimationEnable;
     attr.myTouchAnimationConfigModel = self.myTouchAnimationConfigModel;
     return attr;
+}
+
+- (BOOL)isEqual:(id)object{
+    if (object == self) {
+        return YES;
+    } else if ([object class] == [self class]) {
+        return ([super isEqual:object]
+                && UIEdgeInsetsEqualToEdgeInsets(self.borderEdgeInsets, [object borderEdgeInsets])
+                && self.myConfigModel == [object myConfigModel]
+                && self.isTouchAnimationEnable == [object isTouchAnimationEnable]
+                && self.myTouchAnimationConfigModel == [object myTouchAnimationConfigModel]);
+    }
+    return NO;
 }
 
 - (void)setIsTouchAnimationEnable:(BOOL)isTouchAnimationEnable {
@@ -254,6 +257,10 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
 - (void)awakeFromNib{
     [super awakeFromNib];
     _isRoundEnabled = YES;
+}
+
++ (Class)layoutAttributesClass {
+    return [JJCollectionViewRoundLayoutAttributes class];
 }
 
 - (void)prepareLayout {
