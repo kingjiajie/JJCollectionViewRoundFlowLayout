@@ -31,7 +31,7 @@
    20、扩展JJCollectionViewRoundFlowLayout 支持自定义delegate 输入，并兼容像IGListCollectionView无delegate的情况。-- 感谢liao3841054的提交。---V2.8.0  
    21、扩展JJCollectionViewRoundFlowLayout 增加根据Section自定义对应Section内Cells的对齐方式设置。---V2.9.0  
    22、fix issue:#11 切换夜间模式的问题, myCacheAttr 可能会存在空, 导致视图背景被清空问题。---V2.9.1  
-   
+   23、fix:issue:#14 修复2.9.1版本在设置header悬浮后出现的崩溃问题。(感谢wangchunjiang提出该问题)
    
    Swift版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout_Swift)  
    OC版本地址：[GitHub地址](https://github.com/kingjiajie/JJCollectionViewRoundFlowLayout)
@@ -39,7 +39,8 @@
 
 ## 更新日志
 ---
-* `2.9.1`:问题修复：issue #11 切换夜间模式的问题, myCacheAttr 可能会存在空, 导致视图背景被清空问题。        
+* `2.9.2`:问题修复: issue:#14 修复2.9.1版本在设置header悬浮后出现的崩溃问题。(感谢wangchunjiang提出该问题)        
+- `2.9.1`:问题修复：issue #11 切换夜间模式的问题, myCacheAttr 可能会存在空, 导致视图背景被清空问题。         
 - `2.9.0`:功能增加：扩展JJCollectionViewRoundFlowLayout 增加根据Section自定义对应Section内Cells的对齐方式设置。        
 - `2.8.0`:功能增加：扩展JJCollectionViewRoundFlowLayout 支持自定义delegate 输入，并兼容像IGListCollectionView无delegate的情况。-- 感谢liao3841054的提交。     
 - `2.7.1`:增加对不设置JJCollectionViewRoundConfigModel的处理。    
