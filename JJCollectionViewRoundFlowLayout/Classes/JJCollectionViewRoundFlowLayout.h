@@ -11,6 +11,8 @@
 #import "JJCollectionViewFlowLayoutConfig.h"
 #import "JJCollectionViewTouchAnimationConfigModel.h"
 
+#define JJRoundAutomaticDimension NSNotFound
+
 NS_ASSUME_NONNULL_BEGIN
 
 @protocol JJCollectionViewDelegateRoundFlowLayout <UICollectionViewDelegateFlowLayout>
@@ -76,6 +78,18 @@ NS_ASSUME_NONNULL_BEGIN
 /// @param collectionViewLayout collectionViewLayout description
 /// @param section 配置section
 - (JJCollectionViewTouchAnimationConfigModel *)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout animationConfigModelForSection:(NSInteger)section;
+
+#pragma mark - 设置Section背景模块最少高度
+
+/// 根据个人自定义设置section背景模块最小高度（暂不支持横向设置，不支持计算header和footer模式）
+///（注意：使用该方法的时候请确认好自定义最小高度是否符合个人需求，由于该设置是设置背景模块，与原系统Section实际高度无关，如Section实际高度过小且设置了背景最小高度，会出现背景模块重叠显示问题）
+/// - Parameters:
+///   - collectionView: collectionView description
+///   - collectionViewLayout: collectionViewLayout description
+///   - section: section description
+- (CGFloat)collectionView:(UICollectionView *)collectionView
+                   layout:(UICollectionViewLayout *)collectionViewLayout
+      minHeightForSection:(NSInteger)section;
 
 @end
 

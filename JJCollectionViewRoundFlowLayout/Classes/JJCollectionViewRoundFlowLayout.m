@@ -403,6 +403,14 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
         if (!isCalculateHeaderView && !isCalculateFooterView) {
             //都没有headerView&footerView
             sectionFrame = [self calculateDefaultFrameWithSectionFrame:sectionFrame sectionInset:sectionInset];
+            if ([delegate respondsToSelector:@selector(collectionView:layout:minHeightForSection:)]) {
+                CGFloat minHeight = [delegate collectionView:self.collectionView layout:self minHeightForSection:section];
+                if (minHeight
+                    && minHeight != JJRoundAutomaticDimension
+                    && sectionFrame.size.height < minHeight) {
+                    sectionFrame.size.height = minHeight;
+                }
+            }
         }else{
             if (isCalculateHeaderView && !isCalculateFooterView) {
                 //headerView
