@@ -299,7 +299,18 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
             if (![delegate collectionView:self.collectionView layout:self isCanCalculateWhenRowEmptyWithSection:section]) {
                 continue;
             }
-        }else if(!self.isCanCalculateWhenRowEmpty) {
+        }
+//        else if ([delegate respondsToSelector:@selector(collectionView:layout:minHeightForSection:)]) {
+//            //当Cell个数为0时，实现了代理，执行代理方法判断minheight计算是否进行计算
+//            CGFloat minHeight = [delegate collectionView:self.collectionView layout:self minHeightForSection:section];
+//            if (minHeight <= 0  || minHeight == JJRoundAutomaticDimension) {
+//                continue;
+//            }
+//            //获取sectionInset
+//            UIEdgeInsets sectionInset = [JJCollectionViewFlowLayoutUtils evaluatedSectionInsetForItemWithCollectionLayout:self atIndex:section];
+//            firstFrame = CGRectMake(sectionInset.left, sectionInset.top, self.collectionView.bounds.size.width, minHeight - (sectionInset.top + sectionInset.bottom));
+//        }
+        else if(!self.isCanCalculateWhenRowEmpty) {
             //当Cell个数为0时，判断字段是否计算的
             continue;
         }
@@ -403,14 +414,6 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
         if (!isCalculateHeaderView && !isCalculateFooterView) {
             //都没有headerView&footerView
             sectionFrame = [self calculateDefaultFrameWithSectionFrame:sectionFrame sectionInset:sectionInset];
-            if ([delegate respondsToSelector:@selector(collectionView:layout:minHeightForSection:)]) {
-                CGFloat minHeight = [delegate collectionView:self.collectionView layout:self minHeightForSection:section];
-                if (minHeight
-                    && minHeight != JJRoundAutomaticDimension
-                    && sectionFrame.size.height < minHeight) {
-                    sectionFrame.size.height = minHeight;
-                }
-            }
         }else{
             if (isCalculateHeaderView && !isCalculateFooterView) {
                 //headerView
@@ -487,6 +490,14 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
         }else{
             sectionFrame.size.width -= (userCustomSectionInset.left + userCustomSectionInset.right);
             sectionFrame.size.height -= (userCustomSectionInset.top + userCustomSectionInset.bottom);
+            if ([delegate respondsToSelector:@selector(collectionView:layout:minHeightForSection:)]) {
+                CGFloat minHeight = [delegate collectionView:self.collectionView layout:self minHeightForSection:section];
+                if (minHeight
+                    && minHeight != JJRoundAutomaticDimension
+                    && sectionFrame.size.height < minHeight) {
+                    sectionFrame.size.height = minHeight;
+                }
+            }
         }
         
         //2. 定义
