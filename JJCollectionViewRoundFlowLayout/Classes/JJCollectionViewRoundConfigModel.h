@@ -28,6 +28,8 @@ NS_ASSUME_NONNULL_BEGIN
 
 /// 圆角
 @property (nonatomic, assign) CGFloat cornerRadius;
+/// Defaults to all four corners
+@property (nonatomic, assign) CACornerMask maskedCorners API_AVAILABLE(ios(11.0));
 
 //图片
 @property (nonatomic, strong) UIImage *bgImage;

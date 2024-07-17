@@ -103,6 +103,9 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
         view.layer.shadowOpacity = model.shadowOpacity;
         view.layer.shadowRadius = model.shadowRadius;
         view.layer.cornerRadius = model.cornerRadius;
+        if (@available(iOS 11.0, *)) {
+            view.layer.maskedCorners = model.maskedCorners;
+        }
         view.layer.borderWidth = model.borderWidth;
         
         if (@available(iOS 13.0, *)) {
@@ -116,6 +119,9 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
             UIImageView *imageV = [self getBGImageViewWithFrame:self.bounds];
             [imageV setImage:model.bgImage];
             imageV.layer.cornerRadius = model.cornerRadius;
+            if (@available(iOS 11.0, *)) {
+                imageV.layer.maskedCorners = model.maskedCorners;
+            }
             [imageV setClipsToBounds:YES];
         }else {
             _myBGImageView.image = nil;

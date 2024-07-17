@@ -38,6 +38,7 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByRoundRowType) {
     JJViewSectionTypeByRoundRowTypeRoundAccordingToHeader,
     JJViewSectionTypeByRoundRowTypeRoundAccordingToFooter,
     JJViewSectionTypeByRoundRowTypeWhenCellIsEmpty,
+    JJViewSectionTypeByRoundRowTypeMaskedCorners,
     JJViewSectionTypeByRoundRowTypeAllRow
 };
 
@@ -147,7 +148,7 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
                         @"CollectionView（单独设置某个 header 底色）",
                         @"CollectionView（单独设置某个 footer 底色）",
                         @"有H&F，Cell为0，判断是否计算H&F",
-                        
+                        @"部分角不设置圆角（iOS11及以上）",
 #pragma mark - alignment
                         @"CollectionView,无sections底色，cell左对齐",
                         @"CollectionView,有sections底色，cell左对齐",
@@ -318,6 +319,15 @@ typedef NS_OPTIONS(NSInteger, JJViewSectionTypeByEventRowType) {
                     vc.isRoundWithHeaerView = YES;
                     vc.isRoundWithFooterView = YES;
                     [self.navigationController pushViewController:vc animated:YES];
+                    return;
+                    break;
+                }
+                case JJViewSectionTypeByRoundRowTypeMaskedCorners:{
+                    SecondViewController *secondVC = [[SecondViewController alloc]init];
+                    secondVC.isHaveShadow = YES;
+                    secondVC.isHaveBGColor = YES;
+                    secondVC.isMaskedCorners = YES;
+                    [self.navigationController pushViewController:secondVC animated:YES];
                     return;
                     break;
                 }

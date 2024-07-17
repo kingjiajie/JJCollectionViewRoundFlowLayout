@@ -140,7 +140,12 @@
     
     JJCollectionViewRoundConfigModel *model = [[JJCollectionViewRoundConfigModel alloc]init];
 
-    model.cornerRadius = 4;
+    model.cornerRadius = 10;
+    if (@available(iOS 11.0, *)) {
+        if (self.isMaskedCorners && section > 0) {
+            model.maskedCorners = kCALayerMaxXMaxYCorner | kCALayerMaxXMinYCorner;
+        }
+    }
     
     if (self.isHaveShadow) {
         if (self.isHaveBGColor) {
