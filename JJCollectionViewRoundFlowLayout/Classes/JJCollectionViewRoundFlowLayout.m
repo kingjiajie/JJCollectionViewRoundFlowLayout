@@ -259,9 +259,9 @@ static NSString *const JJCollectionViewRoundSection = @"com.JJCollectionViewRoun
     _isRoundEnabled = YES;
 }
 
-+ (Class)layoutAttributesClass {
-    return [JJCollectionViewRoundLayoutAttributes class];
-}
+//+ (Class)layoutAttributesClass {
+//    return [JJCollectionViewRoundLayoutAttributes class];
+//}
 
 - (void)prepareLayout {
     [super prepareLayout];
