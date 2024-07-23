@@ -14,6 +14,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @property (assign, nonatomic) BOOL isHaveShadow;
 @property (assign, nonatomic) BOOL isHaveBGColor;
+@property (assign, nonatomic) BOOL isMaskedCorners;
 
 @end
 
