@@ -5,6 +5,15 @@
 [![License](https://img.shields.io/cocoapods/l/JJCollectionViewRoundFlowLayout.svg?style=flat)](https://cocoapods.org/pods/JJCollectionViewRoundFlowLayout)
 [![Platform](https://img.shields.io/cocoapods/p/JJCollectionViewRoundFlowLayout.svg?style=flat)](https://cocoapods.org/pods/JJCollectionViewRoundFlowLayout)
 
+<div align="vertical-center">
+  <a href="https://deepwiki.com/netease-kit/nim-uikit-harmony/1-overview">
+    <img src="https://devin.ai/assets/deepwiki-badge.png" alt="Ask the Deepwiki" height="20"/>
+  </a>
+  <p>单击跳转查看 <a href="https://deepwiki.com/kingjiajie/JJCollectionViewRoundFlowLayout/1-overview">DeepWiki</a> 源码解读。</p>
+</div>
+
+-------------------------------
+
 
    JJCollectionViewRoundFlowLayout可设置CollectionView的BackgroundColor，可跟据用户Cell个数计算背景图尺寸，可自定义是否包括计算CollectionViewHeaderView、CollectionViewFootererView或只计算Cells。设置简单，可自定义背景颜色偏移，设置显示方向（竖向、横向）显示,不同Section设置不同的背景颜色，支持自定义delegate 输入，并兼容像IGListCollectionView无delegate的情况。
    可设置内容：
