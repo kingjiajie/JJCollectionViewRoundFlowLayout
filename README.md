@@ -6,7 +6,7 @@
 [![Platform](https://img.shields.io/cocoapods/p/JJCollectionViewRoundFlowLayout.svg?style=flat)](https://cocoapods.org/pods/JJCollectionViewRoundFlowLayout)
 
 <div align="vertical-center">
-  <a href="https://deepwiki.com/netease-kit/nim-uikit-harmony/1-overview">
+  <a href="https://deepwiki.com/kingjiajie/JJCollectionViewRoundFlowLayout/1-overview">
     <img src="https://devin.ai/assets/deepwiki-badge.png" alt="Ask the Deepwiki" height="20"/>
   </a>
   <p>单击跳转查看 <a href="https://deepwiki.com/kingjiajie/JJCollectionViewRoundFlowLayout/1-overview">DeepWiki</a> 源码解读。</p>
